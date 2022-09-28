@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getAllWorkspacesThunk} from '../../store/workspace'
+import {getAllWorkspacesThunk} from '../../../store/workspace'
 
-function Workspaces() {
+function Home() {
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
     const workspaces = useSelector(state => state.workspaces)
@@ -12,11 +12,11 @@ function Workspaces() {
         .then(() => setIsLoaded(true))
     }, [dispatch])
 
-    return isLoaded && (
+    return (
         <div>
-            Workspaces Here
+            Home Page Here
         </div>
     )
 }
 
-export default Workspaces
+export default Home

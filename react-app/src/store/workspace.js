@@ -13,7 +13,7 @@ const getAllWorkspaces = payload => {
 // Thunk Action Creators
 
 export const getAllWorkspacesThunk = () => async dispatch => {
-    const response = await fetch('api/workspaces')
+    const response = await fetch('/api/workspaces')
     const data = await response.json()
 
     if(response.ok) {

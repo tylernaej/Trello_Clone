@@ -1,9 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
+import workspaceReducer from './workspace';
+import activeWorkspaceReducer from './activeWorkspace';
 
 const rootReducer = combineReducers({
   session,
+  workspaces: workspaceReducer,
+  activeWorkspace: activeWorkspaceReducer
 });
 
 

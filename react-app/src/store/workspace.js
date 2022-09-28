@@ -12,9 +12,9 @@ const getAllWorkspaces = payload => {
 }
 // Thunk Action Creators
 
-const getAllWorkspacesThunk = () => async dispatch => {
+export const getAllWorkspacesThunk = () => async dispatch => {
     const response = await fetch('api/workspaces')
-    const data = response.json()
+    const data = await response.json()
 
     if(response.ok) {
         await dispatch(getAllWorkspaces(data))
@@ -30,6 +30,9 @@ const workspaceReducer = (state = initialState, action) => {
     let newState = {...state}
     switch (action.type) {
         case (GET_ALL_WORKSPACES): {
+            action.payload.workspaces.forEach(workspace => {
+                newState[workspace.id] = {...newState[workspace.id], ...workspace}
+            });
             return newState
         }
         default: {

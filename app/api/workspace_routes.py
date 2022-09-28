@@ -5,14 +5,14 @@ from flask_login import current_user, login_user, logout_user, login_required
 workspace_routes = Blueprint('workspaces', __name__)
 
 @workspace_routes.route('/')
-@login_required
+# @login_required
 def get_all_workspaces():
+
+    print('\n\nin route\n\n')
 
     workspaces = Workspace.query.join(Board).all()
 
-    print(workspaces)
-
-    workspaceKey = {}
+    workspaceKey = []
 
     for workspace in workspaces:
         boards = []
@@ -20,7 +20,7 @@ def get_all_workspaces():
             boards.append(board.to_dict())
         dict_workspace = workspace.to_dict()
         dict_workspace['boards'] = boards
-        workspaceKey[f'{workspace.name}'] = dict_workspace
+        workspaceKey.append(dict_workspace)
 
     return {'workspaces': workspaceKey}
 
@@ -50,4 +50,4 @@ def get_all_boards_of_workspace(id):
         boards.append(dict_board)
             
 
-    return {"boards": boards}
+    return {"workspace": workspace.to_dict(), "boards": boards}

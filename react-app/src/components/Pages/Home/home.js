@@ -37,7 +37,7 @@ function Home() {
                         Your Workspaces:
                         <div>
                             {workSpacesForMap.map(workspace => (
-                                <HomeWorkSpaceCard key={workspace.id} workspace={workspace}/>
+                                <HomeWorkSpaceCard key={workspace.id} workspace={workspace}/>       
                             ))}
                         </div>
                     </div>

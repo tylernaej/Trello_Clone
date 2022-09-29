@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createBoardOnWorkspaceThunk } from "../../../store/workspace";
+import { createBoardOnActiveWorkspaceThunk } from "../../../store/activeWorkspace";
 
-function HomeCreateBoard({setShowModal, workspaceId}) {
+function WorkspaceCreateBoard({setShowModal, workspaceId}) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState("")
     const [backgroundColor, setBackgroundColor] = useState("")
@@ -29,7 +29,7 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
 
         console.log('payload is',newBoard)
 
-        const data = await dispatch(createBoardOnWorkspaceThunk(newBoard))
+        const data = await dispatch(createBoardOnActiveWorkspaceThunk(newBoard))
         setShowModal(false)
     }
 
@@ -80,4 +80,4 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
     )
 }
 
-export default HomeCreateBoard
+export default WorkspaceCreateBoard

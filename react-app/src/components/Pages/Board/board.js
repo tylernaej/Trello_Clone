@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {getAllBoardsOfWorkspaceThunk} from '../../../store/activeWorkspace'
 import {getAllWorkspacesThunk} from '../../../store/workspace'
+import BoardListCard from "./boardListCard";
+import { Modal } from '../../../context/Modal'
+import BoardCreateList from './boardCreateList'
 
 function Board() {
     const dispatch = useDispatch()
@@ -12,10 +15,16 @@ function Board() {
     const idFromParams = useParams()
     const boardId = idFromParams.boardId
     const workspaceId = idFromParams.workspaceId
+    const [addList, setAddList] = useState(false)
+
+    const handleClick = e => {
+        e.preventDefault()
+        setAddList(true)
+    }
 
     useEffect(() => {
         dispatch(getAllBoardsOfWorkspaceThunk(workspaceId))
-        .then((workspace) => setActiveBoard(workspace.boards.find(board => board.id === parseInt(boardId))))
+        .then((workspace) => workspace.boards ? setActiveBoard(workspace.boards.find(board => board.id === parseInt(boardId))) : setActiveBoard(null))
         .then(() => setIsLoaded(true))
     }, [dispatch])
 
@@ -27,8 +36,20 @@ function Board() {
 
     return isLoaded && activeBoard && (
         <div>
-            Single Board Here
             {activeBoard.title}
+            <div>
+                {activeBoard.lists.map(list => (
+                    <BoardListCard key={list.id} list={list}/>
+                ))}
+            </div>
+            <div>
+                {!addList && (
+                    <button onClick={handleClick}>Add New List</button>
+                )}
+                {addList && (
+                    <BoardCreateList setAddList={setAddList} boardId={activeBoard.id}/>
+                )}
+            </div>
         </div>
     )
 }

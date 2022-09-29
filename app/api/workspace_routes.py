@@ -45,13 +45,13 @@ def get_all_boards_of_workspace(id):
 
     workspace = workspaceQ.to_dict()
 
-    boardsQ = Board.query.join(List).join(Card).filter(Board.workspace_id == id).all()
+    boardsQ = Board.query.outerjoin(List).outerjoin(Card).filter(Board.workspace_id == id).all()
 
     boards = []
     for board in boardsQ:
         dict_board = board.to_dict()
+        lists = []
         for list in board.lists:
-            lists = []
             dict_list = list.to_dict()
             cards = [card.to_dict() for card in list.cards]
             dict_list['cards'] = cards

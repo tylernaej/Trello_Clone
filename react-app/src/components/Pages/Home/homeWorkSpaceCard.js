@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import HomeBoardCard from "./homeBoardCard";
 import { Modal } from '../../../context/Modal'
 import HomeCreateBoard from "./homeCreateBoard";
+import { NavLink, useLocation } from 'react-router-dom';
 
 function HomeWorkSpaceCard({workspace}) {
     const [wSBoards, setWSBoards] = useState(workspace.boards)
@@ -13,13 +14,15 @@ function HomeWorkSpaceCard({workspace}) {
         setShowModal(true)
     }
 
-    console.log(showModal)
-
     return (
         <div>
             <div>
                 <div>
-                    {workspace.name}
+                    <NavLink 
+                        to={`/w/${workspace.id}`}
+                    >
+                        {workspace.name}
+                    </NavLink>
                 </div>
                 <div>
                     {workspace.users.length} Members
@@ -28,14 +31,14 @@ function HomeWorkSpaceCard({workspace}) {
             </div>
             <div>
                 {wSBoards.map(board => (
-                    <HomeBoardCard key={board.id} board={board}/>
+                    <HomeBoardCard key={board.id} board={board} workspaceId={workspace.id}/>
                 ))}
             </div>
             <div>
                 <button onClick={handleClick}>Create New Board</button>
                 {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <HomeCreateBoard setShowModal={setShowModal}/>
+                    <HomeCreateBoard setShowModal={setShowModal} workspaceId={workspace.id}/>
                 </Modal>
                 )}
             </div>

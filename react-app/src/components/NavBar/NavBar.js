@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <nav className='flex-row'>
       <div>
-        <NavLink to='/' exact={true} activeClassName='active'>
+        <NavLink to='/home' exact={true} activeClassName='active'>
           Home
         </NavLink>
       </div>

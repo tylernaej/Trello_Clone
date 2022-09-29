@@ -75,6 +75,17 @@ def seed_cards():
     
     card_6.users.append(demo)
 
+    FailCard = Card(
+        list_id = 6,
+        title = 'Failcard',
+        cover_color = "red",
+        description = "This Card is intentionally failing!",
+        start_date = None,
+        is_archived = 1
+    )
+    
+    FailCard.users.append(demo)
+
     db.session.add(card_1)
     db.session.add(card_2)
     db.session.add(card_3)

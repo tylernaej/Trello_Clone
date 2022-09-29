@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBoardsOfWorkspaceThunk } from "../../../store/activeWorkspace";
 import { useParams } from "react-router-dom";
+import WorkspaceBoardCard from "./workspaceBoardCard";
+import WorkspaceCreateBoard from "./workspaceCreateBoard";
+import { Modal } from '../../../context/Modal'
 
 function Workspace() {
     const dispatch = useDispatch()
@@ -10,6 +13,12 @@ function Workspace() {
     const workspace = useSelector(state => state.activeWorkspace.workspace)
     const idFromParams = useParams()
     const id = idFromParams.workspaceId
+    const [showModal, setShowModal] = useState(false)
+
+    const handleClick = e => {
+        e.preventDefault()
+        setShowModal(true)
+    }
 
     useEffect(() => {
         dispatch(getAllBoardsOfWorkspaceThunk(id))
@@ -21,7 +30,17 @@ function Workspace() {
             Single Workspace Page Here
             <div>{workspace.name}</div>
             <div>
-                Boards Here
+                {workspace.boards.map(board => (
+                    <WorkspaceBoardCard board={board}/>
+                ))}
+            </div>
+            <div>
+                <button onClick={handleClick}>Create New Board</button>
+                {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <WorkspaceCreateBoard setShowModal={setShowModal} workspaceId={workspace.id}/>
+                </Modal>
+                )}
             </div>
         </div>
     )

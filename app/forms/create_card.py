@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, BooleanField, DateField
-from wtforms.validators import DataRequired, Email, ValidationError, NumberRange
+from wtforms import StringField, IntegerField, BooleanField, DateField, validators
+from wtforms.validators import DataRequired, Optional, Email, ValidationError, NumberRange
 
 
 #validations
@@ -15,7 +15,6 @@ def description_length(form, field):
     if len(description) > 1000:
         raise ValidationError('Description must be less than 1000 characters')
 
-
 #form
 
 class CreateCard(FlaskForm):
@@ -23,6 +22,6 @@ class CreateCard(FlaskForm):
     title = StringField("Title", validators=[DataRequired(), title_length])
     coverColor = StringField("Cover Color", validators=[DataRequired()])
     description = StringField("Description", validators=[DataRequired(), description_length])
-    startDate = DateField("Start Date", validators=[DataRequired()])
-    dueDate = DateField("Due Date", validators=[DataRequired()])
+    startDate = DateField("Start Date", format='%Y/%m/%d', validators=[Optional()])
+    dueDate = DateField("Due Date", format='%Y/%m/%d', validators=[Optional()])
     isArchived = BooleanField("Is Archived")

@@ -1,5 +1,12 @@
 from .db import db
 
+user_cards = db.Table(
+    "user_cards",
+    db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column("card_id", db.Integer, db.ForeignKey('cards.id'), primary_key=True)
+)
+
 class Card(db.Model):
     __tablename__ = 'cards'
 
@@ -13,6 +20,8 @@ class Card(db.Model):
     is_archived = db.Column(db.Boolean, nullable=True)
 
     list = db.relationship("List", back_populates="cards")
+    users = db.relationship("User", secondary=user_cards, back_populates='cards', cascade="all, delete")
+
 
     def __repr__(self):
         return f'<{self.title}: Card. is_archived - {self.is_archived}>'

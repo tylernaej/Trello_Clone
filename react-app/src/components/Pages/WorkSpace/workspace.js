@@ -21,9 +21,7 @@ function Workspace() {
             Single Workspace Page Here
             <div>{workspace.name}</div>
             <div>
-                {workspace.boards.map((board) => (
-                    <div key={board.id}>{board.title} with Id of {board.id}</div>
-                ))}
+                Boards Here
             </div>
         </div>
     )

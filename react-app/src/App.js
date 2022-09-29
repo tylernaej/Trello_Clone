@@ -45,15 +45,15 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/w/:workspaceId/b/:boardId'>
+        <ProtectedRoute path='/w/:workspaceId/b/:boardId'>
           <Board />
-        </Route>
-        <Route path='/w/:workspaceId'>
+        </ProtectedRoute>
+        <ProtectedRoute path='/w/:workspaceId'>
           <Workspace />
-        </Route>
-        <Route path='/home'>
+        </ProtectedRoute>
+        <ProtectedRoute path='/home'>
           <Home />
-        </Route>
+        </ProtectedRoute>
         <Route path='/' exact={true} >
           <Splash />
         </Route>

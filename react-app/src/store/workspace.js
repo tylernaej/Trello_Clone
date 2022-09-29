@@ -12,8 +12,8 @@ const getAllWorkspaces = payload => {
 }
 // Thunk Action Creators
 
-export const getAllWorkspacesThunk = () => async dispatch => {
-    const response = await fetch('/api/workspaces')
+export const getCurrentUserWorkspacesThunk = () => async dispatch => {
+    const response = await fetch('/api/workspaces/current')
     const data = await response.json()
 
     if(response.ok) {

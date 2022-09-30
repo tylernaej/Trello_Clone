@@ -32,6 +32,19 @@ class Workspace(db.Model):
             "users" : self.users
         }
 
+    def to_dict_with_users_boards(self):
+        users = [user.to_dict() for user in self.users]
+        boards = [board.to_dict() for board in self.boards]
+        return {
+            "id" : self.id,
+            "name" : self.name,
+            "workspaceType" : self.workspace_type,
+            "description" : self.description,
+            "isArchived" : self.is_archived,
+            "users" : users,
+            "boards" : boards
+        }
+
     def to_dict(self):
         return {
             "id" : self.id,

@@ -31,7 +31,7 @@ function Workspace() {
             <div>{workspace.name}</div>
             <div>
                 {workspace.boards.map(board => (
-                    <WorkspaceBoardCard board={board}/>
+                    <WorkspaceBoardCard workspaceId={workspace.id} board={board}/>
                 ))}
             </div>
             <div>

@@ -71,14 +71,19 @@ def create_workspace():
     if form.validate_on_submit():
         workspace = Workspace(
             name = form.name.data,
-            workspace_type = form.workspace_type.data,
+            workspace_type = form.workspaceType.data,
             description = form.description.data,
-            is_archived = form.is_archived.data
+            is_archived = form.isArchived.data
         )
         db.session.add(workspace)
         db.session.commit()
 
-        return workspace.to_dict()
+        user = User.query.get(form.userId.data)
+        workspace.users.append(user)
+        db.session.commit()
+        
+
+        return workspace.to_dict_with_users_boards()
     
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
@@ -124,11 +129,14 @@ def delete_workspace(id):
 @login_required
 def get_all_workspaces_by_userId():
 
-    workspacesQ = Workspace.query.join(Board).all()
+    workspacesQ = Workspace.query.outerjoin(Board).all()
+
+    # print(f'\n\nworkspacesQ: {workspacesQ}')
 
     current_user_workspaces = []
     for workspaceQ in workspacesQ:
         workspace = workspaceQ.to_dict_with_users()
+        print(f'\n\nworkspace: {workspace}')
         workspace['boards'] = [board.to_dict() for board in workspaceQ.boards]
         user_ids = [user.to_dict()['id'] for user in workspace['users']]
         users = [user.to_dict() for user in workspace['users']]

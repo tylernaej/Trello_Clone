@@ -18,6 +18,7 @@ def name_length(form, field):
 #form
 
 class CreateWorkspace(FlaskForm):
+    userId = IntegerField("User Id", validators=[DataRequired()])
     name = StringField("Name", validators=[DataRequired(), name_length])
     workspaceType = StringField("Workspace Type", validators=[DataRequired()])
     description = StringField("Description", validators=[DataRequired(), description_length])

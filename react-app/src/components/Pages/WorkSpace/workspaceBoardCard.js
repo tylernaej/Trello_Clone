@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom"
 
-function WorkspaceBoardCard({board}) {
+function WorkspaceBoardCard({workspaceId, board}) {
 
 
 
     return (
         <div>
-            {board.title}
+            <NavLink to={`/w/${workspaceId}/b/${board.id}`}>
+                {board.title}
+            </NavLink>
         </div>
     )
 }

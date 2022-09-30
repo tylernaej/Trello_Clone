@@ -2,7 +2,7 @@
 
 const GET_ALL_WORKSPACES = "workspace/get-all-workspaces"
 const ADD_BOARD_TO_WORKSPACE= "workspace/add-board-to-workspace"
-
+const CREATE_NEW_WORKSPACE= "workspace/create-new-workspace"
 // Action Creators
 
 const getAllWorkspaces = payload => {
@@ -15,6 +15,13 @@ const getAllWorkspaces = payload => {
 const addBoardToWorkspace = payload => {
     return {
         type: ADD_BOARD_TO_WORKSPACE,
+        payload
+    }
+}
+
+const createNewWorkspace = payload => {
+    return {
+        type: CREATE_NEW_WORKSPACE,
         payload
     }
 }
@@ -39,10 +46,24 @@ export const createBoardOnWorkspaceThunk = (payload) => async dispatch => {
     })
     const data = await response.json()
 
+    if (response.ok){
+        await dispatch(addBoardToWorkspace(data))
+    }
+    return data
+}
+
+export const createNewWorkspaceThunk = (payload) => async dispatch => {
+    const response = await fetch('/api/workspaces/', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    const data = await response.json()
+
     console.log('The return is ', data)
 
     if (response.ok){
-        await dispatch(addBoardToWorkspace(data))
+        await dispatch(createNewWorkspace(data))
     }
     return data
 }
@@ -61,6 +82,10 @@ const workspaceReducer = (state = initialState, action) => {
         }
         case (ADD_BOARD_TO_WORKSPACE): {
             newState[action.payload.workspaceId].boards[action.payload.id] = action.payload
+            return newState
+        }
+        case (CREATE_NEW_WORKSPACE): {
+            newState[action.payload.id] = action.payload
             return newState
         }
         default: {

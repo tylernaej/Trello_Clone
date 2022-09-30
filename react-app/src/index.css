@@ -1,1 +1,363 @@
-/* TODO Add site wide styles */
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFFFFF;
+    font-family: Graphik Meetup, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    /* padding-bottom: 6rem; */
+}
+
+div {
+    overflow-wrap: break-word;
+}
+
+/* .backround-light-blue {
+    background-color: #F6F7F8;
+} */
+
+.backround-grey {
+    background-color: #EFEFEF;
+}
+
+/* Main Div  */
+.main-div {
+    width: 100%;
+    height: 100%;
+    /* justify-content: center; */
+}
+
+/* Footer */
+footer {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/* NavLinks */
+.navLink {
+    text-decoration: none;
+    color: black;
+}
+
+.navLink-bluegreen {
+    text-decoration: none;
+    color: #008294;
+}
+
+.tab-active {
+    text-decoration: underline;
+}
+
+/* Buttons */
+/* button.default {
+    padding: 10px 20px;
+    margin: 10px;
+    width: 200px;
+    height: 40px;
+    background-color: #F65858;
+    color: white;
+    border: none;
+    border-radius: 10px
+}
+
+button.return { */
+    /* padding: 10px 20px;
+    margin: 10px;
+    width: 200px;
+    height: 40px;
+    background-color: white;
+    color: grey;
+    border: 1px #C5C4C4 solid;
+    border-radius: 10px
+}
+
+button.default:disabled {
+    padding: 10px 20px;
+    margin: 10px;
+    width: 200px;
+    height: 40px;
+    background-color: #D9D9D9;
+    color: #A4A4A4;
+    border: none;
+    border-radius: 10px
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+} */
+
+/* Form Stuff */
+.w450px {
+    width: 450px;
+}
+
+input {
+    width: 100%;
+    height: 55;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    font-family: Graphik Meetup, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+}
+
+label {
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+select {
+    width: 100%;
+    height: 55;
+    padding: 10px 20px 10px 40px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    font-family: Graphik Meetup, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    font-family: Graphik Meetup, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* button {
+    background-color: rgb(224,7,7); */
+    /* Green */
+    /* border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+} */
+
+/* Images */
+img.cover {
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+/* Text */
+p.spacing {
+    line-height: 35px;
+}
+
+.text25 {
+    font-size: 25px
+}
+
+.text20 {
+    font-size: 20px;
+}
+
+.text16 {
+    font-size: 16px;
+}
+
+.text14 {
+    font-size: 14px;
+}
+
+.textcolor-gold {
+    color: #877457;
+}
+
+.textcolor-bluegreen {
+    color: #008294;
+}
+
+.textcolor-grey {
+    color: #757575;
+}
+
+.textcolor-footer {
+    color: white;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+/* Displays */
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-row-justify-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flex-row-justify-around {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.flex-row-align-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Width and Heights */
+.w100 {
+    width: 100%;
+}
+
+.w70 {
+    width: 70%;
+}
+
+.w40 {
+    width: 40%;
+}
+
+.w30 {
+    width: 30%;
+}
+
+.w1070px {
+    width: 1070px;
+}
+
+.h100 {
+    height: 100%;
+}
+
+
+/* Margin, Borders, and Padding */
+.border-none-sides {
+    border-top: #E6E6E6 1px solid;
+    border-bottom: #E6E6E6 1px solid;
+}
+
+.border-top-black-2px {
+    border-top: 2px solid rgb(235, 235, 235);
+}
+
+.padding-none-sides {
+    padding: 20px 0px 20px 0px
+}
+
+.padding-sides {
+    padding: 0 20px 0 20px
+}
+
+.padding20 {
+    padding: 20px;
+}
+
+.padding10 {
+    padding: 10px
+}
+
+.padding5 {
+    padding: 5px;
+}
+
+.border20 {
+    border: 20px;
+}
+
+.verticalMargin15 {
+    margin: 15px 0;
+}
+
+.testborder {
+    border: 5px solid red;
+}
+
+/* List stuff */
+
+.list-no-style {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+div.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+/* Star Rating  */
+
+.stars-outer {
+    display: inline-block;
+    position: relative;
+    font-family: FontAwesome;
+}
+
+.stars-outer::before {
+    content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+
+.stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    /* color: #f8ce0b; */
+    color: rgb(255, 135, 66);
+}
+

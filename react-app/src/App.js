@@ -8,8 +8,11 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import { authenticate } from './store/session';
 import User from './components/User';
-import Splash from './components/Splash/splash';
-import Home from './components/Home/home';
+import Home from './components/Pages/Home/home';
+import Splash from './components/Pages/Splash/splash'
+import Board from './components/Pages/Board/board';
+import Workspace from './components/Pages/WorkSpace/workspace';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,9 +45,15 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/home'>
+        <ProtectedRoute path='/w/:workspaceId/b/:boardId'>
+          <Board />
+        </ProtectedRoute>
+        <ProtectedRoute path='/w/:workspaceId'>
+          <Workspace />
+        </ProtectedRoute>
+        <ProtectedRoute path='/home'>
           <Home />
-        </Route>
+        </ProtectedRoute>
         <Route path='/' exact={true} >
           <Splash />
         </Route>

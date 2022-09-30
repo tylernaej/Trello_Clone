@@ -31,6 +31,11 @@ def seed_lists():
         title = 'list_6',
         is_archived = 1
     )
+    list_7 = List(
+        board_id = 6,
+        title = 'list_7',
+        is_archived = 1
+    )
 
 
 
@@ -40,6 +45,7 @@ def seed_lists():
     db.session.add(list_4)
     db.session.add(list_5)
     db.session.add(list_6)
+    db.session.add(list_7) 
 
     db.session.commit()
 

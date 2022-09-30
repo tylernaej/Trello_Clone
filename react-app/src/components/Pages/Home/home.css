@@ -1,0 +1,36 @@
+#home-container{
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#content-container{
+    width: 85%;
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 10;
+}
+
+#side-nav-bar{
+    display: flex;
+    flex-direction: column;
+}
+
+#side-nav-bar-container{
+    grid-row: 1;
+    grid-column: 1 / 3;
+}
+
+#main-content-container{
+    grid-row: 1;
+    grid-column: 4 / 11;
+}
+
+#side-nav-bar-workspaces{
+    border-bottom: 1px solid grey;
+}
+
+#your-workspaces{
+    border-bottom: 1px solid grey;
+}
+

@@ -19,6 +19,7 @@ class Board(db.Model):
     def to_dict(self):
         return {
             "id" : self.id,
+            "workspaceId" : self.workspace_id,
             "title" : self.title,
             "backgroundColor" : self.background_color,
             "visibility" : self.visibility,

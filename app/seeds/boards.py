@@ -1,6 +1,7 @@
 from app.models import db, Board
 
 def seed_boards():
+
     board_1 = Board(
         workspace_id = 1,
         title = 'board_1',
@@ -16,6 +17,7 @@ def seed_boards():
         visibility = "private",
         is_archived = 0
     )
+
     board_3 = Board(
         workspace_id = 2,
         title = 'board_3',
@@ -23,6 +25,7 @@ def seed_boards():
         visibility = "visible",
         is_archived = 0
     )
+
     board_4 = Board(
         workspace_id = 2,
         title = 'board_4',
@@ -30,6 +33,7 @@ def seed_boards():
         visibility = "visible",
         is_archived = 0
     )
+
     board_5 = Board(
         workspace_id = 2,
         title = 'board_5',
@@ -37,6 +41,7 @@ def seed_boards():
         visibility = "visible",
         is_archived = 0
     )
+
     board_6 = Board(
         workspace_id = 3,
         title = 'board_6',

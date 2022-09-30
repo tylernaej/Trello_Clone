@@ -18,6 +18,7 @@ class List(db.Model):
     def to_dict(self):
         return {
             "id" : self.id,
+            "boardId" : self.board_id,
             "title" : self.title,
             "isArchived" : self.is_archived
         }

@@ -22,7 +22,7 @@ def get_all_workspaces():
 
     workspaces = Workspace.query.join(Board).all()
 
-    workspaceKey = []
+    all_workspaces = []
 
     for workspace in workspaces:
         boards = []
@@ -30,9 +30,9 @@ def get_all_workspaces():
             boards.append(board.to_dict())
         dict_workspace = workspace.to_dict()
         dict_workspace['boards'] = boards
-        workspaceKey.append(dict_workspace)
+        all_workspaces.append(dict_workspace)
 
-    return {'workspaces': workspaceKey}
+    return {'workspaces': all_workspaces}
 
 @workspace_routes.route('/<int:id>/boards')
 @login_required
@@ -45,13 +45,13 @@ def get_all_boards_of_workspace(id):
 
     workspace = workspaceQ.to_dict()
 
-    boardsQ = Board.query.join(List).join(Card).filter(Board.workspace_id == id).all()
+    boardsQ = Board.query.outerjoin(List).outerjoin(Card).filter(Board.workspace_id == id).all()
 
     boards = []
     for board in boardsQ:
         dict_board = board.to_dict()
+        lists = []
         for list in board.lists:
-            lists = []
             dict_list = list.to_dict()
             cards = [card.to_dict() for card in list.cards]
             dict_list['cards'] = cards
@@ -71,14 +71,19 @@ def create_workspace():
     if form.validate_on_submit():
         workspace = Workspace(
             name = form.name.data,
-            workspace_type = form.workspace_type.data,
+            workspace_type = form.workspaceType.data,
             description = form.description.data,
-            is_archived = form.is_archived.data
+            is_archived = form.isArchived.data
         )
         db.session.add(workspace)
         db.session.commit()
 
-        return workspace.to_dict()
+        user = User.query.get(form.userId.data)
+        workspace.users.append(user)
+        db.session.commit()
+        
+
+        return workspace.to_dict_with_users_boards()
     
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
@@ -119,6 +124,30 @@ def delete_workspace(id):
     db.session.commit()
 
     return {"message": "successfully deleted", "statusCode": 200}
+
+@workspace_routes.route('/current')
+@login_required
+def get_all_workspaces_by_userId():
+
+    workspacesQ = Workspace.query.outerjoin(Board).all()
+
+    # print(f'\n\nworkspacesQ: {workspacesQ}')
+
+    current_user_workspaces = []
+    for workspaceQ in workspacesQ:
+        workspace = workspaceQ.to_dict_with_users()
+        print(f'\n\nworkspace: {workspace}')
+        workspace['boards'] = [board.to_dict() for board in workspaceQ.boards]
+        user_ids = [user.to_dict()['id'] for user in workspace['users']]
+        users = [user.to_dict() for user in workspace['users']]
+        if current_user.id in user_ids:
+            del workspace['users']
+            workspace['users'] = users
+            current_user_workspaces.append(workspace)
+
+    return {'workspaces': current_user_workspaces}
+
+   
 
 
 

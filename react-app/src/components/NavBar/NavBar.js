@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <nav className='flex-row'>
       <div>
-        <NavLink to='/' exact={true} activeClassName='active'>
+        <NavLink to='/home' exact={true} activeClassName='active'>
           Home
         </NavLink>
       </div>
@@ -19,11 +19,6 @@ const NavBar = () => {
       <div>
         <NavLink to='/sign-up' exact={true} activeClassName='active'>
           Sign Up
-        </NavLink>
-      </div>
-      <div>
-        <NavLink to='/users' exact={true} activeClassName='active'>
-          Users
         </NavLink>
       </div>
       <div>

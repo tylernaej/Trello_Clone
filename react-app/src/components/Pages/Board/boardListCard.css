@@ -1,3 +1,30 @@
-#list-wrapper{
-    border: 1px solid red;
+#list-exterior-container{
+    margin: 10px;
+    width: 260px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgb(230, 230, 230);
+}
+
+#list-interior-container{
+    margin: 10px;
+}
+
+#title-container{
+    font-size: larger;
+    font-weight: 500;
+    border-bottom: 1px solid black;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    transition: 200ms;
+}
+
+#non-edit-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#title-container:hover{
 }

@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import CardModal from "./cardModal";
 import { Modal } from '../../../context/Modal'
 import CardEditTitle from "./editCardInfo/cardEditTitle";
+import './boardCardCard.css'
 
 function BoardCardCard({boardId, card}) {
     const listId = card.listId
@@ -23,9 +24,9 @@ function BoardCardCard({boardId, card}) {
     }
 
     return cardSelected && (
-        <div>
-            <div>
-                <div onClick={handleClick}>{cardSelected.title}</div>
+        <div id='card-exterior-container'>
+            <div id='card-interior-container'>
+                <div id='card-title' onClick={handleClick}>{cardSelected.title}</div>
                 {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <CardModal card={card}/>

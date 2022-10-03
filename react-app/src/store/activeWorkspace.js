@@ -8,6 +8,10 @@ const EDIT_LIST = "activeWorkspace/edit-list"
 const EDIT_CARD = "activeWorkspace/edit-card"
 const EDIT_WORKSPACE = 'activeWorkspace/edit-workspace'
 const EDIT_BOARD = 'activeWorkspace/edit-board'
+const DELETE_LIST = 'activeWorkspace/delete-list'
+const DELETE_CARD = 'activeWorkspace/delete-card'
+const DELETE_BOARD = 'activeWorkspace/delete-board'
+const DELETE_WORKSPACE = 'activeWorkspace/delete-workspace'
 
 // Action Creators
 
@@ -66,10 +70,23 @@ const editBoard = payload => {
         payload
     }
 }
+
+const deleteList = payload => {
+    return {
+        type: DELETE_LIST,
+        payload
+    }
+}
+
+const deleteCard = payload => {
+    return {
+        type: DELETE_CARD,
+        payload
+    }
+}
 // Thunk Action Creators
 
 export const getAllBoardsOfWorkspaceThunk = (workspaceId) => async dispatch => {
-    console.log('wId in thunk', workspaceId)
     const response = await fetch(`/api/workspaces/${parseInt(workspaceId)}/boards`)
     const data = await response.json()
 
@@ -178,6 +195,30 @@ export const editBoardThunk = ({boardId, payload}) => async dispatch => {
     return data
 }
 
+export const deleteListThunk = (listId) => async dispatch => {
+    const response = await fetch(`/api/lists/${listId}`, {
+        method: "Delete"
+    })
+    const data = await response.json()
+
+    if (response.ok){
+        await dispatch(deleteList(listId))
+    }
+    return data
+}
+
+export const deleteCardThunk = (listId, cardId) => async dispatch => {
+    const response = await fetch(`/api/cards/${cardId}`, {
+        method: "Delete"
+    })
+    const data = await response.json()
+
+    if (response.ok){
+        await dispatch(deleteCard({listId, cardId}))
+    }
+    return data
+}
+
 
 // Reducer
 const initialState = {}
@@ -267,6 +308,25 @@ const activeWorkspaceReducer = (state = initialState, action) => {
             boardUpdate.isArchived = action.payload.isArchived
             boardUpdate.lists = boardUpdateLists
             newState.workspace.boards.splice(boardUpdateIndex, 1, boardUpdate)
+            return newState
+        }
+        case (DELETE_LIST): {
+            console.log()
+            for (const board of newState.workspace.boards){
+                let toDelete = board.lists.findIndex(list => {
+                    if(list.id === action.payload){
+                        return true
+                    }
+                    return false
+                })
+                board.lists.splice(toDelete, 1)
+            }
+            return newState
+        }
+        case (DELETE_CARD): {
+            console.log('action', action.payload)
+            console.log('newstate', newState.workspace.boards)
+                                   
             return newState
         }
         default: {

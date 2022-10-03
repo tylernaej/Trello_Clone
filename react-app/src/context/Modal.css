@@ -21,10 +21,8 @@
 
 #modal-content {
     position: absolute;
-    background-color: white;
-    width: 450px;
-    height: 200px;
+    background-color: rgb(230, 230, 230);
     display: flex;
     justify-content: center;
-    border-radius: 15px;
+    border-radius: 8px;
 }

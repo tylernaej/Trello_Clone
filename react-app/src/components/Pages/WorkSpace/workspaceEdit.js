@@ -1,53 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {createNewWorkspaceThunk} from "../../../store/workspace"
+import { NavLink } from "react-router-dom"
+import { editWorkspaceThunk } from "../../../store/activeWorkspace";
 
-function HomeCreateWorkspace({setShowModal}) {
+function WorkspaceEdit({sessionUser, workspace, setEditWorkspace}) {
     const dispatch = useDispatch()
-    const sessionUser = useSelector(state => state.session.user)
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [workspaceType, setWorkspaceType] = useState("Other")
-    const [isArchived, setIsArchived] = useState("")
-    const [isSubmitted, setIsSubmitted] = useState(false)
-   
-    const handleClick = e => {
-        e.preventDefault()
-        setShowModal(false);
-    }
+    const [name, setName] = useState(workspace.name)
+    const [workspaceType, setWorkspaceType] = useState(workspace.workspaceType)
+    const [description, setDescription] = useState(workspace.description)
 
     const handleSubmit = async e => {
         e.preventDefault()
-        setIsSubmitted(true)
-
-        const newWorkspace = {
+        
+        const workspaceEdit = {
             userId: sessionUser.id,
             name,
             workspaceType,
             description,
             isArchived: 0
         }
-
-        const data = await dispatch(createNewWorkspaceThunk(newWorkspace))
-        setShowModal(false)
+        console.log(workspaceEdit)
+        const data = await dispatch(editWorkspaceThunk({workspaceId: workspace.id, payload: workspaceEdit}))
+        setEditWorkspace(false)
     }
 
     return (
         <div>
+            Workspace Edit
             <div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} >
                     <div>
-                        <label htmlFor="name">Workspace Name</label>
+                        <label htmlFor="name"></label>
                         <input
                             required
                             type="text"
                             name="name"
+                            placeholder={`${name}`}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label htmlFor="workspaceType">Workspace Type</label>
+                        <label htmlFor="workspaceType"></label>
                             <select
                                 required
                                 value={workspaceType}
@@ -62,7 +56,7 @@ function HomeCreateWorkspace({setShowModal}) {
                                 <option value="Human Resources">Human Resources</option>
                                 <option value="Other">Other</option>
                             </select>
-                    </div>
+                    </div> 
                     <div>
                         <label htmlFor="description">Description</label>
                         <input
@@ -72,14 +66,17 @@ function HomeCreateWorkspace({setShowModal}) {
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
-                    </div>            
+                    </div>
+                    <div >
+                        <button type="submit">Update</button>
+                    </div>           
                 </form>
             </div>
             <div>
-                <button className='cancel-button' onClick={handleClick}>Cancel</button>
+                <button className='cancel-button' onClick={(e) => setEditWorkspace(false)}>Cancel</button>
             </div>
         </div>
     )
 }
 
-export default HomeCreateWorkspace
+export default WorkspaceEdit

@@ -67,7 +67,7 @@ def delete_list(id):
 
     if not listQ:
         return {"message": "List could not be found", "statusCode": 404}, 404
-
+    
     db.session.delete(listQ)
     db.session.commit()
 

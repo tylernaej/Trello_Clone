@@ -5,19 +5,27 @@ import { useParams } from "react-router-dom";
 import WorkspaceBoardCard from "./workspaceBoardCard";
 import WorkspaceCreateBoard from "./workspaceCreateBoard";
 import { Modal } from '../../../context/Modal'
+import WorkspaceEdit from "./workspaceEdit";
 
 function Workspace() {
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
+    const sessionUser = useSelector(state => state.session.user)
     const workspaces = useSelector(state => state.workspaces)
     const workspace = useSelector(state => state.activeWorkspace.workspace)
     const idFromParams = useParams()
     const id = idFromParams.workspaceId
     const [showModal, setShowModal] = useState(false)
+    const [editWorkspace, setEditWorkspace] = useState(false)
 
-    const handleClick = e => {
+    const handleClickNewBoard = e => {
         e.preventDefault()
         setShowModal(true)
+    }
+
+    const handleClickEditWorkspace = e => {
+        e.preventDefault()
+        setEditWorkspace(true)
     }
 
     useEffect(() => {
@@ -27,15 +35,26 @@ function Workspace() {
 
     return isLoaded && (
         <div>
-            Single Workspace Page Here
-            <div>{workspace.name}</div>
+            <div>
+                {!editWorkspace && (
+                    <div>
+                        {workspace.name}
+                        <div onClick={handleClickEditWorkspace}>
+                            <div>Icon</div>
+                        </div>
+                    </div>
+                )}
+                {editWorkspace && (
+                    <WorkspaceEdit sessionUser={sessionUser} workspace={workspace} setEditWorkspace={setEditWorkspace}/>
+                )}
+            </div>
             <div>
                 {workspace.boards.map(board => (
-                    <WorkspaceBoardCard workspaceId={workspace.id} board={board}/>
+                    <WorkspaceBoardCard key={board.id} workspaceId={workspace.id} board={board}/>
                 ))}
             </div>
             <div>
-                <button onClick={handleClick}>Create New Board</button>
+                <button onClick={handleClickNewBoard}>Create New Board</button>
                 {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <WorkspaceCreateBoard setShowModal={setShowModal} workspaceId={workspace.id}/>

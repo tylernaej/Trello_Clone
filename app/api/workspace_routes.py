@@ -91,6 +91,8 @@ def create_workspace():
 @login_required
 def edit_workspace(id):
 
+    print(f'\n\n\nHitting backend route!\n\n\n')
+
     workspaceQ = Workspace.query.get(id)
 
     if not workspaceQ:
@@ -102,9 +104,9 @@ def edit_workspace(id):
     if form.validate_on_submit():
 
         workspaceQ.name = form.name.data
-        workspaceQ.workspace_type = form.workspace_type.data
+        workspaceQ.workspace_type = form.workspaceType.data
         workspaceQ.description = form.description.data
-        workspaceQ.is_archived = form.is_archived.data
+        workspaceQ.is_archived = form.isArchived.data
 
         db.session.commit()
 
@@ -136,7 +138,6 @@ def get_all_workspaces_by_userId():
     current_user_workspaces = []
     for workspaceQ in workspacesQ:
         workspace = workspaceQ.to_dict_with_users()
-        print(f'\n\nworkspace: {workspace}')
         workspace['boards'] = [board.to_dict() for board in workspaceQ.boards]
         user_ids = [user.to_dict()['id'] for user in workspace['users']]
         users = [user.to_dict() for user in workspace['users']]

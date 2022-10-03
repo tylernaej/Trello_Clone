@@ -6,9 +6,9 @@ import { createBoardOnWorkspaceThunk } from "../../../store/workspace";
 function BoardCreateList({setAddList, boardId}) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState("")
-    const [backgroundColor, setBackgroundColor] = useState("")
-    const [visibility, setVisibility] = useState("private")
-    const [isArchived, setIsArchived] = useState("")
+    // const [backgroundColor, setBackgroundColor] = useState("")
+    // const [visibility, setVisibility] = useState("private")
+    // const [isArchived, setIsArchived] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
    
     const handleClick = e => {

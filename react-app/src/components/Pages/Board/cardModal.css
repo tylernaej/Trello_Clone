@@ -1,0 +1,14 @@
+#modal-content-wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+#main-content{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+}
+
+#side-bar{
+    border: 1px solid blue;
+}

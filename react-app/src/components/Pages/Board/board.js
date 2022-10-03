@@ -7,6 +7,8 @@ import BoardListCard from "./boardListCard";
 import { Modal } from '../../../context/Modal'
 import BoardCreateList from './boardCreateList'
 import BoardEditTitle from "./editBoardInfo/editBoardTitle";
+import './board.css'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 function Board() {
     const dispatch = useDispatch()
@@ -21,6 +23,7 @@ function Board() {
     const [addList, setAddList] = useState(false)
     const titleSelected = activeBoard? activeBoard.title : null
     const [changeTitle, setChangeTitle] = useState(false)
+    const [finishedDelete, setFinishedDelete] = useState(true)
 
     const handleClick = e => {
         e.preventDefault()
@@ -38,30 +41,35 @@ function Board() {
         )
     }
 
-    return isLoaded && (
-        <div>
-            <div>
-                {!changeTitle && (
-                    <div onClick={(e => setChangeTitle(true))}>
-                        {titleSelected}
+    return isLoaded && finishedDelete && (
+        <div id='board-page-wrapper'>
+            <div id='interior-container'>
+                <div id='title-display'>
+                    {!changeTitle && (
+                        <div onClick={(e => setChangeTitle(true))}>
+                            {titleSelected}
+                        </div>
+                    )}
+                    {changeTitle && (
+                        <BoardEditTitle titleSelected={titleSelected} board={activeBoard} changeTitle={changeTitle} setChangeTitle={setChangeTitle}/>
+                    )}
+                </div>
+                <div id='list-container'>
+                    <div id='lists-map'>
+                        {activeBoard.lists.map(list => (
+                            <BoardListCard key={list.id} list={list} finishedDelete={finishedDelete} setFinishedDelete={setFinishedDelete}/>
+                        ))}
                     </div>
-                )}
-                {changeTitle && (
-                    <BoardEditTitle titleSelected={titleSelected} board={activeBoard} changeTitle={changeTitle} setChangeTitle={setChangeTitle}/>
-                )}
-            </div>
-            <div>
-                {activeBoard.lists.map(list => (
-                    <BoardListCard key={list.id} list={list}/>
-                ))}
-            </div>
-            <div>
-                {!addList && (
-                    <button onClick={handleClick}>Add New List</button>
-                )}
-                {addList && (
-                    <BoardCreateList setAddList={setAddList} boardId={activeBoard.id}/>
-                )}
+                    <div id='add-list-button'>
+                        {!addList && (
+                            <button onClick={handleClick}>Add New List</button>
+                        )}
+                        {addList && (
+                            <BoardCreateList setAddList={setAddList} boardId={activeBoard.id}/>
+                        )}
+                    </div>
+                </div>
+
             </div>
         </div>
     )

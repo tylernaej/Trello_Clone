@@ -1,0 +1,27 @@
+#board-page-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#interior-container{
+    width: 85%;
+}
+
+#title-display{
+    border: solid blue 1px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#list-container{
+    display: flex;
+    flex-direction: row;
+}
+
+#lists-map{
+    display: flex;
+    flex-direction: row;
+}

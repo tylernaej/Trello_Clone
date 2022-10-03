@@ -4,10 +4,12 @@ import { NavLink } from "react-router-dom";
 import './cardModal.css'
 import CardEditDescription from "./editCardInfo/cardEditDescription";
 import CardEditTitle from "./editCardInfo/cardEditTitle";
+import { deleteCardThunk } from '../../../store/activeWorkspace'
 
 function CardModal({card}) {
     const listId = card.listId
     const cardId = card.id
+    const dispatch = useDispatch()
     const [changeTitle, setChangeTitle] = useState(false)
     const [changeDescription, setChangeDescription] = useState(false)
     const cardSelected = useSelector(state => state.activeWorkspace.workspace.boards
@@ -16,6 +18,7 @@ function CardModal({card}) {
                                     .find(card => card.id === cardId)
     const titleSelected = cardSelected.title
     const descriptionSelected = cardSelected.description
+    const [editCard, setEditCard] = useState(false)
 
     const handleClickTitle = e => {
         e.stopPropagation()
@@ -27,9 +30,24 @@ function CardModal({card}) {
         setChangeDescription(true)
     }
 
+    
+    const handleDropDownEdit = e => {
+        e.preventDefault()
+        setEditCard(true)
+    }
+
+    const handleCardDelete = async e => {
+        e.preventDefault()
+        // setFinishedDelete(false)
+        const  data = await dispatch(deleteCardThunk(listId, cardId))
+        .then(() => setEditCard(false))
+        // .then(() => setFinishedDelete(true))
+    }
+
     return (
-        <div id="modal-content-wrapper">
-                <div>
+        <div id="modal-exterior-container">
+            <div id='modal-interior-container'>
+                <div id='title-header'>
                     {!changeTitle && (
                         <div onClick={handleClickTitle}>
                             {titleSelected}
@@ -38,28 +56,43 @@ function CardModal({card}) {
                     {changeTitle && (
                         <CardEditTitle titleSelected={titleSelected} card={card} changeTitle={changeTitle} setChangeTitle={setChangeTitle} />
                     )}
-                </div>
-                
-            <div id='main-content'>
-                <div>
-                    {!changeDescription && (
-                        <div onClick={handleClickDescription}>
-                            {descriptionSelected}
+                    <div>
+                    <div onClick={handleDropDownEdit}>
+                        <i className="fa-solid fa-chevron-down"></i>
+                    </div>
+                    {editCard && (
+                        <div>
+                            <div onClick={handleCardDelete}>Delete</div>
+                            <div onClick={(e) => setEditCard(false)}>Cancel</div>
                         </div>
+
                     )}
-                    {changeDescription && (
-                        <CardEditDescription descriptionSelected={descriptionSelected} card={card} changeDescription={changeDescription} setChangeDescription={setChangeDescription} />
-                    )}
+
+                    </div>
                 </div>
-                <div>
-                    Future Checklists Here
+                <div id='main-content'>
+                    <div id='main-bar'>
+                        <div>
+                            {!changeDescription && (
+                                <div onClick={handleClickDescription}>
+                                    {descriptionSelected}
+                                </div>
+                            )}
+                            {changeDescription && (
+                                <CardEditDescription descriptionSelected={descriptionSelected} card={card} changeDescription={changeDescription} setChangeDescription={setChangeDescription} />
+                            )}
+                        </div>
+                        <div>
+                            Future Checklists Here
+                        </div>
+                        <div>
+                            Future Activity Log Here
+                        </div>
+                    </div>
+                    <div id='side-bar'>
+                        SideBar
+                    </div>
                 </div>
-                <div>
-                    Future Activity Log Here
-                </div>
-            </div>
-            <div id='side-bar'>
-                SideBar
             </div>
         </div>
     )

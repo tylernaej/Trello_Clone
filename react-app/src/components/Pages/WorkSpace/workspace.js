@@ -6,6 +6,7 @@ import WorkspaceBoardCard from "./workspaceBoardCard";
 import WorkspaceCreateBoard from "./workspaceCreateBoard";
 import { Modal } from '../../../context/Modal'
 import WorkspaceEdit from "./workspaceEdit";
+import './workspace.css'
 
 function Workspace() {
     const dispatch = useDispatch()
@@ -17,6 +18,8 @@ function Workspace() {
     const id = idFromParams.workspaceId
     const [showModal, setShowModal] = useState(false)
     const [editWorkspace, setEditWorkspace] = useState(false)
+
+    console.log(id)
 
     const handleClickNewBoard = e => {
         e.preventDefault()
@@ -36,30 +39,32 @@ function Workspace() {
     return isLoaded && (
         <div>
             <div>
-                {!editWorkspace && (
-                    <div>
-                        {workspace.name}
-                        <div onClick={handleClickEditWorkspace}>
-                            <div>Icon</div>
+                <div>
+                    {!editWorkspace && (
+                        <div>
+                            {workspace.name}
+                            <div onClick={handleClickEditWorkspace}>
+                                <div>Icon</div>
+                            </div>
                         </div>
-                    </div>
-                )}
-                {editWorkspace && (
-                    <WorkspaceEdit sessionUser={sessionUser} workspace={workspace} setEditWorkspace={setEditWorkspace}/>
-                )}
-            </div>
-            <div>
-                {workspace.boards.map(board => (
-                    <WorkspaceBoardCard key={board.id} workspaceId={workspace.id} board={board}/>
-                ))}
-            </div>
-            <div>
-                <button onClick={handleClickNewBoard}>Create New Board</button>
-                {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <WorkspaceCreateBoard setShowModal={setShowModal} workspaceId={workspace.id}/>
-                </Modal>
-                )}
+                    )}
+                    {editWorkspace && (
+                        <WorkspaceEdit sessionUser={sessionUser} workspace={workspace} setEditWorkspace={setEditWorkspace}/>
+                    )}
+                </div>
+                <div>
+                    {workspace.boards.map(board => (
+                        <WorkspaceBoardCard key={board.id} workspaceId={workspace.id} board={board}/>
+                    ))}
+                </div>
+                <div>
+                    <button onClick={handleClickNewBoard}>Create New Board</button>
+                    {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <WorkspaceCreateBoard setShowModal={setShowModal} workspaceId={workspace.id}/>
+                    </Modal>
+                    )}
+                </div>
             </div>
         </div>
     )

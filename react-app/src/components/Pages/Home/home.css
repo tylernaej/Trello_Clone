@@ -1,10 +1,10 @@
-#home-container{
+#home-exterior-container{
     margin: 30px;
     display: flex;
     justify-content: center;
 }
 
-#content-container{
+#home-interior-container{
     width: 85%;
     display: grid;
     grid-template-columns: 1;

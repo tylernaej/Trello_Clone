@@ -20,7 +20,7 @@ class Card(db.Model):
     is_archived = db.Column(db.Boolean, nullable=True)
 
     list = db.relationship("List", back_populates="cards")
-    users = db.relationship("User", secondary=user_cards, back_populates='cards', cascade="all, delete")
+    users = db.relationship("User", secondary=user_cards, back_populates='cards')
 
 
     def __repr__(self):

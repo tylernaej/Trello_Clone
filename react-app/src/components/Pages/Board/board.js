@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import {getAllBoardsOfWorkspaceThunk} from '../../../store/activeWorkspace'
+import { useParams, useHistory } from "react-router-dom";
+import {deleteBoardThunk, getAllBoardsOfWorkspaceThunk} from '../../../store/activeWorkspace'
 import {getAllWorkspacesThunk} from '../../../store/workspace'
 import BoardListCard from "./boardListCard";
 import { Modal } from '../../../context/Modal'
@@ -10,8 +10,10 @@ import BoardEditTitle from "./editBoardInfo/editBoardTitle";
 import './board.css'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
+
 function Board() {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [isLoaded, setIsLoaded] = useState(false)
     const workspace = useSelector(state => state.activeWorkspace.workspace)
     const idFromParams = useParams()
@@ -24,10 +26,20 @@ function Board() {
     const titleSelected = activeBoard? activeBoard.title : null
     const [changeTitle, setChangeTitle] = useState(false)
     const [finishedDelete, setFinishedDelete] = useState(true)
+    const [editBoard, setEditBoard] = useState(false)
 
     const handleClick = e => {
         e.preventDefault()
         setAddList(true)
+    }
+
+    const handleBoardDelete = async e => {
+        e.preventDefault()
+        const data = await dispatch(deleteBoardThunk(activeBoard.id))
+        .then(() => setEditBoard(false))
+        
+        history.push('/home')
+        
     }
 
     useEffect(() => {
@@ -42,7 +54,7 @@ function Board() {
     }
 
     return isLoaded && finishedDelete && (
-        <div id='board-page-wrapper'>
+        <div id='board-page-wrapper' style={{backgroundColor: `#${activeBoard.backgroundColor}`}}>
             <div id='interior-container'>
                 <div id='title-display'>
                     {!changeTitle && (
@@ -53,6 +65,17 @@ function Board() {
                     {changeTitle && (
                         <BoardEditTitle titleSelected={titleSelected} board={activeBoard} changeTitle={changeTitle} setChangeTitle={setChangeTitle}/>
                     )}
+                    <div>
+                        <div onClick={(e) => setEditBoard(true)}>
+                            <i className="fa-solid fa-chevron-down"></i>
+                        </div>
+                        {editBoard && (
+                            <div>
+                                <div onClick={handleBoardDelete}>Delete</div>
+                                <div onClick={(e) => setEditBoard(false)}>Cancel</div>
+                            </div>
+                        )}
+                    </div>
                 </div>
                 <div id='list-container'>
                     <div id='lists-map'>

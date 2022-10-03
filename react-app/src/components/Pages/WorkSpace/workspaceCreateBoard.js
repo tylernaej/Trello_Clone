@@ -49,13 +49,21 @@ function WorkspaceCreateBoard({setShowModal, workspaceId}) {
                     </div>
                     <div>
                         <label htmlFor="backgroundColor">Background Color</label>
-                        <input
-                            required
-                            type="text"
-                            name="backgroundColor"
-                            value={backgroundColor}
-                            onChange={(e) => setBackgroundColor(e.target.value)}
-                        />
+                            <select
+                                required
+                                value={backgroundColor}
+                                onChange={(e) => setBackgroundColor(e.target.value)} 
+                            >
+                                <option value='b4b4b4'>Grey</option>
+                                <option value='d84f4f'>Red</option>
+                                <option value='d8884f'>Orange</option>
+                                <option value='d8bf4f'>Yellow</option>
+                                <option value='4fd8c3'>Aqua</option>
+                                <option value='4fa8d8'>Blue</option>
+                                <option value='9a4fd8'>Purple</option>
+                                <option value='d84fa8'>Pink</option>
+                                <option value='49a55a'>Green</option>
+                            </select>
                     </div>
                     <div>
                         <label htmlFor="visibility">Visibility</label>

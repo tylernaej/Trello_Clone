@@ -21,7 +21,7 @@
 
 #modal-content {
     position: absolute;
-    background-color: rgb(230, 230, 230);
+    background-color: white;
     display: flex;
     justify-content: center;
     border-radius: 8px;

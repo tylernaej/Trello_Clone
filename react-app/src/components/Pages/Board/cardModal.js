@@ -6,7 +6,7 @@ import CardEditDescription from "./editCardInfo/cardEditDescription";
 import CardEditTitle from "./editCardInfo/cardEditTitle";
 import { deleteCardThunk } from '../../../store/activeWorkspace'
 
-function CardModal({card}) {
+function CardModal({card, setShowModal, setFinishedDelete}) {
     const listId = card.listId
     const cardId = card.id
     const dispatch = useDispatch()
@@ -38,10 +38,11 @@ function CardModal({card}) {
 
     const handleCardDelete = async e => {
         e.preventDefault()
-        // setFinishedDelete(false)
+        setFinishedDelete(false)
         const  data = await dispatch(deleteCardThunk(listId, cardId))
         .then(() => setEditCard(false))
-        // .then(() => setFinishedDelete(true))
+        .then(() => setFinishedDelete(true))
+        .then(() => setShowModal(false))
     }
 
     return (
@@ -67,7 +68,6 @@ function CardModal({card}) {
                         </div>
 
                     )}
-
                     </div>
                 </div>
                 <div id='main-content'>

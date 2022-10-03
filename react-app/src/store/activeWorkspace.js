@@ -84,6 +84,14 @@ const deleteCard = payload => {
         payload
     }
 }
+
+const deleteBoard = payload => {
+    return{
+        type: DELETE_BOARD,
+        payload
+    }
+}
+
 // Thunk Action Creators
 
 export const getAllBoardsOfWorkspaceThunk = (workspaceId) => async dispatch => {
@@ -219,6 +227,18 @@ export const deleteCardThunk = (listId, cardId) => async dispatch => {
     return data
 }
 
+export const deleteBoardThunk = (boardId) => async dispatch => {
+    const response = await fetch(`/api/boards/${boardId}`, {
+        method: "Delete"
+    })
+    const data = await response.json()
+
+    if (response.ok){
+        await dispatch(deleteBoard(boardId))
+    }
+    return data
+}
+
 
 // Reducer
 const initialState = {}
@@ -324,9 +344,29 @@ const activeWorkspaceReducer = (state = initialState, action) => {
             return newState
         }
         case (DELETE_CARD): {
-            console.log('action', action.payload)
-            console.log('newstate', newState.workspace.boards)
-                                   
+            console.log()
+            for (const board of newState.workspace.boards){
+                let list = board.lists.find(list => list.id === action.payload.listId)
+                if(list){
+                    let toDelete = list.cards.findIndex(card => {
+                        if(card.id === action.payload.cardId){
+                            return true
+                        }
+                        return false
+                    })
+                list.cards.splice(toDelete, 1)
+                }
+            }           
+            return newState
+        }
+        case (DELETE_BOARD): {
+            let toDelete = newState.workspace.boards.findIndex(board => {
+                if (board.id === action.payload){
+                    return true
+                }
+                return false
+            })
+            newState.workspace.boards.splice(toDelete, 1)
             return newState
         }
         default: {

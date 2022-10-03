@@ -5,25 +5,23 @@ import HomeWorkSpaceCard from "./homeWorkSpaceCard";
 import { Modal } from '../../../context/Modal'
 import HomeCreateWorkspace from "./homeCreateWorkspace";
 import './home.css'
+import { Switch, useRouteMatch, Route, useParams, useLocation } from "react-router-dom";
+import Workspace from '../WorkSpace/workspace'
+import SideNavBar from "./sideNavBar";
 
 function Home() {
+    const { url } = useRouteMatch()
+    const location = useLocation()
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
     const workspaces = useSelector(state => state.workspaces)
     const [workSpacesForMap, setWorkSpacesForMap] = useState([])
-    const [showModal, setShowModal] = useState(false)
-
-    const handleClick = e => {
-        e.preventDefault()
-        setShowModal(true)
-    }
+    const [workspaceId, setWorkspaceId] = useState("")
 
     useEffect(() => {
         dispatch(getCurrentUserWorkspacesThunk())
         .then(() => setIsLoaded(true))
     }, [dispatch])
-
-    
 
     useEffect(() =>{
         let workspacesArray = []
@@ -33,39 +31,42 @@ function Home() {
         setWorkSpacesForMap(workspacesArray)
     }, [workspaces])
 
+    useEffect(() => {
+        if(location.pathname.split('w/')[1]){
+            setWorkspaceId(location.pathname.split('w/')[1])
+        }
+    }, [dispatch, location])
+
     return isLoaded && (
-        <div id='home-container'>
-            <div id='content-container'>
+        <div id='home-exterior-container'>
+            <div id='home-interior-container'>
                 <div id='side-nav-bar-container'>
                     <div id='side-nav-bar'>
-                        Side Nav Bar Here
-                        <div className='flex-row' id='workspaces-header'>
-                            <div id='side-nav-bar-workspaces'>
-                                Workspaces
-                            </div>
-                            <div>
-                                <button onClick={handleClick}>+</button>
-                                {showModal && (
-                                <Modal onClose={() => setShowModal(false)}>
-                                    <HomeCreateWorkspace setShowModal={setShowModal} />
-                                </Modal>
-                                )}
-                            </div>
-                        </div>
+                        <SideNavBar url={url} workSpacesForMap={workSpacesForMap}/>
                     </div>
                 </div>
                 <div id='main-content-container'>
-                    Main Content Here
-                    <div>
-                        <div id='your-workspaces'>
-                            Your Workspaces:
-                        </div>
-                        <div className="flex-column">
-                            {workSpacesForMap.map(workspace => (
-                                <HomeWorkSpaceCard key={workspace.id} workspace={workspace}/>       
-                            ))}
-                        </div>
-                    </div>
+                    <Switch >
+                        <Route path={`${url}/w/:workspaceId`} >
+                            <Workspace workspaceId={workspaceId} />
+                        </Route>
+                        <Route exact path={`${url}`} >
+                            <div>
+                                <div id='your-workspaces'>
+                                    Your Workspaces:
+                                </div>
+                                <div className="flex-column">
+                                    {workSpacesForMap.map(workspace => (
+                                        <HomeWorkSpaceCard
+                                            style={{TextDecoraton: 'none'}} 
+                                            key={workspace.id}
+                                            workspace={workspace}
+                                        />       
+                                    ))}
+                                </div>
+                            </div>
+                        </Route>
+                    </Switch>
                 </div>
             </div>
         </div>

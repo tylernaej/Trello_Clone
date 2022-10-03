@@ -5,7 +5,7 @@ import { createBoardOnWorkspaceThunk } from "../../../store/workspace";
 function HomeCreateBoard({setShowModal, workspaceId}) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState("")
-    const [backgroundColor, setBackgroundColor] = useState("")
+    const [backgroundColor, setBackgroundColor] = useState("686868")
     const [visibility, setVisibility] = useState("private")
     const [isArchived, setIsArchived] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
@@ -49,13 +49,21 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
                     </div>
                     <div>
                         <label htmlFor="backgroundColor">Background Color</label>
-                        <input
-                            required
-                            type="text"
-                            name="backgroundColor"
-                            value={backgroundColor}
-                            onChange={(e) => setBackgroundColor(e.target.value)}
-                        />
+                            <select
+                                required
+                                value={backgroundColor}
+                                onChange={(e) => setBackgroundColor(e.target.value)} 
+                            >
+                                <option value='686868'>Grey</option>
+                                <option value='822020'>Red</option>
+                                <option value='a95a00'>Orange</option>
+                                <option value='9a8000'>Yellow</option>
+                                <option value='387c79'>Light Blue</option>
+                                <option value='0f3c6f'>Blue</option>
+                                <option value='3b2568'>Purple</option>
+                                <option value='853e88'>Pink</option>
+                                <option value='2d5b28'>Green</option>
+                            </select>
                     </div>
                     <div>
                         <label htmlFor="visibility">Visibility</label>

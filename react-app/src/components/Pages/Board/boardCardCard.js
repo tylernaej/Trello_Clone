@@ -11,25 +11,28 @@ function BoardCardCard({boardId, card}) {
     const cardId = card.id
     const [showModal, setShowModal] = useState(false)
     const cardSelected = useSelector(state => ((state.activeWorkspace.workspace.boards.find(board => board.id === boardId)).lists.find(list => list.id === listId)).cards.find(card => card.id === cardId)) 
+    const [finishedDelete, setFinishedDelete] = useState(true)
 
     const handleClick = e => {
         e.preventDefault()
         setShowModal(true)
     }
 
-    if(!cardSelected) {
-        return (
-            <div>Loading!</div>
-        )
+    if(!finishedDelete){
+        return null
     }
 
-    return cardSelected && (
+    if(!cardSelected) {
+        return null
+    }
+
+    return cardSelected && finishedDelete && (
         <div id='card-exterior-container'>
             <div id='card-interior-container'>
                 <div id='card-title' onClick={handleClick}>{cardSelected.title}</div>
                 {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <CardModal card={card}/>
+                    <CardModal card={card} setShowModal={setShowModal} setFinishedDelete={setFinishedDelete}/>
                 </Modal>
                 )}
             </div>

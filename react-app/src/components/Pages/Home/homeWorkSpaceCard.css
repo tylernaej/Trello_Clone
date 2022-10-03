@@ -1,3 +1,108 @@
+#workspace-exterior-container{
+    margin-top: 40px;
+    margin-top: 40px;
+}
+#workspace-interior-container{
+    margin: 15px;
+}
+
 #workspace-link{
     margin-right: 20px;
+}
+
+#workspace-name{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+#boards-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#boards-button:hover{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#members-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#members-button:hover{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#first-letter-icon{
+    margin-right: 10px;
+    padding: 5px;
+    background: linear-gradient(#1e34de, #372f94);
+    color: white;
+    text-decoration: none;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    border-radius: 3px;
+    transition-property: all;
+    transition: 600ms;
+}
+
+#first-letter-icon:hover{
+    background: linear-gradient(#8e4141, #785252);
+}
+
+#board-map{
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBoardsOfWorkspaceThunk } from "../../../store/activeWorkspace";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import WorkspaceBoardCard from "./workspaceBoardCard";
 import WorkspaceCreateBoard from "./workspaceCreateBoard";
 import { Modal } from '../../../context/Modal'
@@ -34,36 +34,58 @@ function Workspace() {
     useEffect(() => {
         dispatch(getAllBoardsOfWorkspaceThunk(id))
         .then(() => setIsLoaded(true))
-    }, [dispatch])
+    }, [dispatch, id])
+
+    console.log(workspace)
 
     return isLoaded && (
-        <div>
-            <div>
-                <div>
+        <div id='workspace-exterior-container'>
+            <div id='workspace-interior-container'>
+                <div id='workspace-title'>
                     {!editWorkspace && (
-                        <div>
-                            {workspace.name}
-                            <div onClick={handleClickEditWorkspace}>
-                                <div>Icon</div>
+                        <div id='title-bar'>
+                            <div id='workspace-name'>
+                                <div id="first-letter-icon">
+                                    {workspace.name[0]}
+                                </div>
+                                {workspace.name}
+                            </div>
+                            <div>
+                                {editWorkspace && (
+                                    <div onClick={() => setEditWorkspace(false)}>
+                                        <i class="fa-solid fa-chevron-up"></i>
+                                    </div>
+                                )}
+                                {!editWorkspace && (
+                                    <div onClick={() => setEditWorkspace(true)}>
+                                        <i className="fa-solid fa-chevron-down"></i>
+                                    </div>
+                                )}
                             </div>
                         </div>
-                    )}
+                        )}
                     {editWorkspace && (
                         <WorkspaceEdit sessionUser={sessionUser} workspace={workspace} setEditWorkspace={setEditWorkspace}/>
                     )}
                 </div>
-                <div>
-                    {workspace.boards.map(board => (
-                        <WorkspaceBoardCard key={board.id} workspaceId={workspace.id} board={board}/>
-                    ))}
-                </div>
-                <div>
-                    <button onClick={handleClickNewBoard}>Create New Board</button>
-                    {showModal && (
-                    <Modal onClose={() => setShowModal(false)}>
-                        <WorkspaceCreateBoard setShowModal={setShowModal} workspaceId={workspace.id}/>
-                    </Modal>
-                    )}
+                <div className="flex-row">
+                    <div id='board-map' className="flex-row">
+                        {workspace.boards.map(board => (
+                            <WorkspaceBoardCard 
+                                key={board.id} 
+                                workspaceId={workspace.id} 
+                                board={board}
+                            />
+                        ))}
+                    </div>
+                    <div>
+                        <button onClick={handleClickNewBoard}>Create New Board</button>
+                        {showModal && (
+                        <Modal onClose={() => setShowModal(false)}>
+                            <WorkspaceCreateBoard setShowModal={setShowModal} workspaceId={workspace.id}/>
+                        </Modal>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,9 +1,6 @@
 #workspace-exterior-container{
-    margin-top: 40px;
-    margin-top: 40px;
 }
 #workspace-interior-container{
-    margin: 15px;
 }
 
 #workspace-link{
@@ -64,6 +61,34 @@
 }
 
 #members-button:hover{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#settings-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#settings-button:hover{
     display: flex;
     flex-direction: row;
     color: rgb(50, 50, 50);

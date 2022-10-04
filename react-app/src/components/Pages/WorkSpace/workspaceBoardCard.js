@@ -13,7 +13,20 @@ function WorkspaceBoardCard({workspaceId, board}) {
                 to={`/w/${workspaceId}/b/${board.id}`}
                 style={{textDecoration: 'none'}}
             >
-                {board.title}
+                <div 
+                    id='board-exterior-container'
+                    style={{
+                        backgroundColor: `#${board.backgroundColor}`
+                    }}
+                >
+                    <div id='board-interior-container'>
+
+                            <div id='board-title'>
+                                {board.title}
+                            </div>
+        
+                    </div>
+                </div>
             </NavLink>
         </div>
     )

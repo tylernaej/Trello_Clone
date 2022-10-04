@@ -52,9 +52,6 @@ function Home() {
                         </Route>
                         <Route exact path={`${url}`} >
                             <div>
-                                <div id='your-workspaces'>
-                                    Your Workspaces:
-                                </div>
                                 <div className="flex-column">
                                     {workSpacesForMap.map(workspace => (
                                         <HomeWorkSpaceCard

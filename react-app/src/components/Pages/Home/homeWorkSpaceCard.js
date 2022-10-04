@@ -47,6 +47,9 @@ function HomeWorkSpaceCard({workspace}) {
                     </div>
                     <div id='members-button'>
                         {workspace.users.length} {members}
+                    </div>
+                    <div id='settings-button'>
+                        Settings
                     </div>                    
                 </div>
                 <div className="flex-row">

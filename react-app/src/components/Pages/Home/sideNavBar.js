@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Modal } from '../../../context/Modal';
 import HomeCreateWorkspace from "./homeCreateWorkspace";
 import WorkspaceDropDown from "./workspaceDropDown";
+import './sideNavBar.css'
+import { NavLink } from "react-router-dom";
 
 
 function SideNavBar({url, workSpacesForMap}) {
@@ -14,13 +16,14 @@ function SideNavBar({url, workSpacesForMap}) {
 
     return (
         <div id='side-nav-bar'>
-            Side Nav Bar Here
             <div className='flex-row' id='workspaces-header'>
                 <div id='side-nav-bar-workspaces'>
-                    Workspaces
+                    <NavLink to='/home' id='to-home'>
+                       Workspaces
+                    </NavLink>
                 </div>
                 <div>
-                    <button onClick={handleClick}>+</button>
+                    <i onClick={handleClick} className="fa-regular fa-square-plus fa-lg"></i>
                     {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <HomeCreateWorkspace setShowModal={setShowModal} />
@@ -30,7 +33,7 @@ function SideNavBar({url, workSpacesForMap}) {
             </div>
             <div>
                 {workSpacesForMap.map(workspace => (
-                    <div>
+                    <div id='workspace-instance'>
                         <WorkspaceDropDown url={url} workspace={workspace}/>
                     </div>
                 ))}

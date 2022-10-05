@@ -310,20 +310,20 @@ const activeWorkspaceReducer = (state = initialState, action) => {
         }
         case (EDIT_CARD): {
             let card = {}
-            console.log(action.payload.data)
-            console.log(action.payload.previousList)
             for (const board of newState.workspace.boards){
                 if(board.lists){
                     if(action.payload.data.listId === action.payload.previousList || !action.payload.previousList) {
                         let list = board.lists.find(list => list.id === action.payload.data.listId)
                         if(list) {
+                            let cards = [...list.cards]
                             let cardIndex = list.cards.findIndex(card => {
                                 if(card.id === action.payload.data.id){
                                     return true
                                 }
                                 return false
                             })
-                            list.cards.splice(cardIndex, 1, action.payload.data)
+                            cards.splice(cardIndex, 1, action.payload.data)
+                            list.cards = cards
                         }
                     }
                     if(action.payload.data.listId !== action.payload.previousList) {
@@ -346,10 +346,11 @@ const activeWorkspaceReducer = (state = initialState, action) => {
                         })
                         let newList = board.lists.find(list => list.id === action.payload.data.listId)
                         if(newList){
-                            newList.cards ? newList.cards.push(action.payload.data) : newList['cards'] = [action.payload.data]
+                            if(!newList.cards) newList['cards'] = []
+                            let cards = [...newList.cards]
+                            cards.push(action.payload.data)
+                            newList.cards ? newList.cards = cards : newList['cards'] = [action.payload.data]
                         }
-                        console.log('index -',listToEditIndex)
-                        console.log(board.lists[listToEditIndex])
                         board.lists.splice(listToEditIndex, 1, newList)
                     }
                 }

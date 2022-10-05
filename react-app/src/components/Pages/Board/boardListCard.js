@@ -15,9 +15,12 @@ function BoardListCard({lists, list, finishedDelete, setFinishedDelete}) {
     const listSelected = useSelector(state => state.activeWorkspace.workspace.boards
                                     .find(board => board.lists.find(list => list.id === listId )).lists
                                     .find(list => list.id === listId))
+    const cards = useSelector(state => state.activeWorkspace.workspace.boards
+                                    .find(board => board.lists.find(list => list.id === listId )).lists
+                                    .find(list => list.id === listId).cards)
     const titleSelected = listSelected.title
     const [editList, setEditList] = useState(false)
-
+  
     const handleClick = e => {
         e.preventDefault()
         setAddCard(true)
@@ -103,7 +106,12 @@ function BoardListCard({lists, list, finishedDelete, setFinishedDelete}) {
                 </div>
                 <div>
                     {list.cards.map(card => (
-                        <BoardCardCard key={card.id} lists={lists} boardId={list.boardId} card={card}/>
+                        <BoardCardCard 
+                            key={card.id} 
+                            lists={lists} 
+                            boardId={list.boardId} 
+                            card={card} 
+                        />
                     ))}
                 </div>
                 <div>

@@ -118,6 +118,8 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                                 <div>
                                     Are you sure you want to delete {card.title}?
                                 </div>
+                                <div onClick={handleCardDelete}>Delete</div>
+                                <div onClick={()=>setConfirmDelete(false)}>Cancel</div>
                             </div>
                         )}
                     </div>

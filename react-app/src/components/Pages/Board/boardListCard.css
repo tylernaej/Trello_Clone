@@ -18,13 +18,68 @@
     padding-bottom: 20px;
     margin-bottom: 10px;
     transition: 200ms;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+#title-text-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#title-text{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: 170ms;
+}
+
+#title-text:hover{
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
 }
 
 #non-edit-title{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
 #title-container:hover{
+}
+
+#title-plus-dropdown-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+}
+
+.fa-gear{
+    padding-right: 3px;
+}
+
+#settings-dropdown-button {
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#settings-dropdown-button:hover{
+    background-color: rgb(215, 215, 215);
 }

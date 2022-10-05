@@ -28,7 +28,7 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle}) {
                     isArchived: 0
                 }
 
-                dispatch(editCardThunk({cardId: card.id, payload: cardEdit}))
+                dispatch(editCardThunk({cardId: card.id, payload: cardEdit, previousList: card.listId}))
                 .then(() => setChangeTitle(false))
             }
         }

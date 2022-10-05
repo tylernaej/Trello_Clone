@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import './workspaceDropDown.css'
 import { NavLink } from "react-router-dom";
+import { Modal } from '../../../context/Modal'
+import WorkspaceEditModal from "../WorkSpace/workspaceEditModal";
+
 
 
 
 function WorkspaceDropDown({url, workspace}) {
     const [dropDown, setDropDown] = useState(false)
     const [isHovering, setIsHovering] = useState(false)
+    const [editWorkspace, setEditWorkspace] = useState(false)
+    const sessionUser = useSelector(state => state.session.user)
+
+
 
     const toggleDropDown = () => {
         setDropDown(current => !current)
@@ -57,10 +65,22 @@ function WorkspaceDropDown({url, workspace}) {
                         <div>
                             Members
                         </div>
-                        <div>
-                            Settings
+                        <div 
+                            onClick={() => setEditWorkspace(true)}  
+                            id='settings-sidebar-button'
+                        >
+                            <div >
+                                Settings
+                            </div>
                         </div>
                     </div>
+                )}
+            </div>
+            <div>
+                {editWorkspace && (
+                    <Modal>
+                        <WorkspaceEditModal sessionUser={sessionUser} workspace={workspace} setEditWorkspace={setEditWorkspace}/>
+                    </Modal>
                 )}
             </div>
         </div>

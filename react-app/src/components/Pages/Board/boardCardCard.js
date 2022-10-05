@@ -6,7 +6,7 @@ import { Modal } from '../../../context/Modal'
 import CardEditTitle from "./editCardInfo/cardEditTitle";
 import './boardCardCard.css'
 
-function BoardCardCard({boardId, card}) {
+function BoardCardCard({lists, boardId, card}) {
     const listId = card.listId
     const cardId = card.id
     const [showModal, setShowModal] = useState(false)
@@ -32,7 +32,7 @@ function BoardCardCard({boardId, card}) {
                 <div id='card-title' onClick={handleClick}>{cardSelected.title}</div>
                 {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <CardModal card={card} setShowModal={setShowModal} setFinishedDelete={setFinishedDelete}/>
+                    <CardModal lists={lists} card={card} setShowModal={setShowModal} setFinishedDelete={setFinishedDelete}/>
                 </Modal>
                 )}
             </div>

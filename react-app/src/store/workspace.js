@@ -3,6 +3,8 @@
 const GET_ALL_WORKSPACES = "workspace/get-all-workspaces"
 const ADD_BOARD_TO_WORKSPACE= "workspace/add-board-to-workspace"
 const CREATE_NEW_WORKSPACE= "workspace/create-new-workspace"
+const DELETE_WORKSPACE_FROM_WORKSPACES = "workspace/delete-workspace-from-workspaces"
+
 // Action Creators
 
 const getAllWorkspaces = payload => {
@@ -22,6 +24,13 @@ const addBoardToWorkspace = payload => {
 const createNewWorkspace = payload => {
     return {
         type: CREATE_NEW_WORKSPACE,
+        payload
+    }
+}
+
+const deleteWorkspaceFromWorkspaces = payload => {
+    return {
+        type: DELETE_WORKSPACE_FROM_WORKSPACES,
         payload
     }
 }
@@ -68,6 +77,18 @@ export const createNewWorkspaceThunk = (payload) => async dispatch => {
     return data
 }
 
+export const deleteWorkspaceFromWorkspacesThunk = (workspaceId) => async dispatch => {
+    const response = await fetch(`/api/workspaces/${workspaceId}`, {
+        method: "Delete"
+    })
+    const data = await response.json()
+
+    if (response.ok){
+        await dispatch(deleteWorkspaceFromWorkspaces(workspaceId))
+    }
+    return data
+}
+
 // Reducer
 const initialState = {}
 
@@ -86,6 +107,10 @@ const workspaceReducer = (state = initialState, action) => {
         }
         case (CREATE_NEW_WORKSPACE): {
             newState[action.payload.id] = action.payload
+            return newState
+        }
+        case (DELETE_WORKSPACE_FROM_WORKSPACES): {
+            delete newState[action.payload]
             return newState
         }
         default: {

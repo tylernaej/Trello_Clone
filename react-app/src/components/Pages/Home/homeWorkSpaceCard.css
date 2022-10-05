@@ -158,6 +158,62 @@
     border-radius: 4px;
 }
 
+#confirm-delete-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#confirm-delete-button:hover{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(222, 144, 144);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#cancel-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#cancel-button:hover{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
 
 #first-letter-icon{
     margin-right: 10px;

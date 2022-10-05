@@ -3,20 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import HomeBoardCard from "./homeBoardCard";
 import { Modal } from '../../../context/Modal'
 import HomeCreateBoard from "./homeCreateBoard";
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import './homeWorkSpaceCard.css'
 import WorkspaceEditModal from "../WorkSpace/workspaceEditModal";
+import { deleteWorkspaceFromWorkspacesThunk } from "../../../store/workspace";
 
 function HomeWorkSpaceCard({workspace}) {
+    const history = useHistory()
+    const dispatch = useDispatch()
     const [wSBoards, setWSBoards] = useState(workspace.boards)
     const [showModal, setShowModal] = useState(false)
     const [editWorkspace, setEditWorkspace] = useState(false)
     const sessionUser = useSelector(state => state.session.user)
     const [deleteWorkspace, setDeleteWorkspace] = useState(false)
+    const [deleteName, setDeleteName] = useState("")
 
     const handleClick = e => {
         e.preventDefault()
         setShowModal(true)
+    }
+
+    const handleDeleteWorkspace = async e => {
+        e.preventDefault()
+        let workspaceId = workspace.id
+        await dispatch(deleteWorkspaceFromWorkspacesThunk(workspaceId))
     }
 
     let members = workspace.users.length === 1?'Member':'Members'
@@ -52,7 +62,7 @@ function HomeWorkSpaceCard({workspace}) {
                             <div>
                                 Boards
                             </div>
-                            <i class="fa-solid fa-table-columns fa-sm"></i>
+                            <i className="fa-solid fa-table-columns fa-sm"></i>
                         </NavLink>
                     </div>
                     <div id='members-button'>
@@ -91,14 +101,39 @@ function HomeWorkSpaceCard({workspace}) {
                         <div>
                             Delete Workspace
                         </div>
-                        <i class="fa-solid fa-trash fa-sm"></i>
+                        <i className="fa-solid fa-trash fa-sm"></i>
                     </div>               
                 </div>
                 <div id='dropdown-area'>
                     {deleteWorkspace && (
                         <div>
                             <div>
-                                Are you sure you want to delete {workspace.name}?
+                                <div>
+                                    To permanently delete this workspace, type in the full name:
+                                </div>
+                                <form>
+                                    <input 
+                                        name="title"
+                                        value={deleteName}
+                                        onChange={(e) => setDeleteName(e.target.value)}
+                                    />
+                                </form>
+                            </div>
+                            <div className="flex-row">
+                                <div 
+                                    onClick={() => setDeleteWorkspace(false)}
+                                    id='cancel-button'
+                                >
+                                    Cancel
+                                </div>
+                                {workspace.name === deleteName && (
+                                    <div
+                                        id='confirm-delete-button'
+                                        onClick={handleDeleteWorkspace}
+                                    >
+                                        Delete
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )}

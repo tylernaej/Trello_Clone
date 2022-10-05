@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBoardsOfWorkspaceThunk } from "../../../store/activeWorkspace";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useHistory } from "react-router-dom";
 import WorkspaceBoardCard from "./workspaceBoardCard";
 import WorkspaceCreateBoard from "./workspaceCreateBoard";
 import { Modal } from '../../../context/Modal'
 import WorkspaceEdit from "./workspaceEdit";
 import './workspace.css'
 import WorkspaceEditModal from "./workspaceEditModal";
+import {deleteWorkspaceFromWorkspacesThunk} from '../../../store/workspace'
 
 function Workspace() {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [isLoaded, setIsLoaded] = useState(false)
     const sessionUser = useSelector(state => state.session.user)
     const workspaces = useSelector(state => state.workspaces)
@@ -20,6 +22,7 @@ function Workspace() {
     const [showModal, setShowModal] = useState(false)
     const [editWorkspace, setEditWorkspace] = useState(false)
     const [deleteWorkspace, setDeleteWorkspace] = useState(false)
+    const [deleteName, setDeleteName] = useState("")
 
     const handleClickNewBoard = e => {
         e.preventDefault()
@@ -36,7 +39,12 @@ function Workspace() {
         .then(() => setIsLoaded(true))
     }, [dispatch, id])
 
-    console.log(workspace)
+    const handleDeleteWorkspace = async e => {
+        e.preventDefault()
+        let workspaceId = workspace.id
+        await dispatch(deleteWorkspaceFromWorkspacesThunk(workspaceId))
+        history.push('/home')
+    }
 
     return isLoaded && (
         <div id='workspace-exterior-container'>
@@ -75,14 +83,39 @@ function Workspace() {
                         <div>
                             Delete Workspace
                         </div>
-                        <i class="fa-solid fa-trash fa-sm"></i>
+                        <i className="fa-solid fa-trash fa-sm"></i>
                     </div>
                 </div>
                 <div id='dropdown-area'>
-                    {deleteWorkspace && (
+                {deleteWorkspace && (
                         <div>
                             <div>
-                                Are you sure you want to delete {workspace.name}?
+                                <div>
+                                    To permanently delete this workspace, type in the full name:
+                                </div>
+                                <form>
+                                    <input 
+                                        name="title"
+                                        value={deleteName}
+                                        onChange={(e) => setDeleteName(e.target.value)}
+                                    />
+                                </form>
+                            </div>
+                            <div className="flex-row">
+                                <div 
+                                    onClick={() => setDeleteWorkspace(false)}
+                                    id='cancel-button'
+                                >
+                                    Cancel
+                                </div>
+                                {workspace.name === deleteName && (
+                                    <div
+                                        id='confirm-delete-button'
+                                        onClick={handleDeleteWorkspace}
+                                    >
+                                        Delete
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )}

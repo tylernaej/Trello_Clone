@@ -54,6 +54,7 @@ function Board() {
         )
     }
 
+
     return isLoaded && finishedDelete && (
         <div id='board-page-wrapper' style={{backgroundColor: `#${activeBoard.backgroundColor}`}}>
             <div id='interior-container'>
@@ -88,7 +89,13 @@ function Board() {
                 <div id='list-container'>
                     <div id='lists-map'>
                         {activeBoard.lists.map(list => (
-                            <BoardListCard key={list.id} list={list} finishedDelete={finishedDelete} setFinishedDelete={setFinishedDelete}/>
+                            <BoardListCard 
+                                key={list.id} 
+                                lists={activeBoard.lists}
+                                list={list} 
+                                finishedDelete={finishedDelete} 
+                                setFinishedDelete={setFinishedDelete}
+                            />
                         ))}
                     </div>
                     <div id='add-list-button'>

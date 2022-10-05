@@ -7,7 +7,7 @@ import './boardListCard.css';
 import ListEditTitle from './listEditTitle';
 import { deleteListThunk } from '../../../store/activeWorkspace'
 
-function BoardListCard({list, finishedDelete, setFinishedDelete}) {
+function BoardListCard({lists, list, finishedDelete, setFinishedDelete}) {
     const listId = list.id
     const dispatch = useDispatch()
     const [addCard, setAddCard] = useState(false)
@@ -103,7 +103,7 @@ function BoardListCard({list, finishedDelete, setFinishedDelete}) {
                 </div>
                 <div>
                     {list.cards.map(card => (
-                        <BoardCardCard key={card.id} boardId={list.boardId} card={card}/>
+                        <BoardCardCard key={card.id} lists={lists} boardId={list.boardId} card={card}/>
                     ))}
                 </div>
                 <div>

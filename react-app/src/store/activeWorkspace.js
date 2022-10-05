@@ -92,6 +92,13 @@ const deleteBoard = payload => {
     }
 }
 
+const deleteWorkspace = payload => {
+    return{
+        type: DELETE_WORKSPACE,
+        payload
+    }
+}
+
 // Thunk Action Creators
 
 export const getAllBoardsOfWorkspaceThunk = (workspaceId) => async dispatch => {
@@ -161,7 +168,7 @@ export const editListThunk = ({listId, payload}) => async dispatch => {
     return data
 }
 
-export const editCardThunk = ({cardId, payload}) => async dispatch => {
+export const editCardThunk = ({cardId, payload, previousList}) => async dispatch => {
     const response = await fetch(`/api/cards/${cardId}`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
@@ -170,7 +177,7 @@ export const editCardThunk = ({cardId, payload}) => async dispatch => {
     const data = await response.json()
 
     if (response.ok){
-        await dispatch(editCard(data))
+        await dispatch(editCard({data: data, previousList: previousList}))
     }
     return data
 }
@@ -239,6 +246,18 @@ export const deleteBoardThunk = (boardId) => async dispatch => {
     return data
 }
 
+export const deleteWorkspaceThunk = (workspaceId) => async dispatch => {
+    const response = await fetch(`/api/workspaces/${workspaceId}`, {
+        method: "Delete"
+    })
+    const data = await response.json()
+
+    if (response.ok){
+        await dispatch(deleteWorkspace(workspaceId))
+    }
+    return data
+}
+
 
 // Reducer
 const initialState = {}
@@ -291,17 +310,47 @@ const activeWorkspaceReducer = (state = initialState, action) => {
         }
         case (EDIT_CARD): {
             let card = {}
+            console.log(action.payload.data)
+            console.log(action.payload.previousList)
             for (const board of newState.workspace.boards){
                 if(board.lists){
-                    let list = board.lists.find(list => list.id === action.payload.listId)
-                    if(list) {
-                        let cardIndex = list.cards.findIndex(card => {
-                            if(card.id === action.payload.id){
+                    if(action.payload.data.listId === action.payload.previousList || !action.payload.previousList) {
+                        let list = board.lists.find(list => list.id === action.payload.data.listId)
+                        if(list) {
+                            let cardIndex = list.cards.findIndex(card => {
+                                if(card.id === action.payload.data.id){
+                                    return true
+                                }
+                                return false
+                            })
+                            list.cards.splice(cardIndex, 1, action.payload.data)
+                        }
+                    }
+                    if(action.payload.data.listId !== action.payload.previousList) {
+                        let deleteList = board.lists.find(list => list.id === action.payload.previousList)
+                        if(deleteList) {
+                            let cardIndex = deleteList.cards.findIndex(card => {
+                                if(card.id === action.payload.data.id){
+                                    return true
+                                }
+                                return false
+                            })
+                            deleteList.cards.splice(cardIndex, 1)
+                        }
+                        
+                        let listToEditIndex = board.lists.findIndex(list => {
+                            if(list.id === action.payload.data.listId){
                                 return true
                             }
                             return false
                         })
-                        list.cards.splice(cardIndex, 1, action.payload)
+                        let newList = board.lists.find(list => list.id === action.payload.data.listId)
+                        if(newList){
+                            newList.cards ? newList.cards.push(action.payload.data) : newList['cards'] = [action.payload.data]
+                        }
+                        console.log('index -',listToEditIndex)
+                        console.log(board.lists[listToEditIndex])
+                        board.lists.splice(listToEditIndex, 1, newList)
                     }
                 }
             }
@@ -367,6 +416,10 @@ const activeWorkspaceReducer = (state = initialState, action) => {
                 return false
             })
             newState.workspace.boards.splice(toDelete, 1)
+            return newState
+        }
+        case (DELETE_WORKSPACE): {
+            newState = {}
             return newState
         }
         default: {

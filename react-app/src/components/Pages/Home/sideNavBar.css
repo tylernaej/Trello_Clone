@@ -1,0 +1,40 @@
+#side-nav-bar{
+    margin-top: 8px;
+    margin-right: 20px;
+    width: 200px;
+}
+
+.fa-square-plus{
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.fa-square-plus:hover{
+    cursor: pointer;
+    transform: rotate(90deg);
+}
+
+#to-home{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+#workspaces-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid grey;
+}
+
+#workspace-instance{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

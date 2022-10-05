@@ -14,6 +14,14 @@ body {
     /* padding-bottom: 6rem; */
 }
 
+#root{
+    height: 100%;
+}
+
+#app{
+    height: 100%;
+}
+
 #modal-content{
     border-radius: 1px;
 }

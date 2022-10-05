@@ -5,7 +5,7 @@ import { createBoardOnWorkspaceThunk } from "../../../store/workspace";
 function HomeCreateBoard({setShowModal, workspaceId}) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState("")
-    const [backgroundColor, setBackgroundColor] = useState("")
+    const [backgroundColor, setBackgroundColor] = useState("686868")
     const [visibility, setVisibility] = useState("private")
     const [isArchived, setIsArchived] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
@@ -49,13 +49,20 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
                     </div>
                     <div>
                         <label htmlFor="backgroundColor">Background Color</label>
-                        <input
-                            required
-                            type="text"
-                            name="backgroundColor"
-                            value={backgroundColor}
-                            onChange={(e) => setBackgroundColor(e.target.value)}
-                        />
+                            <select
+                                required
+                                value={backgroundColor}
+                                onChange={(e) => setBackgroundColor(e.target.value)} 
+                            >
+                                <option value='807f7f'>Granite</option>
+                                <option value='95716a'>Opium</option>
+                                <option value='79956a'>Highland</option>
+                                <option value='827d52'>Shadow</option>
+                                <option value='6a8e95'>Juniper</option>
+                                <option value='525782'>Dusk</option>
+                                <option value='82526f'>Lavender</option>
+                                <option value='528265'>Mint</option>
+                            </select>
                     </div>
                     <div>
                         <label htmlFor="visibility">Visibility</label>

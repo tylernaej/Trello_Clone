@@ -1,10 +1,12 @@
-#home-container{
+#home-exterior-container{
     margin: 30px;
     display: flex;
     justify-content: center;
 }
 
-#content-container{
+#home-interior-container{
+    display: flex;
+    align-items: flex-start;
     width: 85%;
     display: grid;
     grid-template-columns: 1;
@@ -25,12 +27,3 @@
     grid-row: 1;
     grid-column: 4 / 11;
 }
-
-#side-nav-bar-workspaces{
-    border-bottom: 1px solid grey;
-}
-
-#your-workspaces{
-    border-bottom: 1px solid grey;
-}
-

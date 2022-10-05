@@ -17,7 +17,7 @@ class Workspace(db.Model):
     is_archived = db.Column(db.Boolean, nullable=True)
 
     boards = db.relationship("Board", back_populates='workspace', cascade="all, delete-orphan")
-    users = db.relationship("User", secondary=user_workspaces, back_populates='workspaces', cascade="all, delete")
+    users = db.relationship("User", secondary=user_workspaces, back_populates='workspaces')
 
     def __repr__(self):
         return f'<{self.name}: workspace with type: {self.workspace_type}. is_archived - {self.is_archived}>'

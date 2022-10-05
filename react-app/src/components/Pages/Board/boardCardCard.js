@@ -32,7 +32,12 @@ function BoardCardCard({lists, boardId, card}) {
                 <div id='card-title' onClick={handleClick}>{cardSelected.title}</div>
                 {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <CardModal lists={lists} card={card} setShowModal={setShowModal} setFinishedDelete={setFinishedDelete}/>
+                    <CardModal 
+                        lists={lists} 
+                        card={card} 
+                        setShowModal={setShowModal} 
+                        setFinishedDelete={setFinishedDelete} 
+                    />
                 </Modal>
                 )}
             </div>

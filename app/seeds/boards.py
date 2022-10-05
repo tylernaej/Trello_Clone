@@ -5,7 +5,7 @@ def seed_boards():
     board_1 = Board(
         workspace_id = 1,
         title = 'board_1',
-        background_color = "686868",
+        background_color = "807f7f",
         visibility = "visible",
         is_archived = 0
     )
@@ -13,7 +13,7 @@ def seed_boards():
     board_2 = Board(
         workspace_id = 1,
         title = 'board_2',
-        background_color = "822020",
+        background_color = "95716a",
         visibility = "private",
         is_archived = 0
     )
@@ -21,7 +21,7 @@ def seed_boards():
     board_3 = Board(
         workspace_id = 2,
         title = 'board_3',
-        background_color = "a95a00",
+        background_color = "79956a",
         visibility = "visible",
         is_archived = 0
     )
@@ -29,7 +29,7 @@ def seed_boards():
     board_4 = Board(
         workspace_id = 2,
         title = 'board_4',
-        background_color = "0f3c6f",
+        background_color = "6a8e95",
         visibility = "visible",
         is_archived = 0
     )
@@ -37,7 +37,7 @@ def seed_boards():
     board_5 = Board(
         workspace_id = 2,
         title = 'board_5',
-        background_color = "2d5b28",
+        background_color = "525782",
         visibility = "visible",
         is_archived = 0
     )
@@ -45,7 +45,7 @@ def seed_boards():
     board_6 = Board(
         workspace_id = 3,
         title = 'board_6',
-        background_color = "9a8000",
+        background_color = "528265",
         visibility = "private",
         is_archived = 1
     )

@@ -8,10 +8,18 @@ body {
     font-family: Graphik Meetup, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
     margin: 0px;
     padding: 0px;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     position: relative;
     /* padding-bottom: 6rem; */
+}
+
+#root{
+    height: 100%;
+}
+
+#app{
+    height: 100%;
 }
 
 #modal-content{

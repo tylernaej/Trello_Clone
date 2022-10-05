@@ -54,15 +54,14 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
                                 value={backgroundColor}
                                 onChange={(e) => setBackgroundColor(e.target.value)} 
                             >
-                                <option value='686868'>Grey</option>
-                                <option value='822020'>Red</option>
-                                <option value='a95a00'>Orange</option>
-                                <option value='9a8000'>Yellow</option>
-                                <option value='387c79'>Light Blue</option>
-                                <option value='0f3c6f'>Blue</option>
-                                <option value='3b2568'>Purple</option>
-                                <option value='853e88'>Pink</option>
-                                <option value='2d5b28'>Green</option>
+                                <option value='807f7f'>Granite</option>
+                                <option value='95716a'>Opium</option>
+                                <option value='79956a'>Highland</option>
+                                <option value='827d52'>Shadow</option>
+                                <option value='6a8e95'>Juniper</option>
+                                <option value='525782'>Dusk</option>
+                                <option value='82526f'>Lavender</option>
+                                <option value='528265'>Mint</option>
                             </select>
                     </div>
                     <div>

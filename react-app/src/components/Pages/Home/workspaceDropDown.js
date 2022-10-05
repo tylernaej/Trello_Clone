@@ -6,12 +6,19 @@ import { NavLink } from "react-router-dom";
 
 function WorkspaceDropDown({url, workspace}) {
     const [dropDown, setDropDown] = useState(false)
+    const [isHovering, setIsHovering] = useState(false)
 
     const toggleDropDown = () => {
         setDropDown(current => !current)
     }
 
-
+    const handleMouseEnter = () => {
+        setIsHovering(true);
+    };
+    
+      const handleMouseLeave = () => {
+        setIsHovering(false);
+    };
 
     return (
         <div >
@@ -19,7 +26,9 @@ function WorkspaceDropDown({url, workspace}) {
                 <div 
                     id='workspace-title' 
                     onClick={toggleDropDown}
-                    style={{backgroundColor: `${dropDown? 'rgb(230, 230, 230)':'white'}`}}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    style={{backgroundColor: `${isHovering || dropDown? 'rgb(230, 230, 230)':'white'}`}}
                 >
                     <div className='flex-row-align-center'>
                         <div id="nav-first-letter-icon">
@@ -27,16 +36,18 @@ function WorkspaceDropDown({url, workspace}) {
                         </div>
                         {workspace.name}
                     </div>
-                    {dropDown && (
-                        <div>
-                            <i className="fa-solid fa-chevron-up"></i>
-                        </div>
-                    )}
-                    {!dropDown && (
-                        <div>
-                            <i className="fa-solid fa-chevron-down"></i>
-                        </div>
-                    )}
+                    <div>
+                        {dropDown && (
+                            <div>
+                                <i className="fa-solid fa-chevron-up"></i>
+                            </div>
+                        )}
+                        {!dropDown && (
+                            <div>
+                                <i className="fa-solid fa-chevron-down"></i>
+                            </div>
+                        )}
+                    </div>
                 </div>
                 {dropDown && (
                     <div id='utilities'>

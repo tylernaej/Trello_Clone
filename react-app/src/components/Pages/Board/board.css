@@ -3,7 +3,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -12,9 +11,13 @@
 }
 
 #title-display{
-    border: solid blue 1px;
     width: 100%;
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: large;
+    font-weight: 500;
 }
 
 #list-container{

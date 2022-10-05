@@ -32,6 +32,7 @@ function Board() {
         e.preventDefault()
         setAddList(true)
     }
+    console.log(idFromParams)
 
     const handleBoardDelete = async e => {
         e.preventDefault()
@@ -66,16 +67,23 @@ function Board() {
                         <BoardEditTitle titleSelected={titleSelected} board={activeBoard} changeTitle={changeTitle} setChangeTitle={setChangeTitle}/>
                     )}
                     <div>
-                        <div onClick={(e) => setEditBoard(true)}>
-                            <i className="fa-solid fa-chevron-down"></i>
-                        </div>
+                        {!editBoard && (
+                            <div onClick={(e) => setEditBoard(true)}>
+                                Settings
+                                <i className="fa-solid fa-gear"></i>
+                            </div>
+                        )}
                         {editBoard && (
-                            <div>
-                                <div onClick={handleBoardDelete}>Delete</div>
-                                <div onClick={(e) => setEditBoard(false)}>Cancel</div>
+                            <div onClick={(e) => setEditBoard(false)}>
+                                <i className="fa-solid fa-chevron-up"></i>
                             </div>
                         )}
                     </div>
+                    {editBoard && (
+                        <div>
+                            <div onClick={handleBoardDelete}>Delete</div>
+                        </div>
+                    )}
                 </div>
                 <div id='list-container'>
                     <div id='lists-map'>

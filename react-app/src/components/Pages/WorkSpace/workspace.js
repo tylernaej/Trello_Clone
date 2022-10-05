@@ -7,6 +7,7 @@ import WorkspaceCreateBoard from "./workspaceCreateBoard";
 import { Modal } from '../../../context/Modal'
 import WorkspaceEdit from "./workspaceEdit";
 import './workspace.css'
+import WorkspaceEditModal from "./workspaceEditModal";
 
 function Workspace() {
     const dispatch = useDispatch()
@@ -18,8 +19,7 @@ function Workspace() {
     const id = idFromParams.workspaceId
     const [showModal, setShowModal] = useState(false)
     const [editWorkspace, setEditWorkspace] = useState(false)
-
-    console.log(id)
+    const [deleteWorkspace, setDeleteWorkspace] = useState(false)
 
     const handleClickNewBoard = e => {
         e.preventDefault()
@@ -41,32 +41,64 @@ function Workspace() {
     return isLoaded && (
         <div id='workspace-exterior-container'>
             <div id='workspace-interior-container'>
-                <div id='workspace-title'>
-                    {!editWorkspace && (
-                        <div id='title-bar'>
-                            <div id='workspace-name'>
-                                <div id="first-letter-icon">
-                                    {workspace.name[0]}
-                                </div>
-                                {workspace.name}
+                <div id='workspace-header'>
+                    <div id='title-bar'>
+                        <div id='workspace-name'>
+                            <div id="first-letter-icon">
+                                {workspace.name[0]}
                             </div>
+                            {workspace.name}
+                        </div>
+                    </div>
+                    <div 
+                        onClick={() => setEditWorkspace(true)}  
+                        id='settings-button'
+                    >
+                        <div >
+                            Settings
+                        </div>
+                        <i className="fa-solid fa-gear fa-sm"></i>
+                    </div>
+                    <div 
+                        onClick={handleClickNewBoard}
+                        id='create-button'
+                    >
+                        <div>
+                            New Board
+                        </div>
+                        <i className="fa-solid fa-plus"></i>
+                    </div>
+                    <div 
+                        onClick={(() => setDeleteWorkspace(true))}
+                        id='delete-button'
+                    >
+                        <div>
+                            Delete Workspace
+                        </div>
+                        <i class="fa-solid fa-trash fa-sm"></i>
+                    </div>
+                </div>
+                <div id='dropdown-area'>
+                    {deleteWorkspace && (
+                        <div>
                             <div>
-                                {editWorkspace && (
-                                    <div onClick={() => setEditWorkspace(false)}>
-                                        <i class="fa-solid fa-chevron-up"></i>
-                                    </div>
-                                )}
-                                {!editWorkspace && (
-                                    <div onClick={() => setEditWorkspace(true)}>
-                                        <i className="fa-solid fa-chevron-down"></i>
-                                    </div>
-                                )}
+                                Are you sure you want to delete {workspace.name}?
                             </div>
                         </div>
-                        )}
-                    {editWorkspace && (
-                        <WorkspaceEdit sessionUser={sessionUser} workspace={workspace} setEditWorkspace={setEditWorkspace}/>
                     )}
+                    {editWorkspace && (
+                        <Modal>
+                            <WorkspaceEditModal sessionUser={sessionUser} workspace={workspace} setEditWorkspace={setEditWorkspace}/>
+                        </Modal>
+                    )}
+                    {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <WorkspaceCreateBoard 
+                            setShowModal={setShowModal} 
+                            workspaceId={workspace.id}
+                        />
+                    </Modal>
+                    )}  
                 </div>
                 <div className="flex-row">
                     <div id='board-map' className="flex-row">
@@ -77,14 +109,6 @@ function Workspace() {
                                 board={board}
                             />
                         ))}
-                    </div>
-                    <div>
-                        <button onClick={handleClickNewBoard}>Create New Board</button>
-                        {showModal && (
-                        <Modal onClose={() => setShowModal(false)}>
-                            <WorkspaceCreateBoard setShowModal={setShowModal} workspaceId={workspace.id}/>
-                        </Modal>
-                        )}
                     </div>
                 </div>
             </div>

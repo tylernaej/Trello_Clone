@@ -5,10 +5,14 @@ import { Modal } from '../../../context/Modal'
 import HomeCreateBoard from "./homeCreateBoard";
 import { NavLink, useLocation } from 'react-router-dom';
 import './homeWorkSpaceCard.css'
+import WorkspaceEditModal from "../WorkSpace/workspaceEditModal";
 
 function HomeWorkSpaceCard({workspace}) {
     const [wSBoards, setWSBoards] = useState(workspace.boards)
     const [showModal, setShowModal] = useState(false)
+    const [editWorkspace, setEditWorkspace] = useState(false)
+    const sessionUser = useSelector(state => state.session.user)
+    const [deleteWorkspace, setDeleteWorkspace] = useState(false)
 
     const handleClick = e => {
         e.preventDefault()
@@ -39,18 +43,73 @@ function HomeWorkSpaceCard({workspace}) {
                             to={`/home/w/${workspace.id}`}
                             style={{
                                 textDecoration: 'none',
-                                color: 'rgb(50, 50, 50)'
+                                color: 'rgb(50, 50, 50)',
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center'
                             }} 
                         >
-                            Boards
+                            <div>
+                                Boards
+                            </div>
+                            <i class="fa-solid fa-table-columns fa-sm"></i>
                         </NavLink>
                     </div>
                     <div id='members-button'>
-                        {workspace.users.length} {members}
+                        <div >
+                            {workspace.users.length} {members}
+                        </div>
+                        <i className="fa-solid fa-users fa-sm"></i>
                     </div>
-                    <div id='settings-button'>
-                        Settings
-                    </div>                    
+                    <div 
+                        onClick={() => setEditWorkspace(true)}  
+                        id='settings-button'
+                    >
+                        <div >
+                            Settings
+                        </div>
+                        <i className="fa-solid fa-gear fa-sm"></i>
+                    </div>
+                    {editWorkspace && (
+                        <Modal>
+                            <WorkspaceEditModal sessionUser={sessionUser} workspace={workspace} setEditWorkspace={setEditWorkspace}/>
+                        </Modal>
+                    )}
+                    <div 
+                        onClick={handleClick}
+                        id='create-button'
+                    >
+                        <div>
+                            New Board
+                        </div>
+                        <i className="fa-solid fa-plus"></i>
+                    </div>
+                    <div 
+                        onClick={(() => setDeleteWorkspace(true))}
+                        id='delete-button'
+                    >
+                        <div>
+                            Delete Workspace
+                        </div>
+                        <i class="fa-solid fa-trash fa-sm"></i>
+                    </div>               
+                </div>
+                <div id='dropdown-area'>
+                    {deleteWorkspace && (
+                        <div>
+                            <div>
+                                Are you sure you want to delete {workspace.name}?
+                            </div>
+                        </div>
+                    )}
+                    {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <HomeCreateBoard 
+                            setShowModal={setShowModal} 
+                            workspaceId={workspace.id}
+                        />
+                    </Modal>
+                    )}  
                 </div>
                 <div className="flex-row">
                     <div id='board-map' className="flex-row">
@@ -61,17 +120,6 @@ function HomeWorkSpaceCard({workspace}) {
                                 workspaceId={workspace.id}
                             />
                         ))}
-                    </div>
-                    <div>
-                        <button onClick={handleClick}>Create New Board</button>
-                        {showModal && (
-                        <Modal onClose={() => setShowModal(false)}>
-                            <HomeCreateBoard 
-                                setShowModal={setShowModal} 
-                                workspaceId={workspace.id}
-                            />
-                        </Modal>
-                        )}
                     </div>
                 </div>
             </div>

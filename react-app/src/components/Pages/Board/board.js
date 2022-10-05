@@ -20,7 +20,7 @@ function Board() {
     const boardId = Number(idFromParams.boardId)
     const workspaceId = Number(idFromParams.workspaceId)
     const activeBoard = useSelector(state => state.activeWorkspace.workspace?
-                                    state.activeWorkspace.workspace.boards.find(board => board.id === boardId)
+                                    state.activeWorkspace.workspace.boards.find(board => board?.id === boardId)
                                     : null)
     const [addList, setAddList] = useState(false)
     const titleSelected = activeBoard? activeBoard.title : null

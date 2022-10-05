@@ -13,9 +13,9 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
     const [changeTitle, setChangeTitle] = useState(false)
     const [changeDescription, setChangeDescription] = useState(false)
     const cardSelected = useSelector(state => state.activeWorkspace.workspace.boards
-                                    .find(board => board.lists.find(list => list.id === listId )).lists
-                                    .find(list => list.id === listId)).cards
-                                    .find(card => card.id === cardId)
+                                    .find(board => board.lists.find(list => list?.id === listId )).lists
+                                    .find(list => list?.id === listId)).cards
+                                    .find(card => card?.id === cardId)
     const titleSelected = cardSelected.title
     const descriptionSelected = cardSelected.description
     const [moveCard, setMoveCard] = useState(false)

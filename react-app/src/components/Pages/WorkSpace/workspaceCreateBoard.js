@@ -5,7 +5,7 @@ import { createBoardOnActiveWorkspaceThunk } from "../../../store/activeWorkspac
 function WorkspaceCreateBoard({setShowModal, workspaceId}) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState("")
-    const [backgroundColor, setBackgroundColor] = useState("")
+    const [backgroundColor, setBackgroundColor] = useState("807f7f")
     const [visibility, setVisibility] = useState("private")
     const [isArchived, setIsArchived] = useState("686868")
     const [isSubmitted, setIsSubmitted] = useState(false)

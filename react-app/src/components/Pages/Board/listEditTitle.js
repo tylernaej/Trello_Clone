@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editListThunk } from "../../../store/activeWorkspace";
+import './listEditTitle.css'
 
 function ListEditTitle({titleSelected, list, changeTitle, setChangeTitle}) {
     const dispatch = useDispatch()
@@ -46,6 +47,7 @@ function ListEditTitle({titleSelected, list, changeTitle, setChangeTitle}) {
                         required
                         type="text"
                         name="title"
+                        id='title-input'
                         placeholder={`${title}`}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}

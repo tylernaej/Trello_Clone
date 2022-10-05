@@ -120,6 +120,8 @@ export const createBoardOnActiveWorkspaceThunk = (payload) => async dispatch => 
     })
     const data = await response.json()
 
+    console.log('data', data)
+
     if (response.ok){
         await dispatch(addBoardToActiveWorkspace(data))
     }
@@ -312,7 +314,7 @@ const activeWorkspaceReducer = (state = initialState, action) => {
             let card = {}
             for (const board of newState.workspace.boards){
                 if(board.lists){
-                    if(action.payload.data.listId === action.payload.previousList || !action.payload.previousList) {
+                    if(action.payload.data.listId === action.payload.previousList) {
                         let list = board.lists.find(list => list.id === action.payload.data.listId)
                         if(list) {
                             let cards = [...list.cards]
@@ -327,24 +329,15 @@ const activeWorkspaceReducer = (state = initialState, action) => {
                         }
                     }
                     if(action.payload.data.listId !== action.payload.previousList) {
-                        let deleteList = board.lists.find(list => list.id === action.payload.previousList)
-                        if(deleteList) {
-                            let cardIndex = deleteList.cards.findIndex(card => {
-                                if(card.id === action.payload.data.id){
+                        let listToEditIndex = board.lists.findIndex(list => {
+                            if(list){
+                                if(list.id === action.payload.data.listId){
                                     return true
                                 }
-                                return false
-                            })
-                            deleteList.cards.splice(cardIndex, 1)
-                        }
-                        
-                        let listToEditIndex = board.lists.findIndex(list => {
-                            if(list.id === action.payload.data.listId){
-                                return true
                             }
                             return false
                         })
-                        let newList = board.lists.find(list => list.id === action.payload.data.listId)
+                        let newList = board.lists.find(list => list? list.id === action.payload.data.listId : null)
                         if(newList){
                             if(!newList.cards) newList['cards'] = []
                             let cards = [...newList.cards]
@@ -352,15 +345,33 @@ const activeWorkspaceReducer = (state = initialState, action) => {
                             newList.cards ? newList.cards = cards : newList['cards'] = [action.payload.data]
                         }
                         board.lists.splice(listToEditIndex, 1, newList)
+
+                        let deleteList = board.lists.find(list => list? list.id === action.payload.previousList : null)
+                        if(deleteList) {
+                            if(deleteList.cards){
+                                let cardIndex = deleteList.cards.findIndex(card => {
+                                    if(card.id === action.payload.data.id){
+                                        return true
+                                    }
+                                    return false
+                                })
+                                deleteList.cards.splice(cardIndex, 1)
+                            }
+                        }
                     }
                 }
             }
             return newState
         }
         case (EDIT_WORKSPACE): {
-            newState.workspace.name = action.payload.name
-            newState.workspace.workspaceType = action.payload.workspaceType
-            newState.workspace.description = action.payload.description
+            let boards = []
+            if(newState.workspace.boards){
+                boards = [...newState.workspace.boards] 
+            }
+            let workspace = action.payload
+            workspace['boards'] = boards
+            newState.workspace = workspace
+
             return newState
         }
         case (EDIT_BOARD): {

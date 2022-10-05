@@ -17,7 +17,7 @@ function HomeWorkSpaceCard({workspace}) {
     const sessionUser = useSelector(state => state.session.user)
     const [deleteWorkspace, setDeleteWorkspace] = useState(false)
     const [deleteName, setDeleteName] = useState("")
-
+  
     const handleClick = e => {
         e.preventDefault()
         setShowModal(true)

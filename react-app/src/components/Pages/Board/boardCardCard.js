@@ -10,7 +10,7 @@ function BoardCardCard({lists, boardId, card}) {
     const listId = card.listId
     const cardId = card.id
     const [showModal, setShowModal] = useState(false)
-    const cardSelected = useSelector(state => ((state.activeWorkspace.workspace.boards.find(board => board.id === boardId)).lists.find(list => list.id === listId)).cards.find(card => card.id === cardId)) 
+    const cardSelected = useSelector(state => ((state.activeWorkspace.workspace.boards.find(board => board?.id === boardId)).lists.find(list => list?.id === listId)).cards.find(card => card?.id === cardId)) 
     const [finishedDelete, setFinishedDelete] = useState(true)
 
     const handleClick = e => {

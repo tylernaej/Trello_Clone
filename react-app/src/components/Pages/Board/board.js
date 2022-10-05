@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import {getAllBoardsOfWorkspaceThunk} from '../../../store/activeWorkspace'
+import { useParams, useHistory } from "react-router-dom";
+import {deleteBoardThunk, getAllBoardsOfWorkspaceThunk} from '../../../store/activeWorkspace'
 import {getAllWorkspacesThunk} from '../../../store/workspace'
 import BoardListCard from "./boardListCard";
 import { Modal } from '../../../context/Modal'
@@ -10,8 +10,10 @@ import BoardEditTitle from "./editBoardInfo/editBoardTitle";
 import './board.css'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
+
 function Board() {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [isLoaded, setIsLoaded] = useState(false)
     const workspace = useSelector(state => state.activeWorkspace.workspace)
     const idFromParams = useParams()
@@ -24,10 +26,21 @@ function Board() {
     const titleSelected = activeBoard? activeBoard.title : null
     const [changeTitle, setChangeTitle] = useState(false)
     const [finishedDelete, setFinishedDelete] = useState(true)
+    const [editBoard, setEditBoard] = useState(false)
 
     const handleClick = e => {
         e.preventDefault()
         setAddList(true)
+    }
+    console.log(idFromParams)
+
+    const handleBoardDelete = async e => {
+        e.preventDefault()
+        const data = await dispatch(deleteBoardThunk(activeBoard.id))
+        .then(() => setEditBoard(false))
+        
+        history.push('/home')
+        
     }
 
     useEffect(() => {
@@ -41,8 +54,9 @@ function Board() {
         )
     }
 
+
     return isLoaded && finishedDelete && (
-        <div id='board-page-wrapper'>
+        <div id='board-page-wrapper' style={{backgroundColor: `#${activeBoard.backgroundColor}`}}>
             <div id='interior-container'>
                 <div id='title-display'>
                     {!changeTitle && (
@@ -53,11 +67,35 @@ function Board() {
                     {changeTitle && (
                         <BoardEditTitle titleSelected={titleSelected} board={activeBoard} changeTitle={changeTitle} setChangeTitle={setChangeTitle}/>
                     )}
+                    <div>
+                        {!editBoard && (
+                            <div onClick={(e) => setEditBoard(true)}>
+                                Settings
+                                <i className="fa-solid fa-gear"></i>
+                            </div>
+                        )}
+                        {editBoard && (
+                            <div onClick={(e) => setEditBoard(false)}>
+                                <i className="fa-solid fa-chevron-up"></i>
+                            </div>
+                        )}
+                    </div>
+                    {editBoard && (
+                        <div>
+                            <div onClick={handleBoardDelete}>Delete</div>
+                        </div>
+                    )}
                 </div>
                 <div id='list-container'>
                     <div id='lists-map'>
                         {activeBoard.lists.map(list => (
-                            <BoardListCard key={list.id} list={list} finishedDelete={finishedDelete} setFinishedDelete={setFinishedDelete}/>
+                            <BoardListCard 
+                                key={list.id} 
+                                lists={activeBoard.lists}
+                                list={list} 
+                                finishedDelete={finishedDelete} 
+                                setFinishedDelete={setFinishedDelete}
+                            />
                         ))}
                     </div>
                     <div id='add-list-button'>

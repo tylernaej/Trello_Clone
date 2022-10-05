@@ -18,7 +18,6 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle}) {
 
     useEffect((e) => {
         const closeMenu = () => {
-            console.log('Closing menu')
             if(changeTitle){
 
                 const cardEdit = {
@@ -28,8 +27,6 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle}) {
                     description: card.description,
                     isArchived: 0
                 }
-
-                console.log('dispatching')
 
                 dispatch(editCardThunk({cardId: card.id, payload: cardEdit}))
                 .then(() => setChangeTitle(false))

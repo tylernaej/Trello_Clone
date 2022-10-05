@@ -12,7 +12,7 @@ import Home from './components/Pages/Home/home';
 import Splash from './components/Pages/Splash/splash'
 import Board from './components/Pages/Board/board';
 import Workspace from './components/Pages/WorkSpace/workspace';
-
+import './app.css'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,7 +30,7 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter id='browser-router'>
       <NavBar />
       <Switch>
         <Route path='/login' exact={true}>
@@ -48,9 +48,9 @@ function App() {
         <ProtectedRoute path='/w/:workspaceId/b/:boardId'>
           <Board />
         </ProtectedRoute>
-        <ProtectedRoute path='/w/:workspaceId'>
+        {/* <ProtectedRoute path='/w/:workspaceId'>
           <Workspace />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path='/home'>
           <Home />
         </ProtectedRoute>

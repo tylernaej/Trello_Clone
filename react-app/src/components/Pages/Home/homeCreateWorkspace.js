@@ -72,7 +72,10 @@ function HomeCreateWorkspace({setShowModal}) {
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
-                    </div>            
+                    </div> 
+                    <div >
+                        <button type="submit">Create Workspace</button>
+                    </div>           
                 </form>
             </div>
             <div>

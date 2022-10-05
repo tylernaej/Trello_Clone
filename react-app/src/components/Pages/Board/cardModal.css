@@ -1,7 +1,7 @@
 #modal-exterior-container{
     display: flex;
     flex-direction: column;
-    background-color: rgb(230, 230, 230);
+    background-color: white;
     width: 85%;
 }
 

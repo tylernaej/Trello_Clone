@@ -1,0 +1,203 @@
+#workspace-exterior-container{
+}
+#workspace-interior-container{
+    margin: 15px;
+}
+
+#workspace-link{
+    margin-right: 20px;
+}
+
+#workspace-header{
+    display: flex;
+    flex-direction: row;
+}
+
+#title-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#workspace-name{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+#boards-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#boards-button:hover{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#members-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#delete-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#delete-button:hover{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(222, 144, 144);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#members-button:hover{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#confirm-delete-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#confirm-delete-button:hover{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(222, 144, 144);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#cancel-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#cancel-button:hover{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#first-letter-icon{
+    margin-right: 10px;
+    padding: 5px;
+    background: linear-gradient(0.25turn,#525782, #525782, #528265);
+    color: white;
+    text-decoration: none;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    border-radius: 3px;
+    transition-property: all;
+    transition: 150ms;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+}
+
+#first-letter-icon:hover{
+    background: linear-gradient(0.25turn,#528265, #525782, #525782);
+}
+
+#board-map{
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}

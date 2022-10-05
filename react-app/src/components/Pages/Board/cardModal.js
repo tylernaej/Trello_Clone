@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 import './cardModal.css'
 import CardEditDescription from "./editCardInfo/cardEditDescription";
 import CardEditTitle from "./editCardInfo/cardEditTitle";
-import { deleteCardThunk } from '../../../store/activeWorkspace'
+import { deleteCardThunk, editCardThunk } from '../../../store/activeWorkspace'
 
-function CardModal({card}) {
+function CardModal({lists, card, setShowModal, setFinishedDelete}) {
     const listId = card.listId
     const cardId = card.id
     const dispatch = useDispatch()
@@ -18,7 +18,9 @@ function CardModal({card}) {
                                     .find(card => card.id === cardId)
     const titleSelected = cardSelected.title
     const descriptionSelected = cardSelected.description
-    const [editCard, setEditCard] = useState(false)
+    const [moveCard, setMoveCard] = useState(false)
+    const [confirmDelete, setConfirmDelete] = useState(false)
+    const [listDestination, setListDestination] = useState(card.listId)
 
     const handleClickTitle = e => {
         e.stopPropagation()
@@ -30,19 +32,34 @@ function CardModal({card}) {
         setChangeDescription(true)
     }
 
-    
-    const handleDropDownEdit = e => {
+    const handleCardMove = async e => {
         e.preventDefault()
-        setEditCard(true)
+
+        const cardEdit = {
+            listId: listDestination,
+            title: card.title,
+            coverColor: card.coverColor,
+            description: card.description,
+            isArchived: 0
+        }
+
+        dispatch(editCardThunk({cardId: card.id, payload: cardEdit, previousList: card.listId}))
+        .then(() => setShowModal(false))
     }
 
     const handleCardDelete = async e => {
         e.preventDefault()
-        // setFinishedDelete(false)
+        setFinishedDelete(false)
         const  data = await dispatch(deleteCardThunk(listId, cardId))
-        .then(() => setEditCard(false))
-        // .then(() => setFinishedDelete(true))
+        .then(() => setFinishedDelete(true))
+        .then(() => setShowModal(false))
     }
+
+    const listOptions = lists.map(list => {
+        return (
+            <option key={list.id} value={list.id}>{list.title}</option>
+        )
+    })
 
     return (
         <div id="modal-exterior-container">
@@ -56,41 +73,64 @@ function CardModal({card}) {
                     {changeTitle && (
                         <CardEditTitle titleSelected={titleSelected} card={card} changeTitle={changeTitle} setChangeTitle={setChangeTitle} />
                     )}
-                    <div>
-                    <div onClick={handleDropDownEdit}>
-                        <i className="fa-solid fa-chevron-down"></i>
-                    </div>
-                    {editCard && (
-                        <div>
-                            <div onClick={handleCardDelete}>Delete</div>
-                            <div onClick={(e) => setEditCard(false)}>Cancel</div>
-                        </div>
-
-                    )}
-
-                    </div>
                 </div>
                 <div id='main-content'>
                     <div id='main-bar'>
-                        <div>
-                            {!changeDescription && (
-                                <div onClick={handleClickDescription}>
-                                    {descriptionSelected}
+                        {!moveCard && !confirmDelete && (
+                            <div>
+                                <div>
+                                    {!changeDescription && (
+                                        <div onClick={handleClickDescription}>
+                                            {descriptionSelected}
+                                        </div>
+                                    )}
+                                    {changeDescription && (
+                                        <CardEditDescription descriptionSelected={descriptionSelected} card={card} changeDescription={changeDescription} setChangeDescription={setChangeDescription} />
+                                    )}
                                 </div>
-                            )}
-                            {changeDescription && (
-                                <CardEditDescription descriptionSelected={descriptionSelected} card={card} changeDescription={changeDescription} setChangeDescription={setChangeDescription} />
-                            )}
-                        </div>
-                        <div>
-                            Future Checklists Here
-                        </div>
-                        <div>
-                            Future Activity Log Here
-                        </div>
+                                <div>
+                                    Future Checklists Here
+                                </div>
+                                <div>
+                                    Future Activity Log Here
+                                </div>
+                            </div>
+                        )}
+                        {moveCard && (
+                            <div>
+                                <div>
+                                    Which list to move the card to?
+                                </div>
+                                <form>
+                                    <select
+                                        value={listDestination}
+                                        onChange={(e) => setListDestination(e.target.value)}
+                                    >
+                                        {listOptions}
+                                    </select>
+                                </form>
+                                <div onClick={handleCardMove}>Move Card</div>
+                                <div onClick={() => setMoveCard(false)}>Cancel</div>
+                            </div>
+                        )}
+                        {confirmDelete && (
+                            <div>
+                                <div>
+                                    Are you sure you want to delete {card.title}?
+                                </div>
+                            </div>
+                        )}
                     </div>
                     <div id='side-bar'>
                         SideBar
+                        <div id='card-modifiers'>
+                            <div onClick={() => setMoveCard(true)}>
+                                Move Card
+                            </div>
+                            <div onClick={() => setConfirmDelete(true)}>
+                                Delete
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

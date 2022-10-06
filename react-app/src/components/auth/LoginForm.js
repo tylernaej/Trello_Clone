@@ -75,7 +75,7 @@ const LoginForm = () => {
         </div>
         <form >
           <div>
-            <div>
+            <div style={{marginTop:'15px'}}>
               <div id='email-label'>
                 <label htmlFor='email'>Email</label>
                 {active && !email.length && (
@@ -92,7 +92,7 @@ const LoginForm = () => {
                 onChange={updateEmail}
               />
             </div>
-            <div>
+            <div style={{marginTop:'15px'}}>
               <div id='password-label'>
                 <label htmlFor='password'>Password</label>
                 {active && !password.length && (

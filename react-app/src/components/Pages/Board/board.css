@@ -14,10 +14,14 @@
     width: 100%;
     margin-top: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     color: white;
     font-size: large;
     font-weight: 500;
+}
+
+#title-name{
+    font-size: x-large;
 }
 
 #list-container{
@@ -28,4 +32,32 @@
 #lists-map{
     display: flex;
     flex-direction: row;
+}
+
+#add-list-board-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#add-list-board-button:hover{
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+}
+
+#board-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

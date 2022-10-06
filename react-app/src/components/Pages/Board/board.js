@@ -83,32 +83,39 @@ function Board() {
         <div id='board-page-wrapper' style={{backgroundColor: `#${activeBoard.backgroundColor}`}}>
             <div id='interior-container'>
                 <div id='title-display'>
-                    {!changeTitle && (
-                        <div onClick={(e => setChangeTitle(true))}>
-                            {titleSelected}
+                    <div id='board-title'>
+                        <div id='title-name'>
+                            {!changeTitle && (
+                                <div onClick={(e => setChangeTitle(true))}>
+                                    {titleSelected}
+                                </div>
+                            )}
+                            {changeTitle && (
+                                <BoardEditTitle titleSelected={titleSelected} board={activeBoard} changeTitle={changeTitle} setChangeTitle={setChangeTitle}/>
+                            )}
                         </div>
-                    )}
-                    {changeTitle && (
-                        <BoardEditTitle titleSelected={titleSelected} board={activeBoard} changeTitle={changeTitle} setChangeTitle={setChangeTitle}/>
-                    )}
+                        <div style={{marginLeft:'15px'}}>
+                            {editBoard && (
+                                <div id='board-settings-dropdown-button' onClick={() => setEditBoard(false)}>
+                                    <i className="fa-solid fa-chevron-up fa-sm"></i>
+                                    <i className="fa-solid fa-gear fa-sm"></i>
+                                </div>
+                            )}
+                            {!editBoard && (
+                                <div id='board-settings-dropdown-button' onClick={() => setEditBoard(true)}>
+                                    <i className="fa-solid fa-chevron-down fa-sm"></i>
+                                    <i className="fa-solid fa-gear fa-sm"></i>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                     <div>
-                        {!editBoard && (
-                            <div onClick={(e) => setEditBoard(true)}>
-                                Settings
-                                <i className="fa-solid fa-gear"></i>
-                            </div>
-                        )}
                         {editBoard && (
-                            <div onClick={(e) => setEditBoard(false)}>
-                                <i className="fa-solid fa-chevron-up"></i>
+                            <div>
+                                <div onClick={handleBoardDelete}>Delete Board</div>
                             </div>
                         )}
                     </div>
-                    {editBoard && (
-                        <div>
-                            <div onClick={handleBoardDelete}>Delete</div>
-                        </div>
-                    )}
                 </div>
                 <div id='list-container'>
                     <div id='lists-map'>
@@ -124,7 +131,7 @@ function Board() {
                     </div>
                     <div id='add-list-button'>
                         {!addList && (
-                            <button onClick={handleClick}>Add New List</button>
+                            <div id='add-list-board-button' onClick={handleClick}>Add New List</div>
                         )}
                         {addList && (
                             <BoardCreateList setAddList={setAddList} boardId={activeBoard.id}/>

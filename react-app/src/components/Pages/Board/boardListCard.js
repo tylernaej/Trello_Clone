@@ -44,8 +44,6 @@ function BoardListCard({lists, list, finishedDelete, setFinishedDelete}) {
         setIsHovering(false)
     }
 
-    console.log(isHovering)
-
     if(!list.cards) {
         return (
             <div id='list-exterior-container'>

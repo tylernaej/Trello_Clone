@@ -39,7 +39,7 @@ function ProfileButton() {
             </div>
         )
         }
-        {/* {!sessionUser && (
+        {!sessionUser && (
             <div className="flex-row"> 
                 <div id='login-container'>
                     <NavLink 
@@ -51,14 +51,14 @@ function ProfileButton() {
                 </div>
                 <div id='signup-container'>
                     <NavLink 
-                        to='/signup'
+                        to='/sign-up'
                         id='signup-button'
                     >
                         Sign Up
                     </NavLink>
                 </div>
             </div>
-        )} */}
+        )}
     </div>
   )
 }

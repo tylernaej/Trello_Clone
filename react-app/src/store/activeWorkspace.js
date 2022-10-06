@@ -1,3 +1,5 @@
+import { editSingleWorkspace } from "./workspace"
+
 // Action Types
 
 const GET_ALL_BOARDS_OF_WORKSPACE = "activeWorkspace/get-all-boards-of-workspace"
@@ -12,6 +14,7 @@ const DELETE_LIST = 'activeWorkspace/delete-list'
 const DELETE_CARD = 'activeWorkspace/delete-card'
 const DELETE_BOARD = 'activeWorkspace/delete-board'
 const DELETE_WORKSPACE = 'activeWorkspace/delete-workspace'
+const CLEAR_WORKSPACE = 'activeWorkspace/clear-workspace'
 
 // Action Creators
 
@@ -99,6 +102,11 @@ const deleteWorkspace = payload => {
     }
 }
 
+export const clearWorkspace = () => {
+    return{
+        type: CLEAR_WORKSPACE
+    }
+}
 // Thunk Action Creators
 
 export const getAllBoardsOfWorkspaceThunk = (workspaceId) => async dispatch => {
@@ -194,6 +202,7 @@ export const editWorkspaceThunk = ({workspaceId, payload}) => async dispatch => 
 
     if (response.ok){
         await dispatch(editWorkspace(data))
+        await dispatch(editSingleWorkspace(data))
     }
     return data
 }
@@ -365,7 +374,7 @@ const activeWorkspaceReducer = (state = initialState, action) => {
         }
         case (EDIT_WORKSPACE): {
             let boards = []
-            if(newState.workspace.boards){
+            if(newState.workspace?.boards){
                 boards = [...newState.workspace.boards] 
             }
             let workspace = action.payload
@@ -431,6 +440,11 @@ const activeWorkspaceReducer = (state = initialState, action) => {
             return newState
         }
         case (DELETE_WORKSPACE): {
+            newState = {}
+            return newState
+        }
+        case (CLEAR_WORKSPACE): {
+            console.log('clearing!')
             newState = {}
             return newState
         }

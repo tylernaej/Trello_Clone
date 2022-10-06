@@ -71,7 +71,13 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                         </div>
                     )}
                     {changeTitle && (
-                        <CardEditTitle titleSelected={titleSelected} card={card} changeTitle={changeTitle} setChangeTitle={setChangeTitle} />
+                        <CardEditTitle 
+                            titleSelected={titleSelected} 
+                            card={card} 
+                            changeTitle={changeTitle} 
+                            setChangeTitle={setChangeTitle}
+                            setShowModal={setShowModal} 
+                        />
                     )}
                 </div>
                 <div id='main-content'>

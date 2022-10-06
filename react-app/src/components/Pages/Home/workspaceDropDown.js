@@ -62,9 +62,9 @@ function WorkspaceDropDown({url, workspace}) {
                         <NavLink to={`${url}/w/${workspace.id}`}>
                             Boards
                         </NavLink>
-                        <div>
+                        {/* <div>
                             Members
-                        </div>
+                        </div> */}
                         <div 
                             onClick={() => setEditWorkspace(true)}  
                             id='settings-sidebar-button'

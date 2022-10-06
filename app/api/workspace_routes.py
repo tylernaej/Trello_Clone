@@ -45,6 +45,10 @@ def get_all_boards_of_workspace(id):
 
     workspace = workspaceQ.to_dict()
 
+    users = workspaceQ.get_workspace_users()
+
+    print(f'\n\n{users}')
+
     boardsQ = Board.query.outerjoin(List).outerjoin(Card).filter(Board.workspace_id == id).all()
 
     boards = []
@@ -58,6 +62,7 @@ def get_all_boards_of_workspace(id):
             lists.append(dict_list)
         dict_board['lists'] = lists
         boards.append(dict_board)
+    workspace['users'] = users
 
     return {"workspace": workspace, "boards": boards}
 

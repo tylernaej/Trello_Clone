@@ -6,6 +6,7 @@ function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState(titleSelected)
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [errors, setErrors] = useState([])
    
     const handleClick = e => {
         e.preventDefault()
@@ -15,6 +16,12 @@ function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
     const handleClickOff = e => {
         e.stopPropagation()
     }
+
+    useEffect(() => {
+        const validationErrors = []
+        if(title.length > 100) validationErrors.push('Thats a little too long...')
+        setErrors(validationErrors)
+      }, [title])
 
     useEffect((e) => {
         const closeMenu = () => {
@@ -27,6 +34,8 @@ function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
                     visibility: board.visibility,
                     isArchived: 0
                 }
+
+                if(errors.length>0) return
 
                 dispatch(editBoardThunk({boardId: board.id, payload: boardEdit}))
                 .then(() => setChangeTitle(false))
@@ -54,6 +63,9 @@ function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
                     />
                 </div>         
             </form>
+            {errors.length > 0 && (
+                <div style={{color:'red'}}>Thats a little too long...</div>
+            )}
         </div>
     )
 }

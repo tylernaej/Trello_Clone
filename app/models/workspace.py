@@ -22,6 +22,9 @@ class Workspace(db.Model):
     def __repr__(self):
         return f'<{self.name}: workspace with type: {self.workspace_type}. is_archived - {self.is_archived}>'
 
+    def get_workspace_users(self):
+        return [user.to_dict() for user in self.users]
+
     def to_dict_with_users(self):
         return {
             "id" : self.id,

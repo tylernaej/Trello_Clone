@@ -13,6 +13,7 @@ import Splash from './components/Pages/Splash/splash'
 import Board from './components/Pages/Board/board';
 import Workspace from './components/Pages/WorkSpace/workspace';
 import './app.css'
+import NotFound from './components/Pages/404/404';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -56,6 +57,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <Splash />
+        </Route>
+        <Route path='*' exact={true} >
+          <NotFound />
         </Route>
       </Switch>
     </BrowserRouter>

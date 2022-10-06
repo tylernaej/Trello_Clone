@@ -4,7 +4,7 @@ const GET_ALL_WORKSPACES = "workspace/get-all-workspaces"
 const ADD_BOARD_TO_WORKSPACE= "workspace/add-board-to-workspace"
 const CREATE_NEW_WORKSPACE= "workspace/create-new-workspace"
 const DELETE_WORKSPACE_FROM_WORKSPACES = "workspace/delete-workspace-from-workspaces"
-
+const EDIT_WORKSPACE_OF_WORKSPACES = "workspace/edit-single-workspace"
 // Action Creators
 
 const getAllWorkspaces = payload => {
@@ -31,6 +31,13 @@ const createNewWorkspace = payload => {
 const deleteWorkspaceFromWorkspaces = payload => {
     return {
         type: DELETE_WORKSPACE_FROM_WORKSPACES,
+        payload
+    }
+}
+
+export const editSingleWorkspace = payload => {
+    return {
+        type: EDIT_WORKSPACE_OF_WORKSPACES,
         payload
     }
 }
@@ -111,6 +118,15 @@ const workspaceReducer = (state = initialState, action) => {
         }
         case (DELETE_WORKSPACE_FROM_WORKSPACES): {
             delete newState[action.payload]
+            return newState
+        }
+        case (EDIT_WORKSPACE_OF_WORKSPACES): {
+
+            let boards = []
+            if(action.payload?.boards){
+                boards = [...action.payload?.boards]
+            }
+            newState[`${action.payload.id}`] = action.payload
             return newState
         }
         default: {

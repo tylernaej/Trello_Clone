@@ -29,7 +29,7 @@ function HomeWorkSpaceCard({workspace}) {
         await dispatch(deleteWorkspaceFromWorkspacesThunk(workspaceId))
     }
 
-    let members = workspace.users.length === 1?'Member':'Members'
+    // let members = workspace.users.length === 1?'Member':'Members'
 
     return (
         <div id='workspace-exterior-container'>
@@ -65,12 +65,12 @@ function HomeWorkSpaceCard({workspace}) {
                             <i className="fa-solid fa-table-columns fa-sm"></i>
                         </NavLink>
                     </div>
-                    <div id='members-button'>
+                    {/* <div id='members-button'>
                         <div >
                             {workspace.users.length} {members}
                         </div>
                         <i className="fa-solid fa-users fa-sm"></i>
-                    </div>
+                    </div> */}
                     <div 
                         onClick={() => setEditWorkspace(true)}  
                         id='settings-button'

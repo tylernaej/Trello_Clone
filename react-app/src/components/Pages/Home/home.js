@@ -8,6 +8,7 @@ import './home.css'
 import { Switch, useRouteMatch, Route, useParams, useLocation } from "react-router-dom";
 import Workspace from '../WorkSpace/workspace'
 import SideNavBar from "./sideNavBar";
+import { clearWorkspace } from "../../../store/activeWorkspace";
 
 function Home() {
     const { url } = useRouteMatch()
@@ -20,6 +21,7 @@ function Home() {
 
     useEffect(() => {
         dispatch(getCurrentUserWorkspacesThunk())
+        .then(() => dispatch(clearWorkspace()))
         .then(() => setIsLoaded(true))
     }, [dispatch])
 

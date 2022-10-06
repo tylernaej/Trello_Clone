@@ -27,12 +27,37 @@ function Board() {
     const [changeTitle, setChangeTitle] = useState(false)
     const [finishedDelete, setFinishedDelete] = useState(true)
     const [editBoard, setEditBoard] = useState(false)
+    const sessionUser = useSelector(state => state.session.user)
+    const workspaceUsers = useSelector(state => state.activeWorkspace?.workspace?.users)
+    const [notAuthorized, setNotAuthorized] = useState(false)
 
+    useEffect(() => {
+        if(workspaceUsers && sessionUser){
+            let matched = false
+            for(const user of workspaceUsers){
+                if (user.id === sessionUser.id){
+                    matched = true
+                }
+            }
+            if(!matched){
+                console.log('No matches!')
+                setNotAuthorized(true)
+            }
+        }
+    }, [workspaceUsers, sessionUser])
+
+    useEffect(() => {
+        if(notAuthorized){
+            console.log('not auth!!!')
+            setNotAuthorized(false)
+            history.push('/home')
+        }
+    }, [notAuthorized])
+  
     const handleClick = e => {
         e.preventDefault()
         setAddList(true)
     }
-    console.log(idFromParams)
 
     const handleBoardDelete = async e => {
         e.preventDefault()
@@ -53,7 +78,6 @@ function Board() {
             <div>That board doesn't exist for this workspace!</div>
         )
     }
-
 
     return isLoaded && finishedDelete && (
         <div id='board-page-wrapper' style={{backgroundColor: `#${activeBoard.backgroundColor}`}}>

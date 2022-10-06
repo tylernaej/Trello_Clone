@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editCardThunk } from '../../../../store/activeWorkspace'
 
-function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle}) {
+function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setShowModal}) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState(titleSelected)
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [errors, setErrors] = useState([])
    
     const handleClick = e => {
         e.preventDefault()
@@ -15,6 +16,12 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle}) {
     const handleClickOff = e => {
         e.stopPropagation()
     }
+
+    useEffect(() => {
+        const validationErrors = []
+        if(title.length > 100) validationErrors.push('Thats a little too long...')
+        setErrors(validationErrors)
+      }, [title])
 
     useEffect((e) => {
         const closeMenu = () => {
@@ -28,8 +35,11 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle}) {
                     isArchived: 0
                 }
 
+                if(errors.length>0) return
+
                 dispatch(editCardThunk({cardId: card.id, payload: cardEdit, previousList: card.listId}))
                 .then(() => setChangeTitle(false))
+                .then(() => setShowModal(false))
             }
         }
         const clickProtected = document.getElementById('card-title-click-protected')
@@ -54,6 +64,9 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle}) {
                     />
                 </div>         
             </form>
+            {errors.length > 0 && (
+                <div style={{color:'red'}}>Thats a little too long...</div>
+            )}
         </div>
     )
 }

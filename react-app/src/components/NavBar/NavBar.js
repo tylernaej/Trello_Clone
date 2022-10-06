@@ -25,8 +25,6 @@ const NavBar = () => {
     .then(() => setIsLoaded(true))
   }, [dispatch])
 
-  console.log(activeBoard)
-
   useEffect(() => {
     if(activeBoard?.backgroundColor){
       setColor(activeBoard.backgroundColor)
@@ -55,32 +53,6 @@ const NavBar = () => {
           id='nav-utilities' 
           className='flex-row'
         >
-          {!sessionUser && (
-            <div>
-              <div>
-                <NavLink 
-                  to='/login'
-                  id='login-button' 
-                  exact={true} 
-                  activeClassName='active'
-                  style={{textDecoration: 'none'}}
-                >
-                  Login
-                </NavLink>
-              </div>
-              <div>
-                <NavLink 
-                  to='/sign-up'
-                  id='signup-button' 
-                  exact={true} 
-                  activeClassName='active'
-                  style={{textDecoration: 'none'}}
-                >
-                  Sign Up
-                </NavLink>
-              </div>
-            </div>
-          )}
           <div>
             <ProfileButton />
           </div>

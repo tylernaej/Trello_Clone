@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editCardThunk } from '../../../../store/activeWorkspace'
 
-function CardEditDescription({descriptionSelected, card, changeDescription, setChangeDescription}) {
+function CardEditDescription({descriptionSelected, card, changeDescription, setChangeDescription, setShowModal}) {
     const dispatch = useDispatch()
     const [description, setDescription] = useState(descriptionSelected)
     const [isSubmitted, setIsSubmitted] = useState(false)
@@ -28,11 +28,12 @@ function CardEditDescription({descriptionSelected, card, changeDescription, setC
                     isArchived: 0
                 }
 
-                dispatch(editCardThunk({cardId: card.id, payload: cardEdit}))
+                dispatch(editCardThunk({cardId: card.id, payload: cardEdit, previousList: card.listId}))
                 .then(() => setChangeDescription(false))
             }
         }
         const clickProtected = document.getElementById('card-description-click-protected')
+        const clickProtectedModal = document.getElementById('modal-background')
         document.addEventListener('click', closeMenu, false)
         clickProtected.addEventListener('click', handleClickOff, true)
         return () => document.removeEventListener('click', closeMenu)

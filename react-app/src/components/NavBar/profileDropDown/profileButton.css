@@ -33,10 +33,11 @@
     position: absolute;
     background-color: white;
     box-shadow: 0 2px 15px 0 rgba(0, 0, 0, .2);
-    border-radius: 4px 0px 0px 4px;
+    border-radius: 4px 4px 4px 4px;
     padding: 10px;
-    margin-top: 13px;
+    margin-top: 10px;
     right: 2%;
+    border-top: 2px solid #82526F;
     border-left: 2px solid #82526F;
     border-right: 2px solid #82526F;
     border-bottom: 2px solid #82526F;

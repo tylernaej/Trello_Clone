@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'Arimo-Bold';
+    src: url('../../fonts/arimo/Arimo-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'GothicA1-Medium';
+    src: url('../../fonts/gothicA1/GothicA1-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Kodchasan-Medium';
+    src: url('../../fonts/Kodchasan/Kodchasan-Medium.ttf');
+}
+
+.fa-asterisk{
+    margin-left: 5px;
+    color: red;
+}
+
+#sign-up-title{
+    display: flex;
+    justify-content: center;
+    font-size:x-large
+}
+
+#form-exterior-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-family: 'Arimo-Bold';
+}
+
+#required-container{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#required-container>*{
+    margin: 5px;
+}
+
+#button-container{
+    display: flex;
+    justify-content: center;
+}
+
+#signup-submit-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#signup-submit-button:hover{
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+}
+
+#have-an-account{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+input{
+    border: none;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
+    border-radius: 4px 0px 0px 4px;
+}

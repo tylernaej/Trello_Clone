@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 85%;
+    width: 500px;
 }
 
 #modal-interior-container{
@@ -21,9 +21,15 @@
 }
 
 #side-bar{
-    border: 1px solid blue;
     grid-column: 7/11;
     grid-row: 1;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+
 }
 
 #title-header{
@@ -35,4 +41,81 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+#card-modifiers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#move-card-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#move-card-button:hover{
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+}
+#delete-card-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#delete-card-button:hover{
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+}
+
+#cancel-card-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#cancel-card-button:hover{
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+}
+
+#card-update-buttons{
+    display: flex;
+    flex-direction: row;
 }

@@ -94,18 +94,18 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                                         <CardEditDescription descriptionSelected={descriptionSelected} card={card} changeDescription={changeDescription} setChangeDescription={setChangeDescription} />
                                     )}
                                 </div>
-                                <div>
+                                {/* <div>
                                     Future Checklists Here
                                 </div>
                                 <div>
                                     Future Activity Log Here
-                                </div>
+                                </div> */}
                             </div>
                         )}
                         {moveCard && (
                             <div>
                                 <div>
-                                    Which list to move the card to?
+                                    Which list to move {card.title} to?
                                 </div>
                                 <form>
                                     <select
@@ -115,8 +115,10 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                                         {listOptions}
                                     </select>
                                 </form>
-                                <div onClick={handleCardMove}>Move Card</div>
-                                <div onClick={() => setMoveCard(false)}>Cancel</div>
+                                <div id='card-update-buttons'>
+                                    <div id='move-card-button' onClick={handleCardMove}>Move Card</div>
+                                    <div id='cancel-card-button' onClick={() => setMoveCard(false)}>Cancel</div>
+                                </div>
                             </div>
                         )}
                         {confirmDelete && (
@@ -124,18 +126,19 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                                 <div>
                                     Are you sure you want to delete {card.title}?
                                 </div>
-                                <div onClick={handleCardDelete}>Delete</div>
-                                <div onClick={()=>setConfirmDelete(false)}>Cancel</div>
+                                <div id='card-update-buttons'>
+                                    <div id='delete-card-button' onClick={handleCardDelete}>Delete</div>
+                                    <div id='cancel-card-button' onClick={()=>setConfirmDelete(false)}>Cancel</div>
+                                </div>
                             </div>
                         )}
                     </div>
                     <div id='side-bar'>
-                        SideBar
                         <div id='card-modifiers'>
-                            <div onClick={() => setMoveCard(true)}>
+                            <div id='move-card-button' onClick={() => setMoveCard(true)}>
                                 Move Card
                             </div>
-                            <div onClick={() => setConfirmDelete(true)}>
+                            <div id='delete-card-button' onClick={() => setConfirmDelete(true)}>
                                 Delete
                             </div>
                         </div>

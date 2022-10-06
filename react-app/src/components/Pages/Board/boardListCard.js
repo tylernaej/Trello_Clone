@@ -95,7 +95,7 @@ function BoardListCard({lists, list, finishedDelete, setFinishedDelete}) {
                     </div>
                     <div>
                         {!addCard && (
-                            <button onClick={handleClick}>Add a card</button>
+                            <div id='board-add-card-button' onClick={handleClick}>Add a card</div>
                         )}
                         {addCard && (
                             <BoardCreateCard setAddCard={setAddCard} listId={list.id}/>
@@ -166,7 +166,7 @@ function BoardListCard({lists, list, finishedDelete, setFinishedDelete}) {
                 </div>
                 <div>
                     {!addCard && (
-                        <button onClick={handleClick}>Add a card</button>
+                        <div id='board-add-card-button' onClick={handleClick}>Add a card</div>
                     )}
                     {addCard && (
                         <BoardCreateCard setAddCard={setAddCard} listId={list.id}/>

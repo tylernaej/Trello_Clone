@@ -83,3 +83,25 @@
 #settings-dropdown-button:hover{
     background-color: rgb(215, 215, 215);
 }
+
+#board-add-card-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#board-add-card-button:hover{
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+}

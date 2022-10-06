@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCardToListThunk } from "../../../store/activeWorkspace";
 import { createBoardOnWorkspaceThunk } from "../../../store/workspace";
 
+
 function BoardCreateCard({setAddCard, listId}) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState("")

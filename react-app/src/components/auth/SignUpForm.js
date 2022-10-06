@@ -78,7 +78,7 @@ const SignUpForm = () => {
         </div>
         <form>
           <div>
-            <div>
+            <div style={{marginTop:'15px'}}>
               <div>
                 <label>User Name</label>
                 {active && !username.length && (
@@ -93,7 +93,7 @@ const SignUpForm = () => {
                 value={username}
               ></input>
             </div>
-            <div>
+            <div style={{marginTop:'15px'}}>
               <div>
                 <label>Email</label>
                 {active && !email.length && (
@@ -108,7 +108,7 @@ const SignUpForm = () => {
                 value={email}
               ></input>
             </div>
-            <div>
+            <div style={{marginTop:'15px'}}>
               <div>
                 <label>Password</label>
                 {active && !password.length && (
@@ -123,7 +123,7 @@ const SignUpForm = () => {
                 value={password}
               ></input>
             </div>
-            <div>
+            <div style={{marginTop:'15px'}}>
               <div>
                 <label>Repeat Password</label>
                 {active && !repeatPassword.length && (
@@ -164,7 +164,7 @@ const SignUpForm = () => {
                   <div id='signup-submit-button' onClick={handleGetStarted}>Get Started</div>
                 )}       
             </div>
-            <div className="have-an-account">
+            <div className="have-an-account" >
               <span className="have-an-account-words">Already have an account? </span>
               <NavLink className="have-an-account-link" to={"/login"}>
                 Log In

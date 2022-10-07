@@ -10,6 +10,13 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
     const [visibility, setVisibility] = useState("private")
     const [isArchived, setIsArchived] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        const validationErrors = []
+        if(title.length > 100) validationErrors.push('Board names can\'t exceed more than 100 characters.')
+        setErrors(validationErrors)
+    }, [title])
    
     const handleClick = e => {
         e.preventDefault()
@@ -20,6 +27,8 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
         e.preventDefault()
         setIsSubmitted(true)
 
+        if(errors.length>0) return
+
         const newBoard = {
             workspaceId,
             title,
@@ -27,8 +36,6 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
             visibility,
             isArchived: 0
         }
-
-        console.log('payload is',newBoard)
 
         const data = await dispatch(createBoardOnWorkspaceThunk(newBoard))
         setShowModal(false)
@@ -75,6 +82,11 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
                                 <option value="private">Private</option>
                                 <option value="workspace">Workspace</option>
                             </select>
+                    </div>
+                    <div>
+                        {errors.map((error, ind) => (
+                        <div key={ind} style={{color:'red'}}>{error}</div>
+                        ))}
                     </div>
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
                         <div >

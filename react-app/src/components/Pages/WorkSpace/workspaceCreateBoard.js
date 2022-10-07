@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createBoardOnActiveWorkspaceThunk } from "../../../store/activeWorkspace";
+import './workspaceCreateBoard.css'
 
 function WorkspaceCreateBoard({setShowModal, workspaceId}) {
     const dispatch = useDispatch()
@@ -36,7 +37,7 @@ function WorkspaceCreateBoard({setShowModal, workspaceId}) {
     return (
         <div>
             <div>
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div>
                         <label htmlFor="title">Title</label>
                         <input
@@ -74,14 +75,16 @@ function WorkspaceCreateBoard({setShowModal, workspaceId}) {
                                 <option value="private">Private</option>
                                 <option value="workspace">Workspace</option>
                             </select>
-                    </div>            
-                    <div >
-                        <button type="submit">Create Board</button>
                     </div>
+                    <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
+                        <div >
+                            <div id='workspace-create-board-button' onClick={handleSubmit}>Create Board</div>
+                        </div>
+                        <div>
+                            <div id='workspace-board-cancel-button' className='cancel-button' onClick={handleClick}>Cancel</div>
+                        </div>
+                    </div>            
                 </form>
-            </div>
-            <div>
-                <button className='cancel-button' onClick={handleClick}>Cancel</button>
             </div>
         </div>
     )

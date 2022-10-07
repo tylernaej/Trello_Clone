@@ -5,6 +5,7 @@ const ADD_BOARD_TO_WORKSPACE= "workspace/add-board-to-workspace"
 const CREATE_NEW_WORKSPACE= "workspace/create-new-workspace"
 const DELETE_WORKSPACE_FROM_WORKSPACES = "workspace/delete-workspace-from-workspaces"
 const EDIT_WORKSPACE_OF_WORKSPACES = "workspace/edit-single-workspace"
+const CLEAR_WORKSPACES = 'workspaces/clear-workspaces'
 // Action Creators
 
 const getAllWorkspaces = payload => {
@@ -39,6 +40,12 @@ export const editSingleWorkspace = payload => {
     return {
         type: EDIT_WORKSPACE_OF_WORKSPACES,
         payload
+    }
+}
+
+export const clearWorkspaces = payload => {
+    return {
+        type: CLEAR_WORKSPACES
     }
 }
 // Thunk Action Creators
@@ -127,6 +134,10 @@ const workspaceReducer = (state = initialState, action) => {
                 boards = [...action.payload?.boards]
             }
             newState[`${action.payload.id}`] = action.payload
+            return newState
+        }
+        case (CLEAR_WORKSPACES): {
+            newState = {}
             return newState
         }
         default: {

@@ -18,7 +18,7 @@ function HomeBoardCard({board, workspaceId}) {
             >
                 <div id='board-interior-container'>
 
-                        <div id='board-title'>
+                        <div id='home-board-title'>
                             {board.title}
                         </div>
     

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, NavLink } from 'react-router-dom';
+import { useSelector, useDispatch, ReactReduxContext } from 'react-redux';
+import { Redirect, NavLink, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
 import tiles from '../../assets/cells.jpg'
 import './LoginForm.css'
@@ -13,10 +13,13 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false)
   const [missing, setMissing] = useState(true)
+  const history = useHistory()
 
   useEffect(() => {
     const validationErrors = []
-
+    if(email.length > 100) validationErrors.push('Email must be less than 100 characters.')
+    if(password.length > 100) validationErrors.push('Password must be less than 100 characters.')
+    setErrors(validationErrors)
   }, [email, password])
 
   const onLogin = async (e) => {
@@ -28,7 +31,9 @@ const LoginForm = () => {
     const data = await dispatch(login(payload));
     if (data) {
       setErrors(data);
+      return
     }
+    history.push('/home')
   };
 
   const handleDemoLogin = async (e) => {

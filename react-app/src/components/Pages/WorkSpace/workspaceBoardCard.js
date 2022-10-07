@@ -20,11 +20,9 @@ function WorkspaceBoardCard({workspaceId, board}) {
                     }}
                 >
                     <div id='board-interior-container'>
-
-                            <div id='board-title'>
-                                {board.title}
-                            </div>
-        
+                        <div id='workspace-board-title'>
+                            {board.title}
+                        </div>
                     </div>
                 </div>
             </NavLink>

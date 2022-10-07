@@ -351,6 +351,7 @@ const activeWorkspaceReducer = (state = initialState, action) => {
                             if(!newList.cards) newList['cards'] = []
                             let cards = [...newList.cards]
                             cards.push(action.payload.data)
+                            //redundant
                             newList.cards ? newList.cards = cards : newList['cards'] = [action.payload.data]
                         }
                         board.lists.splice(listToEditIndex, 1, newList)

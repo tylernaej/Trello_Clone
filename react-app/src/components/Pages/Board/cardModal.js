@@ -66,7 +66,7 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
             <div id='modal-interior-container'>
                 <div id='title-header'>
                     {!changeTitle && (
-                        <div onClick={handleClickTitle}>
+                        <div onClick={handleClickTitle} id='card-modal-title-title'>
                             {titleSelected}
                         </div>
                     )}
@@ -86,7 +86,7 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                             <div>
                                 <div>
                                     {!changeDescription && (
-                                        <div onClick={handleClickDescription}>
+                                        <div id='description-field' onClick={handleClickDescription}>
                                             {descriptionSelected}
                                         </div>
                                     )}
@@ -104,8 +104,11 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                         )}
                         {moveCard && (
                             <div>
+                                <div id='card-modal-title-title'>
+                                    Moving Card: {card.title}
+                                </div>
                                 <div>
-                                    Which list to move {card.title} to?
+                                    Where to?
                                 </div>
                                 <form>
                                     <select
@@ -135,6 +138,18 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                     </div>
                     <div id='side-bar'>
                         <div id='card-modifiers'>
+                            <div 
+                                id={changeTitle?'confirm-updates-button':'edit-title-button'} 
+                                onClick={changeTitle? null :handleClickTitle}
+                            >
+                                {changeTitle?'Confirm Update':'Edit Title'}
+                            </div>
+                            <div 
+                                id={changeDescription?'confirm-updates-button':'edit-description-button'} 
+                                onClick={changeDescription?null:handleClickDescription}
+                            > 
+                                {changeDescription?'Confirm Update':'Edit Description'}
+                            </div>
                             <div id='move-card-button' onClick={() => setMoveCard(true)}>
                                 Move Card
                             </div>

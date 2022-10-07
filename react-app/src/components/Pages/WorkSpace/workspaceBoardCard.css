@@ -22,9 +22,14 @@
 
 }
 
-#board-title{
+#workspace-board-title{
     font-size: larger;
     font-weight: 600;
     /* color: rgb(50, 50, 50); */
-    color: white
+    color: white;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 250px;
 }

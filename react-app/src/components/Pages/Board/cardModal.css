@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 500px;
+    width: 600px;
 }
 
 #modal-interior-container{
@@ -41,6 +41,31 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    max-width: 460px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#card-modal-title-title{
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 400px;
+}
+
+#description-field{
+    height: 300px;
+    max-width: 350px;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    margin-top: 15px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
 }
 
 #card-modifiers{
@@ -59,7 +84,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
+    width: 160px;
     margin: 5px;
     padding: 5px;
     background-color: rgb(230, 230, 230);
@@ -71,6 +96,51 @@
     background-color: rgb(215, 215, 215);
     cursor: pointer;
 }
+
+#edit-title-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#edit-title-button:hover{
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+}
+
+#edit-description-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#edit-description-button:hover{
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+}
+
 #delete-card-button{
     display: flex;
     flex-direction: row;
@@ -80,7 +150,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
+    width: 160px;
     margin: 5px;
     padding: 5px;
     background-color: rgb(230, 230, 230);
@@ -102,7 +172,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
+    width: 160px;
     margin: 5px;
     padding: 5px;
     background-color: rgb(230, 230, 230);
@@ -111,6 +181,28 @@
 }
 
 #cancel-card-button:hover{
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+}
+
+#confirm-updates-button{
+    display: flex;
+    flex-direction: row;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+#confirm-updates-button:hover{
     background-color: rgb(215, 215, 215);
     cursor: pointer;
 }

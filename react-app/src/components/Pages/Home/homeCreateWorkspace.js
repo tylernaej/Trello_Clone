@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {createNewWorkspaceThunk} from "../../../store/workspace"
+import './homeCreateWorkspace.css'
 
 function HomeCreateWorkspace({setShowModal}) {
     const dispatch = useDispatch()
@@ -35,7 +36,7 @@ function HomeCreateWorkspace({setShowModal}) {
     return (
         <div>
             <div>
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div>
                         <label htmlFor="name">Workspace Name</label>
                         <input
@@ -72,14 +73,16 @@ function HomeCreateWorkspace({setShowModal}) {
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
-                    </div> 
-                    <div >
-                        <button type="submit">Create Workspace</button>
-                    </div>           
+                    </div>
+                    <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
+                        <div >
+                            <div id='home-create-workspace-button' onClick={handleSubmit}>Create Workspace</div>
+                        </div>           
+                        <div>
+                            <div id='home-workspace-cancel-button' className='cancel-button' onClick={handleClick}>Cancel</div>
+                        </div>
+                    </div>
                 </form>
-            </div>
-            <div>
-                <button className='cancel-button' onClick={handleClick}>Cancel</button>
             </div>
         </div>
     )

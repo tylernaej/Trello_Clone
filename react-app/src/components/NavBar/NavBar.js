@@ -18,7 +18,7 @@ const NavBar = () => {
   const activeBoard = useSelector(state => state.activeWorkspace.workspace?
                                   state.activeWorkspace.workspace.boards.find(board => board.id === boardId)
                                   : null)
-  const [color, setColor] = useState('528265')
+  const [color, setColor] = useState('6a8e95')
 
   useEffect(() => {
     dispatch(getAllBoardsOfWorkspaceThunk(workspaceId))
@@ -35,13 +35,13 @@ const NavBar = () => {
     <div 
       id='nav-bar-container'
       style={{
-        background: `linear-gradient(0.25turn,#${color}, #${color}, #ffffff)`,
+        background: `linear-gradient(0.25turn,#${color}, #${color}, #${color})`,
       }}
     >
       <nav className='flex-row' id='nav-bar-nav'>
         <div >
           <NavLink 
-            to='/home' 
+            to={sessionUser?'/home':'/'} 
             exact={true} 
             activeClassName='active'
             style={{textDecoration: 'none'}}

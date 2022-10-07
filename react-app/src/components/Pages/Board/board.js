@@ -86,7 +86,7 @@ function Board() {
                     <div id='board-title'>
                         <div id='title-name'>
                             {!changeTitle && (
-                                <div onClick={(e => setChangeTitle(true))}>
+                                <div onClick={(e => setChangeTitle(true))} id='board-title-title'>
                                     {titleSelected}
                                 </div>
                             )}

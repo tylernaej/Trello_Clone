@@ -58,7 +58,7 @@ function App() {
         <Route path='/' exact={true} >
           <Splash />
         </Route>
-        <Route path='*' exact={true} >
+        <Route path='*' >
           <NotFound />
         </Route>
       </Switch>

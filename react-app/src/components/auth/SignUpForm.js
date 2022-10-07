@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, NavLink, useHistory, useLocation } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css'
 
@@ -15,13 +15,24 @@ const SignUpForm = () => {
   const [active, setActive] = useState(false)
   const [missing, setMissing] = useState(true)
   const [emailActive, setEmailActive] = useState(false)
+  const location = useLocation()
+  const passedEmail = location?.email
+
+  useEffect(()=>{
+    if(passedEmail){
+      setEmail(passedEmail)
+    }
+  }, [passedEmail])
 
   useEffect(() => {
     const validationErrors = []
 
+    if(email.length > 100) validationErrors.push('Email must be less than 100 characters.')
     if(password !== repeatPassword) validationErrors.push('Passwords are not the same')
     if(username.length > 100) validationErrors.push('Username must be less than 100 characters')
     if(emailActive && !email.includes('@')) validationErrors.push('Please enter a valid email')
+    if(password.length > 100) validationErrors.push('Password must be less than 100 characters.')
+    if(repeatPassword.length > 100) validationErrors.push('Repeated password must be less than 100 characters.')
 
     setErrors(validationErrors)
   }, [username, email, password, repeatPassword])

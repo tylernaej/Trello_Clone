@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addListToBoardThunk } from "../../../store/activeWorkspace";
 import { createBoardOnWorkspaceThunk } from "../../../store/workspace";
+import './boardCreateList.css'
 
 function BoardCreateList({setAddList, boardId}) {
     const dispatch = useDispatch()
@@ -33,7 +34,7 @@ function BoardCreateList({setAddList, boardId}) {
     return (
         <div>
             <div>
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div>
                         <label htmlFor="title">Title</label>
                         <input
@@ -45,12 +46,12 @@ function BoardCreateList({setAddList, boardId}) {
                         />
                     </div>         
                     <div >
-                        <button type="submit">Add List</button>
+                        <div type="submit" id='list-submit-button' onClick={handleSubmit}>Add List</div>
                     </div>
                 </form>
             </div>
             <div>
-                <button className='cancel-button' onClick={handleClick}>Cancel</button>
+                <div id='list-cancel-button' className='cancel-button' onClick={handleClick}>Cancel</div>
             </div>
         </div>
     )

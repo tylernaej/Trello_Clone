@@ -59,10 +59,14 @@ function BoardListCard({lists, list, finishedDelete, setFinishedDelete}) {
                                         onMouseLeave={handleLeave}
                                     >
                                         <div id='title-text'>
-                                            {titleSelected}
-                                            {isHovering && (
-                                                <i className="fa-solid fa-pen fa-sm"></i>
-                                            )}
+                                            <div id='list-title-title'>
+                                                {titleSelected}
+                                            </div>
+                                            <div>
+                                                {isHovering && (
+                                                    <i className="fa-solid fa-pen fa-sm"></i>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                     {editList && (
@@ -120,10 +124,14 @@ function BoardListCard({lists, list, finishedDelete, setFinishedDelete}) {
                                         onMouseLeave={handleLeave}
                                     >
                                         <div id='title-text'>
-                                            {titleSelected}
-                                            {isHovering && (
-                                                <i className="fa-solid fa-pen fa-sm"></i>
-                                            )}
+                                            <div id='list-title-title'>
+                                                {titleSelected}
+                                            </div>
+                                            <div>
+                                                {isHovering && (
+                                                    <i className="fa-solid fa-pen fa-sm"></i>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                     {editList && (

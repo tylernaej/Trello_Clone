@@ -43,10 +43,16 @@
 }
 
 #name-name{
-    max-width: 140px;
+    /* display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: horizontal;
+    overflow: hidden;
+    overflow-wrap: break-word; */
+    display: inline-block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    width: 140px;
 }
 
 #utilities{

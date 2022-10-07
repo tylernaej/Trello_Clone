@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createBoardOnWorkspaceThunk } from "../../../store/workspace";
+import './homeCreateBoard.css'
 
 function HomeCreateBoard({setShowModal, workspaceId}) {
     const dispatch = useDispatch()
@@ -36,7 +37,7 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
     return (
         <div>
             <div>
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div>
                         <label htmlFor="title">Title</label>
                         <input
@@ -74,14 +75,16 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
                                 <option value="private">Private</option>
                                 <option value="workspace">Workspace</option>
                             </select>
-                    </div>            
-                    <div >
-                        <button type="submit">Create Board</button>
                     </div>
+                    <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
+                        <div >
+                            <div id='home-create-board-button' onClick={handleSubmit}>Create Board</div>
+                        </div>
+                        <div>
+                            <div id='home-board-cancel-button' className='cancel-button' onClick={handleClick}>Cancel</div>
+                        </div>
+                    </div>            
                 </form>
-            </div>
-            <div>
-                <button className='cancel-button' onClick={handleClick}>Cancel</button>
             </div>
         </div>
     )

@@ -40,11 +40,13 @@ function HomeWorkSpaceCard({workspace}) {
                             to={`/home/w/${workspace.id}`}
                             style={{textDecoration: 'none'}}
                         >
-                            <div id='workspace-name'>
+                            <div id='home-workspace-name'>
                                 <div id="first-letter-icon">
                                     {workspace.name[0]}
                                 </div>
-                                {workspace.name}
+                                <div id='home-name-name'>
+                                    {workspace.name}
+                                </div>
                             </div>
                         </NavLink>
                     </div>

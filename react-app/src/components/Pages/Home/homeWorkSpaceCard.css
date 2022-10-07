@@ -8,7 +8,7 @@
     margin-right: 20px;
 }
 
-#workspace-name{
+#home-workspace-name{
     display: flex;
     flex-direction: row;
     color: rgb(50, 50, 50);
@@ -18,16 +18,14 @@
     margin: 5px;
     padding: 5px;
     max-width: 255px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
-#name-name{
-    max-width: 140px;
+#home-name-name{
+    display: inline-block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    max-width: 200px;
 }
 
 #boards-button{

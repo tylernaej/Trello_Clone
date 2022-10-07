@@ -23,9 +23,17 @@
 #title-name{
     font-size: x-large;
     max-width: 350px;
+    /* overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; */
+}
+
+#board-title-title{
+    display: inline-block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    max-width: 300px;
 }
 
 #list-container{

@@ -55,7 +55,9 @@ function Workspace() {
                             <div id="first-letter-icon">
                                 {workspace.name[0]}
                             </div>
-                            {workspace.name}
+                            <div id='workspace-name-name'>
+                                {workspace.name}
+                            </div>
                         </div>
                     </div>
                     <div 

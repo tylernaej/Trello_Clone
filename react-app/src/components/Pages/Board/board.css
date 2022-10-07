@@ -22,6 +22,10 @@
 
 #title-name{
     font-size: x-large;
+    max-width: 350px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #list-container{

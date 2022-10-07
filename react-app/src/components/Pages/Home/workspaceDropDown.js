@@ -42,7 +42,9 @@ function WorkspaceDropDown({url, workspace}) {
                         <div id="nav-first-letter-icon">
                             {workspace.name[0]}
                         </div>
-                        {workspace.name}
+                        <div className="flex-row-align-center" id='name-name'>
+                            {workspace.name}
+                        </div>
                     </div>
                     <div>
                         {dropDown && (

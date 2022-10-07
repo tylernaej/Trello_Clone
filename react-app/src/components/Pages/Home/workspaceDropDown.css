@@ -13,6 +13,7 @@
     cursor: pointer;
     transition: 150ms;
     border-radius: 4px;
+    width: 190px;
 }
 
 #workspace-title:hover{
@@ -39,6 +40,13 @@
 
 #nav-first-letter-icon:hover{
     background: linear-gradient(0.25turn,#528265, #525782, #525782);
+}
+
+#name-name{
+    max-width: 140px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #utilities{

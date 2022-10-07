@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './splash.css'
 import todo from '../../../assets/todo_clear.png'
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { clearWorkspaces } from "../../../store/workspace";
 
 function Splash() {
     const [email, setEmail] = useState('')
+    const sessionUser = useSelector(state => state.session.user)
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(clearWorkspaces())
+    })
+
+    if(sessionUser){
+        history.push('/home')
+    }
 
     return (
         <div id='splash-exterior-container'>

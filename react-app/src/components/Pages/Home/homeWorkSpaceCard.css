@@ -17,6 +17,17 @@
     align-items: center;
     margin: 5px;
     padding: 5px;
+    max-width: 255px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#name-name{
+    max-width: 140px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #boards-button{

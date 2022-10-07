@@ -37,6 +37,10 @@
     padding: 5px;
     border-radius: 4px;
     transition: 170ms;
+    max-width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #title-text:hover{

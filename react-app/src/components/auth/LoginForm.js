@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, NavLink, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
 import tiles from '../../assets/cells.jpg'
 import './LoginForm.css'
@@ -13,6 +13,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false)
   const [missing, setMissing] = useState(true)
+  const history = useHistory()
 
   useEffect(() => {
     const validationErrors = []
@@ -29,6 +30,7 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }
+    history.push('/home')
   };
 
   const handleDemoLogin = async (e) => {

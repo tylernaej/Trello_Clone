@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, NavLink, useHistory, useLocation } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css'
 
@@ -15,6 +15,14 @@ const SignUpForm = () => {
   const [active, setActive] = useState(false)
   const [missing, setMissing] = useState(true)
   const [emailActive, setEmailActive] = useState(false)
+  const location = useLocation()
+  const passedEmail = location?.email
+
+  useEffect(()=>{
+    if(passedEmail){
+      setEmail(passedEmail)
+    }
+  }, [passedEmail])
 
   useEffect(() => {
     const validationErrors = []

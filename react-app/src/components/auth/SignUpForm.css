@@ -28,8 +28,10 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
     font-family: 'Arimo-Bold';
+    background-size: cover;
+    background-image: url('../../assets/corner.jpg');
+    padding-top: 70px;
 }
 
 #required-container{
@@ -87,4 +89,15 @@ input:hover{
     border: none;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .35);
     border-radius: 4px 0px 0px 4px;
+}
+
+#email-label{
+    color: rgb(50, 50, 50);
+    font-weight: 600;
+    font-size: large;
+}
+
+#github-link{
+    transition: 200ms;
+    width: 100px;
 }

@@ -1,30 +1,131 @@
+@font-face {
+    font-family: 'Arimo-Bold';
+    src: url('../../../fonts/arimo/Arimo-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'GothicA1-Medium';
+    src: url('../../../fonts/gothicA1/GothicA1-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Kodchasan-Medium';
+    src: url('../../../fonts/Kodchasan/Kodchasan-Medium.ttf');
+}
+
+
 #splash-exterior-container{
     width: 100%;
     height: 100%;
 }
 
 #splash-main{
+    display: flex;
     box-sizing: border-box;
     position: relative;
-    /* display: flex; */
     min-width: 100%;
     width: 100%;
-    min-height: 85vh;
-    height: 70vh;
+    height: 90vh;
     background-size: cover;
     justify-content: center;
     align-items: center;
-    background-repeat:no-repeat;
+}
+
+#splash-main::before{
+    content: "";
     background-size: cover;
-    opacity: 0.8;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-image: url('../../../assets/rock.jpg');
+    opacity: 1;
+}
+
+#above-background{
+    position: relative;
+    color: #ffffff;  
+    font-size: medium;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+#splash-content-container{
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    height: 85%;
+    width: 40%;
+    position: relative;
+    right: 25rem;
+    box-shadow: 0 2px 20px 2px rgba(0, 0, 0, .2);
+    color: rgb(30, 30, 30);
+    font-family: 'GothicA1-Medium';
+}
+
+#splash-content-inner-container{
+    margin: 15px;
+}
+
+#splash-header{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: xx-large;
+}
+
+#let-stratify{
+    margin-top: 40px;
+    margin-left: 30px;
+    width: 85%;
+    font-size: medium;
+    font-weight: 600;
 }
 
 #splash-footer {
     box-sizing: border-box;
     width: 100%;
-    height: 15vh;
-    background: linear-gradient(0.25turn,#ffffff, #528265, #528265);
+    height: 12vh;
+    background: linear-gradient(0.25turn,#6a8e95, #6a8e95, #6a8e95);
     color: white;
     border-top: 2px solid #82526F;
     font-family: 'Kodchasan-Light';
 }
+
+#talking-points{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+}
+
+#to-do-image{
+    max-width: 300px;
+    max-height: 450px;
+}
+
+#get-organized-today{
+    padding-top: 50px;
+    padding-bottom: 40px;
+    color: rgb(30, 30, 30);
+    font-size: larger;
+    font-weight: 600;
+    border-top: solid 1px rgb(30, 30, 30);
+}
+
+#email-input{
+    max-width: 550px;
+    transition: 250ms;
+    border-radius: 5px;
+    box-shadow: 0 2px 15px 2px rgba(0, 0, 0, .1);
+}
+
+#email-input:focus{
+    outline: none;
+    box-shadow: 0 2px 20px 2px rgba(0, 0, 0, .3);
+}
+
+#email-input:hover{
+    outline: none;
+    box-shadow: 0 2px 20px 2px rgba(0, 0, 0, .3);
+}
+

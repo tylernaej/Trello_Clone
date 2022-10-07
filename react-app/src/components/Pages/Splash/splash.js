@@ -1,24 +1,62 @@
-import React from "react";
-import tiles from '../../../assets/cells.jpg'
+import React, { useState } from "react";
 import './splash.css'
+import todo from '../../../assets/todo_clear.png'
+import { NavLink } from "react-router-dom";
 
 function Splash() {
+    const [email, setEmail] = useState('')
 
     return (
         <div id='splash-exterior-container'>
-            <div id="splash-main" className="splash-main"
-                style={
-                    {
-                        backgroundImage: `url(${tiles})`,
-                    }
-                }>
-                <div className="w30 flex-row-center flex-row-align-center" style={{ color: "white"}}>
-                    <div>
-                        <div>
-                            <h1 id="splash-header">Welcome to Stratify</h1>
-                        </div>
-                        <div>
-                            Get Started
+            <div id="splash-main" className="splash-main">
+                <div className="w30 flex-row-center flex-row-align-center" id='above-background'>
+                    <div id='splash-content-container'>
+                        <div id='splash-content-inner-container'>
+                            <div>
+                                <h1 id="splash-header">
+                                    A project management tool that you'll actually want to use
+                                </h1>
+                            </div>
+                            <div id='talking-points'>
+                                <div>
+                                    <div id='let-stratify'>
+                                        Let Stratify keep your tasks and projects together, so your team can focus on the substance of doing.
+                                    </div>
+                                    <div id='let-stratify'>
+                                        Turn your teams to-do lists into living documents. Start with a board, lists, and cards. Customize and expand with more features as your teamwork grows.  
+                                    </div>
+                                    <div id='let-stratify'>
+                                        Manage projects, organize tasks, and build team spirit — all in one place.
+                                    </div >
+                                </div>
+                                <img src={todo} id='to-do-image'/>
+                            </div>
+                            <div>
+                                <div id='get-organized-today'>
+                                    Get organized today - It's Free!
+                                </div>
+                                <div>
+                                    <div style={{marginBottom:'15px'}}>
+                                        <label id='email-label'>Email:</label>
+                                    </div>
+                                    <input
+                                        type='text'
+                                        id='email-input'
+                                        name='email'
+                                        onChange={(e)=>setEmail(e.target.value)}
+                                        value={email}
+                                    ></input>
+                                    <NavLink
+                                    id='signup-button' 
+                                    to={{
+                                        pathname:'/sign-up',
+                                        email: `${email}`
+                                    }}
+                                    >
+                                        Sign up
+                                    </NavLink>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -36,7 +74,8 @@ function Splash() {
                         <h5>
                             Dev: Tyler Jean
                         </h5>
-                        <li><a style={{textDecoration:"none", color: "white"}} href="https://github.com/tylernaej" target="_blank" rel="noreferrer noopener">GitHub</a></li>
+                        
+                        <div id='github-link'><a style={{textDecoration:"none", color: "white"}} href="https://github.com/tylernaej" target="_blank" rel="noreferrer noopener"><i className="fa-brands fa-github fa-2xl"/></a></div>
                     </div>
                 </div>
             </div>

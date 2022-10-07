@@ -11,6 +11,15 @@ function HomeCreateWorkspace({setShowModal}) {
     const [workspaceType, setWorkspaceType] = useState("Other")
     const [isArchived, setIsArchived] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [errors, setErrors] = useState([])
+    
+    useEffect(() => {
+        const validationErrors = []
+        if(name.length > 100) validationErrors.push('Workspace names can\'t exceed more than 100 characters.')
+        if(description.length > 500) validationErrors.push('Descriptions can\'t exceed more than 500 characters.')
+
+        setErrors(validationErrors)
+    }, [name, description])
    
     const handleClick = e => {
         e.preventDefault()
@@ -73,6 +82,11 @@ function HomeCreateWorkspace({setShowModal}) {
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
+                    </div>
+                    <div>
+                        {errors.map((error, ind) => (
+                        <div key={ind} style={{color:'red'}}>{error}</div>
+                        ))}
                     </div>
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
                         <div >

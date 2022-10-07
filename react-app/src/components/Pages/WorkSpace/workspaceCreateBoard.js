@@ -10,6 +10,13 @@ function WorkspaceCreateBoard({setShowModal, workspaceId}) {
     const [visibility, setVisibility] = useState("private")
     const [isArchived, setIsArchived] = useState("686868")
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [errors, setErrors] = useState([])
+    
+    useEffect(() => {
+        const validationErrors = []
+        if(title.length > 100) validationErrors.push('Board names can\'t exceed more than 100 characters.')
+        setErrors(validationErrors)
+    }, [title])
    
     const handleClick = e => {
         e.preventDefault()
@@ -75,6 +82,11 @@ function WorkspaceCreateBoard({setShowModal, workspaceId}) {
                                 <option value="private">Private</option>
                                 <option value="workspace">Workspace</option>
                             </select>
+                    </div>
+                    <div>
+                        {errors.map((error, ind) => (
+                        <div key={ind} style={{color:'red'}}>{error}</div>
+                        ))}
                     </div>
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
                         <div >

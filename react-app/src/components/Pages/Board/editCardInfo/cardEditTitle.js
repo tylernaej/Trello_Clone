@@ -19,7 +19,7 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setSho
 
     useEffect(() => {
         const validationErrors = []
-        if(title.length > 100) validationErrors.push('Thats a little too long...')
+        if(title.length > 100) validationErrors.push('Card names can\'t exceed more than 200 characters.')
         setErrors(validationErrors)
       }, [title])
 

@@ -150,8 +150,8 @@ function BoardListCard({lists, list, finishedDelete, setFinishedDelete}) {
                                 <div>
                                     {editList && (
                                         <div id='list-settings-dropdown'>
-                                            <div id='delete-list-button' onClick={handleListDelete}>Delete</div>
-                                            <div id='cancel-list-button' onClick={(e) => setEditList(false)}>Cancel</div>
+                                            <div id='list-delete-list-button' onClick={handleListDelete}><center>Delete</center></div>
+                                            <div id='list-cancel-list-button' onClick={(e) => setEditList(false)}><center>Cancel</center></div>
                                         </div>
     
                                     )}

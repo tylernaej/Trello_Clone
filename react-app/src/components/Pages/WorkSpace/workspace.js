@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBoardsOfWorkspaceThunk } from "../../../store/activeWorkspace";
-import { useParams, NavLink, useHistory } from "react-router-dom";
+import { useParams, NavLink, useHistory, useLocation } from "react-router-dom";
 import WorkspaceBoardCard from "./workspaceBoardCard";
 import WorkspaceCreateBoard from "./workspaceCreateBoard";
 import { Modal } from '../../../context/Modal'
@@ -9,6 +9,7 @@ import WorkspaceEdit from "./workspaceEdit";
 import './workspace.css'
 import WorkspaceEditModal from "./workspaceEditModal";
 import {deleteWorkspaceFromWorkspacesThunk} from '../../../store/workspace'
+import ResourceDoesntExist from "../404/resourceDoesntExist";
 
 function Workspace() {
     const dispatch = useDispatch()
@@ -23,6 +24,28 @@ function Workspace() {
     const [editWorkspace, setEditWorkspace] = useState(false)
     const [deleteWorkspace, setDeleteWorkspace] = useState(false)
     const [deleteName, setDeleteName] = useState("")
+    const [notAuthorized, setNotAuthorized] = useState(false)
+
+    useEffect(() => {
+        if(sessionUser && workspace?.users){
+            let matched = false
+            for (const user of workspace?.users){
+                if (user.id === sessionUser.id){
+                    matched = true
+                }
+            }
+            if(!matched){
+                setNotAuthorized(true)
+            }
+        }
+    }, [workspace, sessionUser])
+
+    useEffect(() => {
+        if(notAuthorized){
+            setNotAuthorized(false)
+            history.push('/home')
+        }
+    }, [notAuthorized, isLoaded])
 
     const handleClickNewBoard = e => {
         e.preventDefault()
@@ -46,7 +69,13 @@ function Workspace() {
         history.push('/home')
     }
 
-    return isLoaded && (
+    if(isLoaded && !workspace){
+        return (
+            <ResourceDoesntExist />
+        )
+    }
+
+    return isLoaded && workspace && (
         <div id='workspace-exterior-container'>
             <div id='workspace-interior-container'>
                 <div id='workspace-header'>

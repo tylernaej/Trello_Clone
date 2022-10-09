@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import './profileButton.css'
 import ProfileDropDownInfo from "./profileDropDownInfo";
+import profileImage from '../../../assets/default-user.jpg'
 
 
 function ProfileButton() {
@@ -29,7 +30,7 @@ function ProfileButton() {
         {sessionUser && ( 
             <div>
                 <div onClick={(e) => toggleMenu(e)} className='' id='profile-image-wrapper'>
-                    {sessionUser.username[0]}
+                    <img id='profile-image' src={profileImage} />
                 </div>
                 {menu && (
                     <div id='utility-drop-down'>

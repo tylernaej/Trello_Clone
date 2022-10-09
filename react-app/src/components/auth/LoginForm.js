@@ -17,8 +17,8 @@ const LoginForm = () => {
 
   useEffect(() => {
     const validationErrors = []
-    if(email.length > 100) validationErrors.push('Email must be less than 100 characters.')
-    if(password.length > 100) validationErrors.push('Password must be less than 100 characters.')
+    if(email.length >= 100) validationErrors.push('Email must be less than 100 characters.')
+    if(password.length >= 100) validationErrors.push('Password must be less than 100 characters.')
     setErrors(validationErrors)
   }, [email, password])
 
@@ -70,8 +70,6 @@ const LoginForm = () => {
     return <Redirect to='/home' />;
   }
 
-  console.log(errors)
-
   return (
     <div id='form-exterior-container'>
       <div id='form-interior-container'>
@@ -84,7 +82,7 @@ const LoginForm = () => {
               <div id='email-label'>
                 <label htmlFor='email'>Email</label>
                 {active && !email.length && (
-                  <i class="fa-solid fa-asterisk fa-2xs"></i>
+                  <i className="fa-solid fa-asterisk fa-2xs"></i>
                 )}
               </div>
               <input

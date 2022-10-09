@@ -1,3 +1,64 @@
+@font-face {
+    font-family: 'Arimo-Bold';
+    src: url('../../../fonts/arimo/Arimo-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'GothicA1-Medium';
+    src: url('../../../fonts/gothicA1/GothicA1-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Kodchasan-Medium';
+    src: url('../../../fonts/Kodchasan/Kodchasan-Medium.ttf');
+}
+
+#create-workspace-modal{
+    max-width: 800px;
+    color: rgb(50, 50, 50);
+}
+
+#welcome-message-container{
+    width: 100%;
+    font-family: 'GothicA1-Medium';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#welcome-header{
+    font-size:x-large;
+    font-weight: 600;
+    color: rgb(50, 50, 50);
+    margin: 15px;
+}
+
+#welcome-paragraph{
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    margin: 10px;
+}
+
+#lets-get-started{
+    font-size: large;
+    font-weight: 600;
+    text-decoration: underline;
+    margin: 10px;
+}
+
+#form-input{
+    margin: 25px;
+}
+
+#errors-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
 #home-create-workspace-button{
     display: 'flex';
     justify-content: center;

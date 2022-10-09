@@ -87,7 +87,8 @@ function Board() {
         )
     }
 
-    console.log(activeBoard.lists)
+    console.log('AB - ',activeBoard.lists)
+    console.log(activeBoard)
 
     return isLoaded && finishedDelete && (
         <div id='board-page-wrapper' style={{backgroundColor: `#${activeBoard.backgroundColor}`}}>

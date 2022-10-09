@@ -10,6 +10,21 @@ import { useHistory } from "react-router-dom";
 function SideNavBar({url, workSpacesForMap}) {
     const [showModal, setShowModal] = useState(false)
     const history = useHistory()
+    const [welcomeMessage, setWelcomeMessage] = useState(false)
+
+    useEffect(() => {
+        if(workSpacesForMap?.length === 0){
+            const button = document.getElementById('create-new-workspace')
+            if(button){
+                button.click()
+                setWelcomeMessage(true)
+            }
+        }
+        if(workSpacesForMap?.length >0) {
+            setWelcomeMessage(false)
+        }
+    }, [workSpacesForMap]);
+
 
     const handleClick = e => {
         e.preventDefault()
@@ -29,10 +44,10 @@ function SideNavBar({url, workSpacesForMap}) {
                     </div>
                 </div>
                 <div>
-                    <i onClick={handleClick} className="fa-regular fa-square-plus fa-lg"></i>
+                    <i onClick={handleClick} className="fa-regular fa-square-plus fa-lg" id='create-new-workspace'></i>
                     {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
-                        <HomeCreateWorkspace setShowModal={setShowModal} />
+                        <HomeCreateWorkspace setShowModal={setShowModal} welcomeMessage={welcomeMessage} />
                     </Modal>
                     )}
                 </div>
@@ -40,7 +55,7 @@ function SideNavBar({url, workSpacesForMap}) {
             <div>
                 {workSpacesForMap.map(workspace => (
                     <div id='workspace-instance'>
-                        <WorkspaceDropDown url={url} workspace={workspace}/>
+                        <WorkspaceDropDown key={workspace.id} url={url} workspace={workspace}/>
                     </div>
                 ))}
             </div>

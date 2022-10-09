@@ -1,6 +1,7 @@
 #list-exterior-container{
     margin: 10px;
     width: 260px;
+    height: fit-content;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
     border-radius: 5px 5px 5px 5px;
     background-color: rgb(230, 230, 230);
@@ -52,7 +53,7 @@
 }
 
 #title-text:hover{
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(250, 250, 250);
     cursor: pointer;
 }
 
@@ -116,4 +117,73 @@
 #board-add-card-button:hover{
     background-color: rgb(215, 215, 215);
     cursor: pointer;
+}
+
+#list-settings-dropdown{
+    /* background-color: rgb(250, 250, 250);
+    border-radius: 5px;
+    border: 1px solid #82526F;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, .2); */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%;
+    height: 80px; */
+    margin-top: 15px;
+    /* margin-bottom: 5px;  */
+}
+
+#delete-list-button{
+    display: 'flex';
+    /* justify-content: center;
+    align-content: center; */
+    padding: 12px;
+    margin:8px;
+    border-radius: 5px;
+    transition: .5s;
+    font-size: medium;
+    font-weight: 400;
+    text-decoration: none;
+    /* color: rgb(30, 30, 30); */
+    background-color: #82526F;
+    color: white;
+    box-shadow: 0 2px 15px 2px rgba(0, 0, 0, .1);
+    transition: 250ms;
+    width: 65px;
+}
+
+#delete-list-button:hover{
+    background-color: #82526F;
+    color: white;
+    font-weight: 400;
+    cursor: pointer;
+    box-shadow: 0 2px 15px 0px rgba(0, 0, 0, .3);
+}
+
+#cancel-list-button{
+    display: 'flex';
+    justify-content: center;
+    align-content: center;
+    padding: 12px;
+    margin:8px;
+    border-radius: 5px;
+    transition: .5s;
+    font-size: medium;
+    font-weight: 400;
+    text-decoration: none;
+    /* color: rgb(30, 30, 30); */
+    background-color: #82526F;
+    color: white;
+    box-shadow: 0 2px 15px 2px rgba(0, 0, 0, .1);
+    transition: 250ms;
+    width: 65px;
+}
+
+#cancel-list-button:hover{
+    background-color: #82526F;
+    color: white;
+    font-weight: 400;
+    cursor: pointer;
+    box-shadow: 0 2px 15px 0px rgba(0, 0, 0, .3);
 }

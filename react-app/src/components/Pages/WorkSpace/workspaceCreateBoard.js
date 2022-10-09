@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createBoardOnActiveWorkspaceThunk } from "../../../store/activeWorkspace";
 import './workspaceCreateBoard.css'
@@ -11,6 +11,13 @@ function WorkspaceCreateBoard({setShowModal, workspaceId}) {
     const [isArchived, setIsArchived] = useState("686868")
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errors, setErrors] = useState([])
+    const titleInput = useRef(null)
+
+    useEffect(() => {
+        if (titleInput.current) {
+          titleInput.current.focus();
+        }
+    }, []);
     
     useEffect(() => {
         const validationErrors = []
@@ -27,6 +34,8 @@ function WorkspaceCreateBoard({setShowModal, workspaceId}) {
         e.preventDefault()
         setIsSubmitted(true)
 
+        if(errors.length>0) return
+
         const newBoard = {
             workspaceId,
             title,
@@ -34,8 +43,6 @@ function WorkspaceCreateBoard({setShowModal, workspaceId}) {
             visibility,
             isArchived: 0
         }
-
-        console.log('payload is',newBoard)
 
         const data = await dispatch(createBoardOnActiveWorkspaceThunk(newBoard))
         setShowModal(false)
@@ -49,6 +56,7 @@ function WorkspaceCreateBoard({setShowModal, workspaceId}) {
                         <label htmlFor="title">Title</label>
                         <input
                             required
+                            ref={titleInput}
                             type="text"
                             name="title"
                             value={title}

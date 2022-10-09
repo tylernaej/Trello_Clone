@@ -7,6 +7,7 @@ function ListEditTitle({titleSelected, list, changeTitle, setChangeTitle}) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState(titleSelected)
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [errors, setErrors] = useState([])
    
     const handleClick = e => {
         e.preventDefault()
@@ -17,9 +18,17 @@ function ListEditTitle({titleSelected, list, changeTitle, setChangeTitle}) {
         e.stopPropagation()
     }
 
+    useEffect(() => {
+        const validationErrors = []
+        if(title.length >= 100) validationErrors.push('List names can\'t exceed more than 100 characters.')
+        setErrors(validationErrors)
+      }, [title])
+
     useEffect((e) => {
         const closeMenu = () => {
             if(changeTitle){
+
+                if(errors.length>0)return
 
                 const listEdit = {
                     boardId: list.boardId,
@@ -54,6 +63,9 @@ function ListEditTitle({titleSelected, list, changeTitle, setChangeTitle}) {
                     />
                 </div>         
             </form>
+            {errors.length > 0 && (
+                <div style={{color:'red'}}>Thats a little too long...</div>
+            )}
         </div>
     )
 }

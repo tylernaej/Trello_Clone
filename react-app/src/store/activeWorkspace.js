@@ -128,8 +128,6 @@ export const createBoardOnActiveWorkspaceThunk = (payload) => async dispatch => 
     })
     const data = await response.json()
 
-    console.log('data', data)
-
     if (response.ok){
         await dispatch(addBoardToActiveWorkspace(data))
     }
@@ -286,12 +284,10 @@ const activeWorkspaceReducer = (state = initialState, action) => {
         }
         case (ADD_BOARD_TO_ACTIVE_WORKSPACE): {
             newState.workspace.boards.push(action.payload)
-            console.log(newState)
             return newState
         }
         case (ADD_LIST_TO_BOARD): {
             newState.workspace.boards.find(board => board.id === action.payload.boardId).lists.push(action.payload)
-            console.log(newState)
             return newState
         }
         case (ADD_CARD_TO_LIST): {
@@ -445,7 +441,6 @@ const activeWorkspaceReducer = (state = initialState, action) => {
             return newState
         }
         case (CLEAR_WORKSPACE): {
-            console.log('clearing!')
             newState = {}
             return newState
         }

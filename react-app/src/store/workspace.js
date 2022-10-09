@@ -83,8 +83,6 @@ export const createNewWorkspaceThunk = (payload) => async dispatch => {
     })
     const data = await response.json()
 
-    console.log('The return is ', data)
-
     if (response.ok){
         await dispatch(createNewWorkspace(data))
     }

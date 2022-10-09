@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addListToBoardThunk } from "../../../store/activeWorkspace";
 import { createBoardOnWorkspaceThunk } from "../../../store/workspace";
@@ -11,6 +11,21 @@ function BoardCreateList({setAddList, boardId}) {
     // const [visibility, setVisibility] = useState("private")
     // const [isArchived, setIsArchived] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [errors, setErrors] = useState([])
+    const titleInput = useRef(null)
+
+    useEffect(() => {
+        if (titleInput.current) {
+          titleInput.current.focus();
+        }
+    }, []);
+
+    
+    useEffect(() => {
+        const validationErrors = []
+        if(title.length >= 100) validationErrors.push('List names can\'t exceed more than 100 characters.')
+        setErrors(validationErrors)
+      }, [title])
    
     const handleClick = e => {
         e.preventDefault()
@@ -32,26 +47,32 @@ function BoardCreateList({setAddList, boardId}) {
     }
 
     return (
-        <div>
+        <div id='board-create-list-exterior-container'>
             <div>
                 <form>
                     <div>
-                        <label htmlFor="title">Title</label>
+                        <label htmlFor="title" >List title</label>
                         <input
                             required
+                            ref={titleInput}
                             type="text"
                             name="title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
-                    </div>         
-                    <div >
-                        <div type="submit" id='list-submit-button' onClick={handleSubmit}>Add List</div>
                     </div>
+                    {errors.length > 0 && (
+                        <div style={{color:'white'}}>Thats a little too long...</div>
+                    )}
+                    <div id='card-modifiers' style={{display:'flex', flexDirection:'row'}}>
+                        <div >
+                            <div type="submit" id='list-submit-button' onClick={handleSubmit}>Add List</div>
+                        </div>
+                        <div>
+                            <div id='list-cancel-button' className='cancel-button' onClick={handleClick}>Cancel</div>
+                        </div>
+                    </div>         
                 </form>
-            </div>
-            <div>
-                <div id='list-cancel-button' className='cancel-button' onClick={handleClick}>Cancel</div>
             </div>
         </div>
     )

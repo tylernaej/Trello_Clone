@@ -47,8 +47,6 @@ def get_all_boards_of_workspace(id):
 
     users = workspaceQ.get_workspace_users()
 
-    print(f'\n\n{users}')
-
     boardsQ = Board.query.outerjoin(List).outerjoin(Card).filter(Board.workspace_id == id).all()
 
     boards = []
@@ -96,8 +94,6 @@ def create_workspace():
 @login_required
 def edit_workspace(id):
 
-    print(f'\n\n\nHitting backend route!\n\n\n')
-
     workspaceQ = Workspace.query.get(id)
 
     if not workspaceQ:
@@ -137,8 +133,6 @@ def delete_workspace(id):
 def get_all_workspaces_by_userId():
 
     workspacesQ = Workspace.query.outerjoin(Board).all()
-
-    # print(f'\n\nworkspacesQ: {workspacesQ}')
 
     current_user_workspaces = []
     for workspaceQ in workspacesQ:

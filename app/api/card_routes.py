@@ -20,10 +20,6 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def create_card():
 
-    print(f'\n\nIn route\n\n')
-
-    print(request.data)
-
     form = CreateCard()
     form['csrf_token'].data = request.cookies['csrf_token']
 

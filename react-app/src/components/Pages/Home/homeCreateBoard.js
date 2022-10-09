@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createBoardOnWorkspaceThunk } from "../../../store/workspace";
 import './homeCreateBoard.css'
@@ -11,6 +11,13 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
     const [isArchived, setIsArchived] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errors, setErrors] = useState([])
+    const titleInput = useRef(null)
+
+    useEffect(() => {
+        if (titleInput.current) {
+          titleInput.current.focus();
+        }
+    }, []);
 
     useEffect(() => {
         const validationErrors = []
@@ -49,6 +56,7 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
                         <label htmlFor="title">Title</label>
                         <input
                             required
+                            ref={titleInput}
                             type="text"
                             name="title"
                             value={title}
@@ -90,10 +98,10 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
                     </div>
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
                         <div >
-                            <div id='home-create-board-button' onClick={handleSubmit}>Create Board</div>
+                            <div id='home-create-board-button' onClick={handleSubmit}><center>Create Board</center></div>
                         </div>
                         <div>
-                            <div id='home-board-cancel-button' className='cancel-button' onClick={handleClick}>Cancel</div>
+                            <div id='home-board-cancel-button' className='cancel-button' onClick={handleClick}><center>Cancel</center></div>
                         </div>
                     </div>            
                 </form>

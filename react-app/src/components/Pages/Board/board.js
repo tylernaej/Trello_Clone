@@ -87,6 +87,8 @@ function Board() {
         )
     }
 
+    console.log(activeBoard.lists)
+
     return isLoaded && finishedDelete && (
         <div id='board-page-wrapper' style={{backgroundColor: `#${activeBoard.backgroundColor}`}}>
             <div id='interior-container'>

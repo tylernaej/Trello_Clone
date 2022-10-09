@@ -19,7 +19,7 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setSho
 
     useEffect(() => {
         const validationErrors = []
-        if(title.length > 100) validationErrors.push('Card names can\'t exceed more than 200 characters.')
+        if(title.length >= 100) validationErrors.push('Card names can\'t exceed more than 100 characters.')
         setErrors(validationErrors)
       }, [title])
 
@@ -34,7 +34,7 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setSho
                     description: card.description,
                     isArchived: 0
                 }
-
+       
                 if(errors.length>0) return
 
                 dispatch(editCardThunk({cardId: card.id, payload: cardEdit, previousList: card.listId}))
@@ -47,7 +47,7 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setSho
         clickProtected.addEventListener('click', handleClickOff, true)
         return () => document.removeEventListener('click', closeMenu)
     
-    }, [changeTitle, title])
+    }, [changeTitle, title, errors])
 
     return (
         <div id='card-title-click-protected'>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import {deleteBoardThunk, getAllBoardsOfWorkspaceThunk} from '../../../store/activeWorkspace'
@@ -9,6 +9,7 @@ import BoardCreateList from './boardCreateList'
 import BoardEditTitle from "./editBoardInfo/editBoardTitle";
 import './board.css'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import ResourceDoesntExist from "../404/resourceDoesntExist";
 
 
 function Board() {
@@ -30,6 +31,15 @@ function Board() {
     const sessionUser = useSelector(state => state.session.user)
     const workspaceUsers = useSelector(state => state.activeWorkspace?.workspace?.users)
     const [notAuthorized, setNotAuthorized] = useState(false)
+       
+    useEffect(() => {
+        if(activeBoard?.lists?.length === 0){
+            const button = document.getElementById('add-list-board-button')
+            if(button){
+                button.click()
+            }
+        }
+    }, [isLoaded]);
 
     useEffect(() => {
         if(workspaceUsers && sessionUser){
@@ -40,7 +50,6 @@ function Board() {
                 }
             }
             if(!matched){
-                console.log('No matches!')
                 setNotAuthorized(true)
             }
         }
@@ -48,7 +57,6 @@ function Board() {
 
     useEffect(() => {
         if(notAuthorized){
-            console.log('not auth!!!')
             setNotAuthorized(false)
             history.push('/home')
         }
@@ -73,9 +81,9 @@ function Board() {
         .then(() => setIsLoaded(true))
     }, [dispatch])
 
-    if(!activeBoard){
+    if(!activeBoard && isLoaded){
         return (
-            <div>That board doesn't exist for this workspace!</div>
+            <ResourceDoesntExist />
         )
     }
 
@@ -111,8 +119,10 @@ function Board() {
                     </div>
                     <div>
                         {editBoard && (
-                            <div>
-                                <div onClick={handleBoardDelete}>Delete Board</div>
+                            <div id='board-settings-dropdown'>
+                                <div id='delete-board-button'>
+                                    <div onClick={handleBoardDelete}>Delete Board</div>
+                                </div>
                             </div>
                         )}
                     </div>

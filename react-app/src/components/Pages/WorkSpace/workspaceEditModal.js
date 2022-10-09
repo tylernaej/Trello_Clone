@@ -31,7 +31,7 @@ function WorkspaceEditModal({sessionUser, workspace, setEditWorkspace}) {
             description,
             isArchived: 0
         }
-        console.log(workspaceEdit)
+
         const data = await dispatch(editWorkspaceThunk({workspaceId: workspace.id, payload: workspaceEdit}))
         setEditWorkspace(false)
     }

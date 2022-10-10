@@ -25,7 +25,19 @@ Welcome to the wiki for [Stratify](https://trello-tyler.herokuapp.com/), a [Trel
 - ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
 
+## Pages
 
+### Splash Page
+
+### Home Page
+
+### Board View
+
+### Card View
+
+### Log-in
+
+### Sign-up
 
 ## Run Locally
 - Clone the repository

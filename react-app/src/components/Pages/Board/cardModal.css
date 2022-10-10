@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 600px;
+    width: 700px;
+    height: 550px;
 }
 
 #modal-interior-container{
@@ -27,8 +28,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin-left: 10px;
+    margin-top: 10px;
 
 }
 
@@ -56,16 +58,19 @@
 }
 
 #description-field{
-    height: 300px;
-    max-width: 350px;
+    height: 400px;
+    max-width: 480px;
     display: -webkit-box;
     -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;
     overflow: hidden;
     overflow-wrap: break-word;
     margin-top: 15px;
-    background-color: rgb(230, 230, 230);
+    font-size: medium;
+    background-color: rgb(240, 240, 240);
+    border: solid 1px #82526F;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 #are-you-sure-you-want-to{
@@ -96,13 +101,15 @@
     width: 160px;
     margin: 5px;
     padding: 5px;
-    background-color: rgb(230, 230, 230);
+    background-color: #82526F;
+    color: white;
     border-radius: 4px;
     transition: 100ms;
 }
 
 #move-card-button:hover{
-    background-color: rgb(215, 215, 215);
+    background-color: #82526F;
+    color: white;
     cursor: pointer;
 }
 
@@ -118,13 +125,15 @@
     width: 160px;
     margin: 5px;
     padding: 5px;
-    background-color: rgb(230, 230, 230);
+    background-color: #82526F;
+    color: white;
     border-radius: 4px;
     transition: 100ms;
 }
 
 #edit-title-button:hover{
-    background-color: rgb(215, 215, 215);
+    background-color: #82526F;
+    color: white;
     cursor: pointer;
 }
 
@@ -140,13 +149,15 @@
     width: 160px;
     margin: 5px;
     padding: 5px;
-    background-color: rgb(230, 230, 230);
+    background-color: #82526F;
+    color: white;
     border-radius: 4px;
     transition: 100ms;
 }
 
 #edit-description-button:hover{
-    background-color: rgb(215, 215, 215);
+    background-color: #82526F;
+    color: white;
     cursor: pointer;
 }
 
@@ -162,13 +173,15 @@
     width: 160px;
     margin: 5px;
     padding: 5px;
-    background-color: rgb(230, 230, 230);
+    background-color: #82526F;
+    color: white;
     border-radius: 4px;
     transition: 100ms;
 }
 
 #delete-card-button:hover{
-    background-color: rgb(215, 215, 215);
+    background-color: #82526F;
+    color: white;
     cursor: pointer;
 }
 
@@ -184,13 +197,15 @@
     width: 160px;
     margin: 5px;
     padding: 5px;
-    background-color: rgb(230, 230, 230);
+    background-color: #82526F;
+    color: white;
     border-radius: 4px;
     transition: 100ms;
 }
 
 #cancel-card-button:hover{
-    background-color: rgb(215, 215, 215);
+    background-color: #82526F;
+    color: white;
     cursor: pointer;
 }
 
@@ -206,13 +221,15 @@
     width: 160px;
     margin: 5px;
     padding: 5px;
-    background-color: rgb(230, 230, 230);
+    background-color: #bf4040;
+    color: white;
     border-radius: 4px;
     transition: 100ms;
 }
 
 #confirm-updates-button:hover{
-    background-color: rgb(215, 215, 215);
+    background-color: #bf4040;
+    color: white;
     cursor: pointer;
 }
 

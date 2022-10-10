@@ -114,3 +114,18 @@
     cursor: pointer;
     box-shadow: 0 2px 15px 0px rgba(0, 0, 0, .3);
 }
+
+#title-input{
+    border: #82526F solid 1px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
+}
+
+#description-textarea{
+    border: #82526F solid 1px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
+    height: 150px;
+}
+
+#description-textarea:hover{
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .35);
+}

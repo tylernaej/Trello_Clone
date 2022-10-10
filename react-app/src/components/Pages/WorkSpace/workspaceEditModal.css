@@ -4,24 +4,28 @@
 }
 
 #name-edit-field{
+    border: #82526F solid 1px;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
     border-radius: 4px 4px 4px 4px;
     color: rgb(50, 50, 50);
 }
 
 #name-edit-field:focus{
+    border: #82526F solid 1px;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .35);
     border-radius: 4px 4px 4px 4px;
     outline: none;
 }
 
 #description-container{
+    border: #82526F solid 1px;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
     border-radius: 4px 4px 4px 4px;
     margin-top: 15px;
 }
 
 #description-container:focus-within{
+    border: #82526F solid 1px;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .35);
     border-radius: 4px 4px 4px 4px;
 }
@@ -44,7 +48,7 @@
 }
 
 #workspace-type-select{
-    border: none;
+    border: #82526F solid 1px;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
     border-radius: 4px 4px 4px 4px;
     color: rgb(50, 50, 50);

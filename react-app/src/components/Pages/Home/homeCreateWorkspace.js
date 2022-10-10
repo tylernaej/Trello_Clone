@@ -66,6 +66,13 @@ function HomeCreateWorkspace({setShowModal, welcomeMessage}) {
                         </div>
                     </div>
                 )}
+                {!welcomeMessage && (
+                    <div id='new-board-title'>
+                        <center>
+                            First, we need a few details:
+                        </center>
+                    </div>
+                )}
                 <form>
                     <div id='form-input'>
                         <label htmlFor="name">Workspace Name</label>
@@ -73,6 +80,7 @@ function HomeCreateWorkspace({setShowModal, welcomeMessage}) {
                             required
                             type="text"
                             name="name"
+                            id='title-input'
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
@@ -82,6 +90,7 @@ function HomeCreateWorkspace({setShowModal, welcomeMessage}) {
                             <select
                                 required
                                 value={workspaceType}
+                                id='title-input'
                                 onChange={(e) => setWorkspaceType(e.target.value)}
                             >
                                 <option value="Education">Education</option>

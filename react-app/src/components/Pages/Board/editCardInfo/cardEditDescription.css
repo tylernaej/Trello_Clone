@@ -1,0 +1,13 @@
+#description-field{
+    height: 300px;
+    width: 400px;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    margin-top: 15px;
+    background-color: rgb(240, 240, 240);
+    border: dotted 1px #bf4040;
+    border-radius: 4px;
+}

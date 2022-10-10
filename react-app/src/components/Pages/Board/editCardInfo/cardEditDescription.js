@@ -59,6 +59,7 @@ function CardEditDescription({descriptionSelected, card, changeDescription, setC
                         required
                         type="description"
                         name="description"
+                        id='description-field'
                         placeholder={`${description}`}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}

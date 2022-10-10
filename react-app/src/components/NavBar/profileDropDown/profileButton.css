@@ -45,11 +45,14 @@
     border-radius: 4px 4px 4px 4px;
     padding: 10px;
     margin-top: 10px;
+    height: 180px;
+    top: 62px;
     right: 2%;
     border-top: 2px solid #82526F;
     border-left: 2px solid #82526F;
     border-right: 2px solid #82526F;
     border-bottom: 2px solid #82526F;
+    z-index: 99;
 }
 
 #about-link{

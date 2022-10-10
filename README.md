@@ -29,17 +29,25 @@ Welcome to the wiki for [Stratify](https://trello-tyler.herokuapp.com/), a [Trel
 
 ### Splash Page
 
+The page that the user will arrive to when not logged in.
+
 ![image](https://user-images.githubusercontent.com/104518737/194787295-f94c699f-63e6-4829-a86a-64f1490b69ad.png)
 
 ### Home Page
+
+The page a user will see when logging in. They can navigate between boards here.
 
 ![image](https://user-images.githubusercontent.com/104518737/194787421-618d31c6-8edb-4683-8389-3a3ca0037371.png)
 
 ### Board View
 
+A board represents a single large goal. This page will show them all the lists on the board, with their associated cards.
+
 ![image](https://user-images.githubusercontent.com/104518737/194787461-5a74dc77-f6a1-42fa-adee-a3f8b5e0b855.png)
 
 ### Card View
+
+A card represents a single task. A user can see details of the card here.
 
 ![image](https://user-images.githubusercontent.com/104518737/194787482-74edbc38-c5d4-40cd-b40b-d2d231f15037.png)
 

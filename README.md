@@ -29,15 +29,27 @@ Welcome to the wiki for [Stratify](https://trello-tyler.herokuapp.com/), a [Trel
 
 ### Splash Page
 
+![image](https://user-images.githubusercontent.com/104518737/194787295-f94c699f-63e6-4829-a86a-64f1490b69ad.png)
+
 ### Home Page
+
+![image](https://user-images.githubusercontent.com/104518737/194787421-618d31c6-8edb-4683-8389-3a3ca0037371.png)
 
 ### Board View
 
+![image](https://user-images.githubusercontent.com/104518737/194787461-5a74dc77-f6a1-42fa-adee-a3f8b5e0b855.png)
+
 ### Card View
+
+![image](https://user-images.githubusercontent.com/104518737/194787482-74edbc38-c5d4-40cd-b40b-d2d231f15037.png)
 
 ### Log-in
 
+![image](https://user-images.githubusercontent.com/104518737/194787317-de8cefb6-7c3d-4ea0-a858-595aee7492df.png)
+
 ### Sign-up
+
+![image](https://user-images.githubusercontent.com/104518737/194787335-9310a2db-80c2-4833-ad7d-6148f5f867f9.png)
 
 ## Run Locally
 - Clone the repository

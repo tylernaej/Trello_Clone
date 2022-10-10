@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editBoardThunk } from '../../../../store/activeWorkspace'
+import './editBoardTitle.css'
 
 function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
     const dispatch = useDispatch()
@@ -19,7 +20,8 @@ function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
 
     useEffect(() => {
         const validationErrors = []
-        if(title.length > 100) validationErrors.push('Thats a little too long...')
+        if(title.length >= 100) validationErrors.push('Board names must be less than 100 characters')
+        // if(title.length < 1) validationErrors.push('Board names must be more than 1 character')
         setErrors(validationErrors)
       }, [title])
 
@@ -46,7 +48,7 @@ function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
         clickProtected.addEventListener('click', handleClickOff, true)
         return () => document.removeEventListener('click', closeMenu)
     
-    }, [changeTitle, title])
+    }, [changeTitle, title, errors])
 
     return (
         <div id='board-title-click-protected'>
@@ -57,15 +59,16 @@ function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
                         required
                         type="text"
                         name="title"
+                        id='title-input'
                         placeholder={`${title}`}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>         
             </form>
-            {errors.length > 0 && (
-                <div style={{color:'red'}}>Thats a little too long...</div>
-            )}
+            {errors.map((error, ind) => (
+                <div id='board-errors-map' key={ind} style={{color:'red'}}>{error}</div>
+            ))}
         </div>
     )
 }

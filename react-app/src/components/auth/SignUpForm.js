@@ -31,8 +31,10 @@ const SignUpForm = () => {
     if(password !== repeatPassword) validationErrors.push('Passwords are not the same')
     if(username.length >= 100) validationErrors.push('Username must be less than 100 characters')
     if(emailActive && !email.includes('@')) validationErrors.push('Please enter a valid email')
-    if(password.length >= 100) validationErrors.push('Password must be less than 100 characters.')
-    if(repeatPassword.length >= 100) validationErrors.push('Repeated password must be less than 100 characters.')
+    if(active && password.length<=6) validationErrors.push('Password must be between 7 and 99 characters')
+    if(active && repeatPassword.length<=6) validationErrors.push('Repeated password must be between 7 and 99 characters') 
+    if(password.length >= 100) validationErrors.push('Password must be between 7 and 99 characters')
+    if(repeatPassword.length >= 100) validationErrors.push('Repeated password must be between 7 and 99 characters')
 
     setErrors(validationErrors)
   }, [username, email, password, repeatPassword])

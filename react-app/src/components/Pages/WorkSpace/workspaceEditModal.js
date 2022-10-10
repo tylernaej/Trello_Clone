@@ -14,7 +14,9 @@ function WorkspaceEditModal({sessionUser, workspace, setEditWorkspace}) {
 
     useEffect(() => {
         const validationErrors = []
+        if(description.length < 1) validationErrors.push('Description must be more than 1 character')
         if(description.length > 500) validationErrors.push('Description can\'t exceed 500 characters')
+        if(name.length < 1) validationErrors.push('Name must be more than 1 character')
         if(name.length > 100) validationErrors.push('Name can\'t exceed 100 characters')
         setErrors(validationErrors)
       }, [description, name])

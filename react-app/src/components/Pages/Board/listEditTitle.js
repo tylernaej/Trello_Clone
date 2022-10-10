@@ -45,7 +45,7 @@ function ListEditTitle({titleSelected, list, changeTitle, setChangeTitle}) {
         clickProtected.addEventListener('click', handleClickOff, true)
         return () => document.removeEventListener('click', closeMenu)
     
-    }, [changeTitle, title])
+    }, [changeTitle, title, errors])
 
     return (
         <div id='click-protected'>

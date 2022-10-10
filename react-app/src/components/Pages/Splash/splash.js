@@ -74,7 +74,7 @@ function Splash() {
                     </div>
                 </div>
             </div>
-            <div id="splash-footer" className="flex-row-center">
+            {/* <div id="splash-footer" className="flex-row-center">
                 <div className="flex-row-justify-between w70">
                     <div>
                         <h5>
@@ -87,11 +87,11 @@ function Splash() {
                         <h5>
                             Dev: Tyler Jean
                         </h5>
-                        
                         <div id='github-link'><a style={{textDecoration:"none", color: "white"}} href="https://github.com/tylernaej" target="_blank" rel="noreferrer noopener"><i className="fa-brands fa-github fa-2xl"/></a></div>
+                        <div id='linkedin-link'><a style={{textDecoration:"none", color: "white"}} href='https://www.linkedin.com/' target="_blank" rel="noreferrer noopener"><i className="fa-brands fa-linkedin fa-2xl"/></a></div>            
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

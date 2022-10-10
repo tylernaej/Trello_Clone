@@ -1,4 +1,4 @@
-Welcome to the wiki for [Stratify](https://trello-tyler.herokuapp.com/), a [Trello](https://trello.com/) clone.
+Welcome to the wiki for [Stratify](https://trello-tyler.herokuapp.com/), a [Trello](https://trello.com/) clone. Stratify is a project management software developed for individuals or small teams.
 
 ## Wiki Links
 - [API routes](https://github.com/tylernaej/Trello_Clone/wiki/API-Routes)

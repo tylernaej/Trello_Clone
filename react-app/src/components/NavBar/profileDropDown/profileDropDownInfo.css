@@ -4,8 +4,10 @@
 }
 
 #welcome{
-    padding-bottom: 5px;
+    padding-bottom: 0px;
+    margin: 15px;
     border-bottom: 1px solid #82526F;
+    font-size: x-large;
 }
 
 #dropdown-container > *{
@@ -23,10 +25,12 @@
     display: grid;
     grid-template-columns: 1;
     grid-template-rows: 5;
+    margin: 10px;
 }
 
 #u-d-grid > *{
-    padding: 2px
+    padding: 2px;
+    font-size: larger;
 }
 
 #top-icon{
@@ -79,6 +83,8 @@
 
 #logout-wrapper{
     border-radius: 4px;
+    font-size: larger;
+    margin: 10px;
 }
 
 #logout-wrapper:hover{

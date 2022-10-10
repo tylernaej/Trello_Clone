@@ -52,23 +52,30 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
     return (
         <div>
             <div>
+                <div id='new-board-title'>
+                    <center>
+                        First, we need a few details:
+                    </center>
+                </div>
                 <form>
-                    <div>
+                    <div style={{margin:'10px'}}>
                         <label htmlFor="title">Title</label>
                         <input
                             required
                             ref={titleInput}
                             type="text"
                             name="title"
+                            id='title-input'
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
-                    <div>
+                    <div style={{margin:'10px'}}>
                         <label htmlFor="backgroundColor">Background Color</label>
                             <select
                                 required
                                 value={backgroundColor}
+                                id='title-input'
                                 onChange={(e) => setBackgroundColor(e.target.value)} 
                             >
                                 <option value='807f7f'>Granite</option>
@@ -81,23 +88,24 @@ function HomeCreateBoard({setShowModal, workspaceId}) {
                                 <option value='528265'>Mint</option>
                             </select>
                     </div>
-                    <div>
+                    <div style={{margin:'10px'}}>
                         <label htmlFor="visibility">Visibility</label>
                             <select
                                 required
                                 value={visibility}
+                                id='title-input'
                                 onChange={(e) => setVisibility(e.target.value)}
                             >
                                 <option value="private">Private</option>
                                 <option value="workspace">Workspace</option>
                             </select>
                     </div>
-                    <div>
+                    <div style={{margin:'10px'}}>
                         {errors.map((error, ind) => (
                         <div key={ind} style={{color:'red'}}>{error}</div>
                         ))}
                     </div>
-                    <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
+                    <div style={{margin:'10px',display:'flex',flexDirection:'row',justifyContent:'center'}}>
                         <div >
                             <div id='home-create-board-button' onClick={handleSubmit}><center>Create Board</center></div>
                         </div>

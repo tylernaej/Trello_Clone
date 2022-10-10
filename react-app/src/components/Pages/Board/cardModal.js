@@ -84,10 +84,10 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                     <div id='main-bar'>
                         {!moveCard && !confirmDelete && (
                             <div>
-                                <div>
+                                <div style={{height:'300px', width:'500px'}}>
                                     {!changeDescription && (
                                         <div id='description-field' onClick={handleClickDescription}>
-                                            {descriptionSelected}
+                                            <div style={{margin:'10px'}}>{descriptionSelected}</div>
                                         </div>
                                     )}
                                     {changeDescription && (
@@ -103,11 +103,11 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                             </div>
                         )}
                         {moveCard && (
-                            <div>
-                                <div id='card-modal-title-title'>
+                            <div style={{margin:'20px', marginTop:'20px'}}>
+                                <div id='card-modal-title-title' style={{margin:'20px', marginTop:'20px'}}>
                                     Moving Card: {card.title}
                                 </div>
-                                <div>
+                                <div style={{margin:'20px', marginTop:'1px'}}>
                                     Where to?
                                 </div>
                                 <form>
@@ -118,18 +118,18 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                                         {listOptions}
                                     </select>
                                 </form>
-                                <div id='card-update-buttons'>
+                                <div id='card-update-buttons' style={{margin:'20px'}}>
                                     <div id='move-card-button' onClick={handleCardMove}>Move Card</div>
                                     <div id='cancel-card-button' onClick={() => setMoveCard(false)}>Cancel</div>
                                 </div>
                             </div>
                         )}
                         {confirmDelete && (
-                            <div>
-                                <div id='are-you-sure-you-want-to'>
+                            <div style={{margin:'20px', marginTop:'20px'}}>
+                                <div id='are-you-sure-you-want-to' style={{margin:'20px', marginTop:'20px'}}>
                                     Are you sure you want to delete {card.title}?
                                 </div>
-                                <div id='card-update-buttons'>
+                                <div id='card-update-buttons' style={{marginTop:'20px'}}>
                                     <div id='delete-card-button' onClick={handleCardDelete}>Delete</div>
                                     <div id='cancel-card-button' onClick={()=>setConfirmDelete(false)}>Cancel</div>
                                 </div>

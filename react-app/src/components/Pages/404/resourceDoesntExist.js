@@ -10,13 +10,14 @@ function ResourceDoesntExist(){
 
     useEffect(() =>{
         dispatch(clearWorkspace())
-        setTimeout(() => {
-            history.push('/home')
-        }, 2500)
+        history.push('/home')
+        // setTimeout(() => {
+        //     history.push('/home')
+        // }, 2500)
     }, [])
 
     return (
-        <div id='oops'>Oops... Looks like this resource doesn't exist yet! Taking you back home...</div>
+        <div id='oops'>Oops!!!... Looks like this resource doesn't exist yet! Taking you back home...</div>
     )
 }
 

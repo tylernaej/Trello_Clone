@@ -4,7 +4,7 @@
     justify-content: center;
 }
 
-#home-interior-container{
+/* #home-interior-container{
     display: flex;
     align-items: flex-start;
     width: 85%;
@@ -26,4 +26,25 @@
 #main-content-container{
     grid-row: 1;
     grid-column: 4 / 11;
+} */
+
+#home-interior-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 80%;
+
+}
+
+#side-nav-bar{
+}
+
+#side-nav-bar-container{
+    margin-top:12px;
+    width: 20%;
+
+}
+
+#main-content-container{
+    width: 80%;
 }

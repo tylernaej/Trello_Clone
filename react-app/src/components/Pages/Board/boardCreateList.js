@@ -66,10 +66,10 @@ function BoardCreateList({setAddList, boardId}) {
                     )}
                     <div id='card-modifiers' style={{display:'flex', flexDirection:'row'}}>
                         <div >
-                            <div type="submit" id='list-submit-button' onClick={handleSubmit}>Add List</div>
+                            <div type="submit" id='list-submit-button' onClick={handleSubmit}><center>Add List</center></div>
                         </div>
                         <div>
-                            <div id='list-cancel-button' className='cancel-button' onClick={handleClick}>Cancel</div>
+                            <div id='list-cancel-button' className='cancel-button' onClick={handleClick}><center>Cancel</center></div>
                         </div>
                     </div>         
                 </form>

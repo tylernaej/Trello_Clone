@@ -126,7 +126,7 @@ function CardModal({lists, card, setShowModal, setFinishedDelete}) {
                         )}
                         {confirmDelete && (
                             <div>
-                                <div>
+                                <div id='are-you-sure-you-want-to'>
                                     Are you sure you want to delete {card.title}?
                                 </div>
                                 <div id='card-update-buttons'>

@@ -6,6 +6,14 @@ function CardEditDescription({descriptionSelected, card, changeDescription, setC
     const dispatch = useDispatch()
     const [description, setDescription] = useState(descriptionSelected)
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        const validationErrors = []
+        if(description.length >= 500) validationErrors.push('Card descriptions can\'t exceed more than 500 characters.')
+        setErrors(validationErrors)
+    }, [description])
+
    
     const handleClick = e => {
         e.preventDefault()
@@ -19,6 +27,8 @@ function CardEditDescription({descriptionSelected, card, changeDescription, setC
     useEffect((e) => {
         const closeMenu = () => {
             if(changeDescription){
+
+                if(errors.length>0) return
 
                 const cardEdit = {
                     listId: card.listId,
@@ -38,7 +48,7 @@ function CardEditDescription({descriptionSelected, card, changeDescription, setC
         clickProtected.addEventListener('click', handleClickOff, true)
         return () => document.removeEventListener('click', closeMenu)
     
-    }, [changeDescription, description])
+    }, [changeDescription, description, errors])
 
     return (
         <div id='card-description-click-protected'>
@@ -55,6 +65,9 @@ function CardEditDescription({descriptionSelected, card, changeDescription, setC
                     />
                 </div>         
             </form>
+            {errors.length > 0 && (
+                <div style={{color:'red'}}>Thats a little too long...</div>
+            )}
         </div>
     )
 }

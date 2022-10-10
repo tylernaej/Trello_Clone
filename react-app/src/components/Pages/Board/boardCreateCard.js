@@ -9,6 +9,14 @@ function BoardCreateCard({setAddCard, listId}) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        const validationErrors = []
+        if(title.length >= 100) validationErrors.push('Card names must be less than 100 characters')
+        // if(title.length < 1) validationErrors.push('Board names must be more than 1 character')
+        setErrors(validationErrors)
+      }, [title])
    
     const handleClick = e => {
         e.preventDefault()
@@ -45,12 +53,15 @@ function BoardCreateCard({setAddCard, listId}) {
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
+                    {errors.map((error, ind) => (
+                        <div id='board-errors-map' key={ind} style={{color:'red'}}>{error}</div>
+                    ))}
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
                         <div>
-                            <div onClick={handleSubmit} id='card-submit-button'>Add Card</div>
+                            <div onClick={handleSubmit} id='card-submit-button'><center>Add Card</center></div>
                         </div>
                         <div>
-                            <div className='cancel-button' onClick={handleClick} id='card-cancel-button'>Cancel</div>
+                            <div className='cancel-button' onClick={handleClick} id='card-cancel-button'><center>Cancel</center></div>
                         </div>
                     </div>         
                 </form>

@@ -26,9 +26,19 @@ function ProfileButton() {
     }, [menu])
 
   return (
-    <div>
+    <div id='profile-wrapper'>
         {sessionUser && ( 
-            <div>
+            <div id='profile-wrapper'>
+                <div id='meet-the-dev'>
+                    <div id='meet-the-dev-text'>
+                        Meet the Dev
+                    </div>
+                    <div id='external-links'>
+                        <div id='nav-github-link'><a style={{textDecoration:"none", color: "white"}} href="https://github.com/tylernaej" target="_blank" rel="noreferrer noopener"><i className="fa-brands fa-github fa-lg"/></a></div>
+                        <div id='nav-linkedin-link'><a style={{textDecoration:"none", color: "white"}} href='https://www.linkedin.com/' target="_blank" rel="noreferrer noopener"><i className="fa-brands fa-linkedin fa-lg"/></a></div>  
+                    </div>
+                </div> 
+                <div><a id='about-link' href="https://github.com/tylernaej/Trello_Clone" target="_blank" rel="noreferrer noopener">About</a></div>
                 <div onClick={(e) => toggleMenu(e)} className='' id='profile-image-wrapper'>
                     <img id='profile-image' src={profileImage} />
                 </div>
@@ -41,7 +51,17 @@ function ProfileButton() {
         )
         }
         {!sessionUser && (
-            <div className="flex-row"> 
+            <div className="flex-row" id='profile-wrapper'>
+                <div id='meet-the-dev'>
+                    <div id='meet-the-dev-text'>
+                        Meet the Dev
+                    </div>
+                    <div id='external-links'>
+                        <div id='nav-github-link'><a style={{textDecoration:"none", color: "white"}} href="https://github.com/tylernaej" target="_blank" rel="noreferrer noopener"><i className="fa-brands fa-github fa-lg"/></a></div>
+                        <div id='nav-linkedin-link'><a style={{textDecoration:"none", color: "white"}} href='https://www.linkedin.com/' target="_blank" rel="noreferrer noopener"><i className="fa-brands fa-linkedin fa-lg"/></a></div>  
+                    </div>
+                </div> 
+                <div><a id='about-link' href="https://github.com/tylernaej/Trello_Clone" target="_blank" rel="noreferrer noopener">About</a></div>
                 <div id='login-container'>
                     <NavLink 
                         to='/login'

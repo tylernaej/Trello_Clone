@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editCardThunk } from '../../../../store/activeWorkspace'
+import './cardEditTitle.css'
 
 function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setShowModal}) {
     const dispatch = useDispatch()
@@ -55,6 +56,7 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setSho
                 <div>
                     <label htmlFor="title"></label>
                     <input
+                        id='card-title-input'
                         required
                         type="text"
                         name="title"

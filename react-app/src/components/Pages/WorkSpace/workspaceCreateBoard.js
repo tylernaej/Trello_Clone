@@ -21,7 +21,8 @@ function WorkspaceCreateBoard({setShowModal, workspaceId}) {
     
     useEffect(() => {
         const validationErrors = []
-        if(title.length > 100) validationErrors.push('Board names can\'t exceed more than 100 characters.')
+        if(title.length<1) validationErrors.push('Board titles must be between 1 and 99 characters')
+        if(title.length >= 100) validationErrors.push('Board titles must be between 1 and 99 characters')
         setErrors(validationErrors)
     }, [title])
    

@@ -1,0 +1,11 @@
+#title-input{
+    border-radius: 5px;
+    font-size: large;
+}
+
+#board-errors-map{ 
+    font-size: medium;
+    background-color: rgb(240,240,240);
+    padding: 5px;
+    border-radius: 5px;
+}

@@ -27,6 +27,8 @@ function BoardCreateCard({setAddCard, listId}) {
         e.preventDefault()
         setIsSubmitted(true)
 
+        if(errors.length>0) return
+
         const newCard = {
             listId,
             title,

@@ -60,13 +60,13 @@ function Splash() {
                                         value={email}
                                     ></input>
                                     <NavLink
-                                    id='signup-button' 
-                                    to={{
-                                        pathname:'/sign-up',
-                                        email: `${email}`
-                                    }}
-                                    >
-                                        Sign up
+                                        id='signup-button' 
+                                        to={{
+                                            pathname:'/sign-up',
+                                            email: `${email}`
+                                        }}
+                                        >
+                                            Sign up
                                     </NavLink>
                                 </div>
                             </div>

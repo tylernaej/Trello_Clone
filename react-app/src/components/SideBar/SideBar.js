@@ -4,7 +4,11 @@ import './SideBar.css'
 import { useSelector, useDispatch } from 'react-redux';
 
 const SideBar = () => {
-    return
+    return (
+        <div>
+            Something
+        </div>
+    )
 }
 
 export default SideBar

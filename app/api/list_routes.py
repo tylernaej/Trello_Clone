@@ -42,6 +42,7 @@ def edit_list(id):
 
     listQ = List.query.get(id)
 
+
     if not listQ:
         return {"message": "List could not be found", "statusCode": 404}, 404
 
@@ -55,7 +56,7 @@ def edit_list(id):
         listQ.is_archived = form.isArchived.data
 
         db.session.commit()
-
+        print(f'\n\n{listQ.to_dict()}\n\n')
         return listQ.to_dict()
     
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401

@@ -18,6 +18,30 @@ function ListEditTitle({titleSelected, list, changeTitle, setChangeTitle}) {
         e.stopPropagation()
     }
 
+    const closeMenu = () => {
+        if(changeTitle){
+            if(errors.length>0)return
+            const listEdit = {
+                boardId: list.boardId,
+                title,
+                isArchived: 0
+            }
+            dispatch(editListThunk({listId: list.id, payload: listEdit}))
+            .then(() => setChangeTitle(false))
+        }
+    }
+
+    const handleEnter = e => {
+        if(e.key === 'Enter'){
+            e.preventDefault()
+            closeMenu()
+        }
+    }
+
+    const focusEndOfInput = (inputFocus) => {
+        console.log(inputFocus)
+    }
+
     useEffect(() => {
         const validationErrors = []
         if(title.length >= 100) validationErrors.push('List names can\'t exceed more than 100 characters.')
@@ -25,28 +49,19 @@ function ListEditTitle({titleSelected, list, changeTitle, setChangeTitle}) {
       }, [title])
 
     useEffect((e) => {
-        const closeMenu = () => {
-            if(changeTitle){
 
-                if(errors.length>0)return
-
-                const listEdit = {
-                    boardId: list.boardId,
-                    title,
-                    isArchived: 0
-                }
-                
-                dispatch(editListThunk({listId: list.id, payload: listEdit}))
-                .then(() => setChangeTitle(false))
-            }
-        }
-        const clickProtected = document.getElementById('click-protected')
+        const clickProtected = document.getElementById('click-protected')      
         document.addEventListener('click', closeMenu, false)
         clickProtected.addEventListener('click', handleClickOff, true)
         return () => document.removeEventListener('click', closeMenu)
     
     }, [changeTitle, title, errors])
 
+    useEffect((e) =>{
+        const inputFocus = document.getElementById('title-input')      
+        focusEndOfInput(inputFocus)
+    })
+    
     return (
         <div id='click-protected'>
             <form >
@@ -60,6 +75,7 @@ function ListEditTitle({titleSelected, list, changeTitle, setChangeTitle}) {
                         placeholder={`${title}`}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                        onKeyDown={handleEnter}
                     />
                 </div>         
             </form>

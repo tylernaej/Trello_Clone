@@ -18,6 +18,29 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setSho
         e.stopPropagation()
     }
 
+    const closeMenu = () => {
+        if(changeTitle){
+            const cardEdit = {
+                listId: card.listId,
+                title,
+                coverColor: card.coverColor,
+                description: card.description,
+                isArchived: 0
+            }
+            if(errors.length>0) return
+            dispatch(editCardThunk({cardId: card.id, payload: cardEdit, previousList: card.listId}))
+            .then(() => setChangeTitle(false))
+            .then(() => setShowModal(false))
+        }
+    }
+
+    const handleEnter = e => {
+        if(e.key === 'Enter'){
+            e.preventDefault()
+            closeMenu()
+        }
+    }
+
     useEffect(() => {
         const validationErrors = []
         if(title.length >= 100) validationErrors.push('Card names can\'t exceed more than 100 characters.')
@@ -25,24 +48,7 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setSho
       }, [title])
 
     useEffect((e) => {
-        const closeMenu = () => {
-            if(changeTitle){
 
-                const cardEdit = {
-                    listId: card.listId,
-                    title,
-                    coverColor: card.coverColor,
-                    description: card.description,
-                    isArchived: 0
-                }
-       
-                if(errors.length>0) return
-
-                dispatch(editCardThunk({cardId: card.id, payload: cardEdit, previousList: card.listId}))
-                .then(() => setChangeTitle(false))
-                .then(() => setShowModal(false))
-            }
-        }
         const clickProtected = document.getElementById('card-title-click-protected')
         document.addEventListener('click', closeMenu, false)
         clickProtected.addEventListener('click', handleClickOff, true)
@@ -63,6 +69,7 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setSho
                         placeholder={`${title}`}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                        onKeyDown={handleEnter}
                     />
                 </div>         
             </form>

@@ -18,6 +18,28 @@ function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
         e.stopPropagation()
     }
 
+    const closeMenu = () => {
+        if(changeTitle){
+            const boardEdit = {
+                workspaceId: board.workspaceId,
+                title,
+                backgroundColor: board.backgroundColor,
+                visibility: board.visibility,
+                isArchived: 0
+            }
+            if(errors.length>0) return
+            dispatch(editBoardThunk({boardId: board.id, payload: boardEdit}))
+            .then(() => setChangeTitle(false))
+        }
+    }
+
+    const handleEnter = e => {
+        if(e.key === 'Enter'){
+            e.preventDefault()
+            closeMenu()
+        }
+    }
+
     useEffect(() => {
         const validationErrors = []
         if(title.length >= 100) validationErrors.push('Board names must be less than 100 characters')
@@ -26,23 +48,7 @@ function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
       }, [title])
 
     useEffect((e) => {
-        const closeMenu = () => {
-            if(changeTitle){
 
-                const boardEdit = {
-                    workspaceId: board.workspaceId,
-                    title,
-                    backgroundColor: board.backgroundColor,
-                    visibility: board.visibility,
-                    isArchived: 0
-                }
-
-                if(errors.length>0) return
-
-                dispatch(editBoardThunk({boardId: board.id, payload: boardEdit}))
-                .then(() => setChangeTitle(false))
-            }
-        }
         const clickProtected = document.getElementById('board-title-click-protected')
         document.addEventListener('click', closeMenu, false)
         clickProtected.addEventListener('click', handleClickOff, true)
@@ -63,6 +69,7 @@ function BoardEditTitle({titleSelected, board, changeTitle, setChangeTitle}) {
                         placeholder={`${title}`}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                        onKeyDown={handleEnter}
                     />
                 </div>         
             </form>

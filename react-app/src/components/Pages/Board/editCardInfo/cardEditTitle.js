@@ -9,10 +9,10 @@ function CardEditTitle({titleSelected, card, changeTitle, setChangeTitle, setSho
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errors, setErrors] = useState([])
    
-    const handleClick = e => {
-        e.preventDefault()
-        setChangeTitle(false);
-    }
+    // const handleClick = e => {
+    //     e.preventDefault()
+    //     setChangeTitle(false);
+    // }
 
     const handleClickOff = e => {
         e.stopPropagation()

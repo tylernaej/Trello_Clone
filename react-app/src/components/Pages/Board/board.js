@@ -31,7 +31,7 @@ function Board() {
     const sessionUser = useSelector(state => state.session.user)
     const workspaceUsers = useSelector(state => state.activeWorkspace?.workspace?.users)
     const [notAuthorized, setNotAuthorized] = useState(false)
-       
+ 
     useEffect(() => {
         if(activeBoard?.lists?.length === 0){
             const button = document.getElementById('add-list-board-button')

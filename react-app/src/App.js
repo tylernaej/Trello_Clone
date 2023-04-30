@@ -14,6 +14,7 @@ import Board from './components/Pages/Board/board';
 import Workspace from './components/Pages/WorkSpace/workspace';
 import './app.css'
 import NotFound from './components/Pages/404/404';
+import TestBoard from './components/Pages/TestBoard/testBoard';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,6 +50,9 @@ function App() {
         <ProtectedRoute path='/w/:workspaceId/b/:boardId'>
           <Board />
         </ProtectedRoute>
+        <Route path='/testboard'>
+          <TestBoard/>
+        </Route>
         {/* <ProtectedRoute path='/w/:workspaceId'>
           <Workspace />
         </ProtectedRoute> */}

@@ -144,20 +144,37 @@ function TestBoard() {
     }
 
     //console.logs
-    console.log(`The Active Lists: ${activeBoard?.lists}`)
 
     return(
         <div>
-            <div id='lists-map'>
-                {activeBoard.lists.map(list => (
-                    <BoardListCard 
-                        key={list.id} 
-                        lists={activeBoard.lists}
-                        list={list} 
-                        finishedDelete={finishedDelete} 
-                        setFinishedDelete={setFinishedDelete}
-                    />
-                ))}
+            <div style={{display: 'flex', justifyContent: 'center', height: '100%' }}>
+                <DragDropContext>
+                    {activeBoard?.lists.map(list => (
+                        <div>
+                            <Droppable droppableId={list.id}>
+                                {(provided, snapshot) => (
+                                    <BoardListCard 
+                                        {...provided.droppableProps}
+                                        ref={provided.innerRef}
+                                        key={list.id} 
+                                        lists={activeBoard.lists}
+                                        list={list} 
+                                        finishedDelete={finishedDelete} 
+                                        setFinishedDelete={setFinishedDelete}
+                                        style={{
+                                            background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
+                                            padding: 4,
+                                            width: 250, 
+                                            minHeight: 500,
+                                            margin: 5
+                                        }}
+                                    />
+                                )}
+
+                            </Droppable>
+                        </div>
+                    ))}
+                </DragDropContext>
             </div>
             <div style={{display: 'flex', justifyContent: 'center', height: '100%' }}>
                 <DragDropContext onDragEnd={result => onDragEnd(result, lists, setLists)}>
@@ -176,7 +193,6 @@ function TestBoard() {
                                                     padding: 4,
                                                     width: 250, 
                                                     minHeight: 500
-
                                                 }}
                                             >
                                                 {list.cards.map((item, index) => {

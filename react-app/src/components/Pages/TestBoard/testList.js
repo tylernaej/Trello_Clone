@@ -222,57 +222,48 @@ function TestList({lists, list, finishedDelete, setFinishedDelete}) {
                 </div>
                 <div>
                     <DragDropContext onDragEnd={result => console.log(result)}>
-                        <div> 
-                            <Droppable droppableId={list.id}>
-                                {(provided, snapshot) => {
-                                    return (
-                                        <div
-                                            {...provided.droppableProps}
-                                            ref={provided.innerRef}
-                                            style={{
-                                                background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
-                                                minHeight: 500
-                                            }}
-                                        >
-                                            {list.cards.map((card, index) => {
-                                                return (
-                                                    <Draggable key={card.id} draggableId={card.id} index={index}>
-                                                        {(provided, snapshot) => {
-                                                            return (
-                                                                <div>
-                                                                    <TestCard 
-                                                                        ref={provided.innerRef}
-                                                                        {...provided.draggableProps}
-                                                                        {...provided.dragHandleProps}
-                                                                        key={card.id} 
-                                                                        lists={lists} 
-                                                                        boardId={list.boardId} 
-                                                                        card={card} 
-                                                                        style={{
-                                                                            userSelect: 'none',
-                                                                            padding: 16,
-                                                                            margin: '0 0 8px 0',
-                                                                            minHeight: '50px',
-                                                                            backgroundColor: snapshot.isDragging ? '#263b4a' : '#456c86',
-                                                                            color: 'white',
-                                                                            ...provided.draggableProps.style
-                                                                        }}
+                        <Droppable droppableId={list.id}>
+                            {(provided, snapshot) => {
+                                return (
+                                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                                        {list.cards.map((card, index) => {
+                                            return (
+                                                <Draggable key={card.id} draggableId={card.id.toString()} index={index}>
+                                                    {(provided, snapshot) => {
+                                                        return (
+                                                            <div
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                                style={{
+                                                                    userSelect: 'none',
+                                                                    padding: 16,
+                                                                    margin: '0 0 8px 0',
+                                                                    minHeight: '50px',
+                                                                    backgroundColor: snapshot.isDragging ? '#263b4a' : '#456c86',
+                                                                    color: 'white',
+                                                                    ...provided.draggableProps.style
+                                                                }}
+                                                            >
+                                                                {card.title}
+                                                                {/* <TestCard 
+                                                                    key={card.id} 
+                                                                    lists={lists} 
+                                                                    boardId={list.boardId} 
+                                                                    card={card} 
+                                                                /> */}
+                                                            </div>
+                                                        )
+                                                    }}
+                                                </Draggable>
+                                            )
+                                        })}
+                                        {provided.placeholder}
+                                    </div>
+                                )
+                            }}
 
-                                                                    />
-                                                                </div>
-                                                            )
-                                                        }}
-                                                    </Draggable>
-                                                )
-                                            })}
-                                            {provided.placeholder}
-                                        </div>
-                                    )
-                                }}
-
-                            </Droppable>
-
-                        </div>
+                        </Droppable>
                     </DragDropContext>
                 </div>
                 <div>

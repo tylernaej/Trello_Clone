@@ -50,6 +50,9 @@ function App() {
         <ProtectedRoute path='/w/:workspaceId/b/:boardId'>
           <Board />
         </ProtectedRoute>
+        <Route path='/testboard2/w/:workspaceId/b/:boardId'>
+          <TestBoard/>
+        </Route>
         <Route path='/testboard/w/:workspaceId/b/:boardId'>
           <TestBoard/>
         </Route>

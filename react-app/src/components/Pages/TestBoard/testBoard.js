@@ -1,71 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { v4 as uuidv4 } from 'uuid';
 import {deleteBoardThunk, getAllBoardsOfWorkspaceThunk} from '../../../store/activeWorkspace'
 import {getAllWorkspacesThunk} from '../../../store/workspace'
-import BoardListCard from "../Board/boardListCard";
+import BoardListCard from '../Board/boardListCard'
 import { Modal } from '../../../context/Modal'
-import BoardCreateList from "../Board/boardCreateList";
+import BoardCreateList from '../Board/boardCreateList'
 import BoardEditTitle from "../Board/editBoardInfo/editBoardTitle";
-import './testBoard.css'
 import ResourceDoesntExist from "../404/resourceDoesntExist";
-
-
-const cardsFromBackend = [
-    {id: uuidv4(), content: 'First Task'},
-    {id: uuidv4(), content: 'Second Task'}
-]
-
-const listsFromBackend = 
-    {
-        [uuidv4()]: {
-            name:'Todo',
-            cards: cardsFromBackend
-        },
-        [uuidv4()]: {
-            name: 'In Progress',
-            cards: []
-        }
-    }
-;
-
-const onDragEnd = (result, lists, setLists) => {
-    if(!result.destination) return;
-    const {source, destination} = result
-    if (source.droppableId !== destination.droppableId) {
-        const sourceList = lists[source.droppableId];
-        const destList = lists[destination.droppableId];
-        const sourceCards = [...sourceList.cards];
-        const destCards = [...destList.cards];
-        const [removed] = sourceCards.splice(source.index, 1);
-        destCards.splice(destination.index, 0, removed);
-        setLists({
-            ...lists, 
-            [source.droppableId]: {
-                ...sourceList,
-                cards: sourceCards
-            },
-            [destination.droppableId]: {
-                ...destList,
-                cards: destCards
-            }
-        })
-    } else {
-        const list = lists[source.droppableId];
-        const copiedCards = [...list.cards]
-        const [removed] = copiedCards.splice(source.index, 1)
-        copiedCards.splice(destination.index, 0, removed)
-        setLists({
-            ...lists,
-            [source.droppableId]: {
-                ...list,
-                cards:copiedCards
-            }
-        })
-    }
-}
+import TestList from "./testList";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function TestBoard() {
     const dispatch = useDispatch()
@@ -86,7 +30,6 @@ function TestBoard() {
     const sessionUser = useSelector(state => state.session.user)
     const workspaceUsers = useSelector(state => state.activeWorkspace?.workspace?.users)
     const [notAuthorized, setNotAuthorized] = useState(false)
-    const [lists, setLists] = useState(listsFromBackend)
  
     useEffect(() => {
         if(activeBoard?.lists?.length === 0){
@@ -143,93 +86,70 @@ function TestBoard() {
         )
     }
 
-    //console.logs
-
-    return(
-        <div>
-            <div style={{display: 'flex', justifyContent: 'center', height: '100%' }}>
-                <DragDropContext>
-                    {activeBoard?.lists.map(list => (
-                        <div>
-                            <Droppable droppableId={list.id}>
-                                {(provided, snapshot) => (
-                                    <BoardListCard 
-                                        {...provided.droppableProps}
-                                        ref={provided.innerRef}
-                                        key={list.id} 
-                                        lists={activeBoard.lists}
-                                        list={list} 
-                                        finishedDelete={finishedDelete} 
-                                        setFinishedDelete={setFinishedDelete}
-                                        style={{
-                                            background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
-                                            padding: 4,
-                                            width: 250, 
-                                            minHeight: 500,
-                                            margin: 5
-                                        }}
-                                    />
-                                )}
-
-                            </Droppable>
+    return isLoaded && finishedDelete && (
+        <div id='board-page-wrapper' style={{backgroundColor: `#${activeBoard.backgroundColor}`}}>
+            <div id='interior-container'>
+                <div id='title-display'>
+                    <div id='board-title'>
+                        <div id='title-name'>
+                            {!changeTitle && (
+                                <div onClick={(e => setChangeTitle(true))} id='board-title-title'>
+                                    {titleSelected}
+                                </div>
+                            )}
+                            {changeTitle && (
+                                <BoardEditTitle titleSelected={titleSelected} board={activeBoard} changeTitle={changeTitle} setChangeTitle={setChangeTitle}/>
+                            )}
                         </div>
-                    ))}
-                </DragDropContext>
-            </div>
-            <div style={{display: 'flex', justifyContent: 'center', height: '100%' }}>
-                <DragDropContext onDragEnd={result => onDragEnd(result, lists, setLists)}>
-                    {Object.entries(lists).map(([id, list]) => {
-                        return (
-                            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '8px'}}>
-                                <h2>{list.name}</h2>
-                                <Droppable droppableId={id}>
-                                    {(provided, snapshot) => {
-                                        return (
-                                            <div
-                                                {...provided.droppableProps}
-                                                ref={provided.innerRef}
-                                                style={{
-                                                    background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
-                                                    padding: 4,
-                                                    width: 250, 
-                                                    minHeight: 500
-                                                }}
-                                            >
-                                                {list.cards.map((item, index) => {
-                                                    return (
-                                                        <Draggable key={item.id} draggableId={item.id} index={index}>
-                                                            {(provided, snapshot) => {
-                                                                return (
-                                                                    <div
-                                                                        ref={provided.innerRef}
-                                                                        {...provided.draggableProps}
-                                                                        {...provided.dragHandleProps}
-                                                                        style={{
-                                                                            userSelect: 'none',
-                                                                            padding: 16,
-                                                                            margin: '0 0 8px 0',
-                                                                            minHeight: '50px',
-                                                                            backgroundColor: snapshot.isDragging ? '#263b4a' : '#456c86',
-                                                                            color: 'white',
-                                                                            ...provided.draggableProps.style
-                                                                        }}
-                                                                    >
-                                                                        {item.content}
-                                                                    </div>
-                                                                )
-                                                            }}
-                                                        </Draggable>
-                                                    )
-                                                })}
-                                                {provided.placeholder}
-                                            </div>
-                                        )
-                                    }}
-                                </Droppable>
+                        <div style={{marginLeft:'15px'}}>
+                            {editBoard && (
+                                <div id='board-settings-dropdown-button' onClick={() => setEditBoard(false)}>
+                                    <i className="fa-solid fa-chevron-up fa-sm"></i>
+                                    <i className="fa-solid fa-gear fa-sm"></i>
+                                </div>
+                            )}
+                            {!editBoard && (
+                                <div id='board-settings-dropdown-button' onClick={() => setEditBoard(true)}>
+                                    <i className="fa-solid fa-chevron-down fa-sm"></i>
+                                    <i className="fa-solid fa-gear fa-sm"></i>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    <div>
+                        {editBoard && (
+                            <div id='board-settings-dropdown'>
+                                <div id='delete-board-button'>
+                                    <div onClick={handleBoardDelete}>Delete Board</div>
+                                </div>
                             </div>
-                        )
-                    })}
-                </DragDropContext>
+                        )}
+                    </div>
+                </div>
+                <div id='list-container'>
+                    <div id='lists-map'>
+                        {activeBoard.lists.map(list => (
+                            <div>
+                                <TestList
+                                    key={list.id} 
+                                    lists={activeBoard.lists}
+                                    list={list} 
+                                    finishedDelete={finishedDelete} 
+                                    setFinishedDelete={setFinishedDelete}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    <div id='add-list-button'>
+                        {!addList && (
+                            <div id='add-list-board-button' onClick={handleClick}>Add New List</div>
+                        )}
+                        {addList && (
+                            <BoardCreateList setAddList={setAddList} boardId={activeBoard.id}/>
+                        )}
+                    </div>
+                </div>
+
             </div>
         </div>
     )

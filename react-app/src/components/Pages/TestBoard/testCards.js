@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import CardModal from "../Board/cardModal";
 import { Modal } from '../../../context/Modal'
 import CardEditTitle from "../Board/editCardInfo/cardEditTitle";
-import '../Board/boardCardCard.css'
+import './testCard.css'
 
 function TestCard({lists, boardId, card}) {
     const listId = card.listId

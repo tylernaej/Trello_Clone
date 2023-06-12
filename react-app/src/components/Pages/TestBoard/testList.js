@@ -235,23 +235,23 @@ function TestList({lists, list, finishedDelete, setFinishedDelete}) {
                                                                 ref={provided.innerRef}
                                                                 {...provided.draggableProps}
                                                                 {...provided.dragHandleProps}
-                                                                style={{
-                                                                    userSelect: 'none',
-                                                                    padding: 16,
-                                                                    margin: '0 0 8px 0',
-                                                                    minHeight: '50px',
-                                                                    backgroundColor: snapshot.isDragging ? '#263b4a' : '#456c86',
-                                                                    color: 'white',
-                                                                    ...provided.draggableProps.style
-                                                                }}
+                                                                // style={{
+                                                                //     userSelect: 'none',
+                                                                //     padding: 16,
+                                                                //     margin: '0 0 8px 0',
+                                                                //     minHeight: '50px',
+                                                                //     backgroundColor: snapshot.isDragging ? '#263b4a' : '#456c86',
+                                                                //     color: 'white',
+                                                                //     ...provided.draggableProps.style
+                                                                // }}
                                                             >
-                                                                {card.title}
-                                                                {/* <TestCard 
+                                                                {/* {card.title} */}
+                                                                <TestCard 
                                                                     key={card.id} 
                                                                     lists={lists} 
                                                                     boardId={list.boardId} 
                                                                     card={card} 
-                                                                /> */}
+                                                                />
                                                             </div>
                                                         )
                                                     }}
